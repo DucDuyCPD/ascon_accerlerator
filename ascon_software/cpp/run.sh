@@ -1,3 +1,3 @@
-g++ ascon_permutation.cpp -o build
+g++ -I ./include -o build $(cat list_file.txt)
 ./build
 echo ""
