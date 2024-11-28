@@ -1,3 +1,0 @@
-ascon_permutation.v
-test_ascon_permutation.sv
-asconp.sv

@@ -4,9 +4,7 @@ module test_ascon_permutation;
 	reg [63:0] x0_o, x1_o, x2_o, x3_o, x4_o;
 	reg [63:0] rc;
 
-asconp ascon_p_dut(
-	.round_cnt(rc),
-
+ascon_permutation_p12 ascon_p_dut(
 	.x0_i(x0_i),
 	.x1_i(x1_i),
 	.x2_i(x2_i),

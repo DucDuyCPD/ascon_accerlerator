@@ -129,6 +129,14 @@ void linear_diffusion (uint64_t &x0, uint64_t &x1, uint64_t &x2, uint64_t &x3, u
 	x4 = x4 ^ x4_sr7 ^ x4_sr41;
 }
 
+void ascon_permutation(int permutation, uint64_t &x0, uint64_t &x1, uint64_t &x2, uint64_t &x3, uint64_t &x4) {
+	for (int i = 0; i < permutation; i++) {
+		add_constant (permutation, i, x0, x1, x2, x3, x4);
+		s_box (x0, x1, x2, x3, x4);
+		linear_diffusion (x0, x1, x2, x3, x4);
+	}
+}
+
 int main() {
 
 	plaintext data;
@@ -140,29 +148,12 @@ int main() {
 
 	int permutation = 12;
 
-	for (int i = 0; i < permutation; i++) {
-		cout << "==========case " << i << "==========" << endl;
-		add_constant (permutation, i, data.x0, data.x1, data.x2, data.x3, data.x4);
-		cout << "==========add constant==========" << endl;
-		cout << "x0 = " << hex << data.x0 << endl;
-		cout << "x1 = " << hex << data.x1 << endl;
-		cout << "x2 = " << hex << data.x2 << endl;
-		cout << "x3 = " << hex << data.x3 << endl;
-		cout << "x4 = " << hex << data.x4 << endl;
-		s_box (data.x0, data.x1, data.x2, data.x3, data.x4);
-		cout << "==========   s_box    ==========" << endl;
-		cout << "x0 = " << hex << data.x0 << endl;
-		cout << "x1 = " << hex << data.x1 << endl;
-		cout << "x2 = " << hex << data.x2 << endl;
-		cout << "x3 = " << hex << data.x3 << endl;
-		cout << "x4 = " << hex << data.x4 << endl;
-		linear_diffusion (data.x0, data.x1, data.x2, data.x3, data.x4);
-		cout << "==========   linear   ==========" << endl;
-		cout << "x0 = " << hex << data.x0 << endl;
-		cout << "x1 = " << hex << data.x1 << endl;
-		cout << "x2 = " << hex << data.x2 << endl;
-		cout << "x3 = " << hex << data.x3 << endl;
-		cout << "x4 = " << hex << data.x4 << endl;
-	}
+	ascon_permutation(12, data.x0, data.x1, data.x2, data.x3, data.x4);
+
+	cout << "x0 = " << hex << data.x0 << endl;
+	cout << "x1 = " << hex << data.x1 << endl;
+	cout << "x2 = " << hex << data.x2 << endl;
+	cout << "x3 = " << hex << data.x3 << endl;
+	cout << "x4 = " << hex << data.x4 << endl;
 	return 0;
 }

@@ -1,0 +1,2 @@
+../rtl/ascon_permutation.v
+../tb/test_ascon_permutation.sv
