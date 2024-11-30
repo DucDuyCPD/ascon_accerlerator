@@ -6,7 +6,7 @@ NIST SP 800-232
 https://ascon.iaik.tugraz.at/
 """
 
-debug = False
+debug = True
 debugpermutation = False
 
 # === Ascon hash/xof ===
@@ -304,7 +304,6 @@ def ascon_process_ciphertext(S, b, rate, ciphertext):
     if debug: printstate(S, "process ciphertext:")
     return plaintext
 
-
 def ascon_finalize(S, rate, a, key):
     """
     Ascon finalization phase - internal helper function.
@@ -415,8 +414,8 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = get_random_bytes(16)  # zero_bytes(16)
-    nonce = get_random_bytes(16)  # zero_bytes(16)
+    key   = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
+    nonce = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
     
     associateddata = b"ASCON"
     plaintext      = b"ascon"

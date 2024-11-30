@@ -11,6 +11,38 @@ struct plaintext {
 	uint64_t x4;
 };
 
+struct uint128_t {
+	uint64_t low = 0;
+	uint64_t high = 0;
+};
+
+
+void initialization(uint8_t k, uint8_t n, uint8_t a, uint8_t b, uint128_t K, uint128_t N, uint64_t &s0, uint64_t &s1, uint64_t &s2, uint64_t &s3, uint64_t &s4) {
+	uint64_t IV = 0;
+
+	IV = IV + k;
+	IV = (IV << 8) + n;
+	IV = (IV << 8) + a;
+	IV = (IV << 8) + b;
+	IV = (IV << (160-k));
+	cout << hex << IV << endl;
+
+
+	s4 = IV;
+	s3 = K.high;
+	s2 = K.low;
+	s1 = N.high;
+	s0 = N.low;
+
+	ascon_permutation(12, s0, s1, s2, s3, s4);
+
+	s0 = s0 ^ K.low;
+	s1 = s1 ^ K.high;
+	s2 = s2 ^ 0;
+	s3 = s3 ^ 0;
+	s4 = s4 ^ 0;
+}
+
 int main() {
 
 	plaintext data;
@@ -20,7 +52,22 @@ int main() {
 	data.x3 = 0;
 	data.x4 = 0;
 
-	int permutation = 12;
+	uint8_t k = 128;
+	uint8_t n = 128;
+	uint8_t a = 12;
+	uint8_t b = 6;
+
+	// uint128_t K;
+	// K.low = 0;
+	// K.high = 0;
+
+	// initialization(k, n, a, b, K, N, data.x0, data.x1, data.x2, data.x3, data.x4);
+	uint64_t IV = 0;
+	IV = IV + k;
+	IV = (IV << 8) + n;
+	IV = (IV << 8) + a;
+	IV = (IV << 8) + b;
+	IV = (IV << (160-k));
 
 	ascon_permutation(6, data.x0, data.x1, data.x2, data.x3, data.x4);
 

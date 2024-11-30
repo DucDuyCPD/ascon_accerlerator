@@ -17,11 +17,13 @@ clean:
 	@rm wave.vcd
 
 all: 
-	#@make clean
+	@rm build -r
 	@make build
 	@make run
 
 all_wave: 
+	@rm build -r
+	@rm wave.vcd
 	@make all
 	@make wave
 
