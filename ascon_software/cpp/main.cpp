@@ -27,20 +27,23 @@ void initialization(uint8_t k, uint8_t n, uint8_t a, uint8_t b, uint128_t K, uin
 	IV = (IV << (160-k));
 	cout << hex << IV << endl;
 
-
-	s4 = IV;
-	s3 = K.high;
+	s0 = IV;
+	s1 = K.high;
 	s2 = K.low;
-	s1 = N.high;
-	s0 = N.low;
+	s3 = N.high;
+	s4 = N.low;
 
 	ascon_permutation(12, s0, s1, s2, s3, s4);
 
-	s0 = s0 ^ K.low;
-	s1 = s1 ^ K.high;
+	s0 = s0 ^ 0;
+	s1 = s1 ^ 0;
 	s2 = s2 ^ 0;
-	s3 = s3 ^ 0;
-	s4 = s4 ^ 0;
+	s3 = s3 ^ K.high;
+	s4 = s4 ^ K.low;
+}
+
+void process_associated_data() {
+	
 }
 
 int main() {
@@ -57,19 +60,15 @@ int main() {
 	uint8_t a = 12;
 	uint8_t b = 6;
 
-	// uint128_t K;
-	// K.low = 0;
-	// K.high = 0;
+	uint128_t K;
+	K.low = 0;
+	K.high = 0;
 
-	// initialization(k, n, a, b, K, N, data.x0, data.x1, data.x2, data.x3, data.x4);
-	uint64_t IV = 0;
-	IV = IV + k;
-	IV = (IV << 8) + n;
-	IV = (IV << 8) + a;
-	IV = (IV << 8) + b;
-	IV = (IV << (160-k));
+	uint128_t N;
+	N.low = 0;
+	N.high = 0;
 
-	ascon_permutation(6, data.x0, data.x1, data.x2, data.x3, data.x4);
+	initialization(k, n, a, b, K, N, data.x0, data.x1, data.x2, data.x3, data.x4);
 
 	cout << "x0 = " << hex << data.x0 << endl;
 	cout << "x1 = " << hex << data.x1 << endl;
