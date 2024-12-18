@@ -1,2 +1,6 @@
+../rtl/ascon_initialization.v
 ../rtl/ascon_permutation.v
+../rtl/ascon_process_associated_data.v
 ../tb/test_ascon_permutation.sv
+../tb/test_ascon_initialization.sv
+../tb/test_ascon_process_associated_data.sv

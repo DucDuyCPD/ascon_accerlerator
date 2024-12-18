@@ -1,7 +1,7 @@
 #====================================
 #variable define
 LIST_FILE_NAME	:= list_file.txt
-TOP				?= test_ascon_permutation
+TOP				?= test_bench
 #====================================
 
 build:
