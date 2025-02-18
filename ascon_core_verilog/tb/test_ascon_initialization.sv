@@ -1,7 +1,4 @@
 module test_ascon_initialization;
-	reg [7:0] k;
-	reg [7:0] rate;
-	reg [7:0] a, b;
 	reg [127:0] key;
 	reg [127:0] nonce;
 	reg [1:0] sel_type;
@@ -36,9 +33,9 @@ module test_ascon_initialization;
 	initial begin
 		#10 rst_n = 1;
 
-		sel_type = 3;
+		sel_type = 1;
 
-		key = 128'hefcfacacc6bbbc6c_576dbc3da5c85891;
+		key = 128'h0;
 		nonce = 128'h0;
 		#100;
 

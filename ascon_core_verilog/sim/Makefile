@@ -6,24 +6,28 @@ TOP				?= test_bench
 
 build:
 	@verilator -Mdir build --binary -j $(nproc) --sv --trace -f $(LIST_FILE_NAME) -Wno-WIDTH -Wno-UNOPTFLAT --top-module $(TOP)
+	
 run:
 	@./build/V$(TOP)
 
 wave:
-	@gtkwave wave.vcd
+	@gtkwave wave.vcd &
 
 clean:
-	@rm build -r
-	@rm wave.vcd
+	@if [ -d build ]; then \
+		rm build -r; \
+	fi
+
+	@if [ -f *.vcd ]; then \
+		rm *.vcd; \
+	fi
 
 all: 
-	@rm build -r
+	@make clean
 	@make build
 	@make run
 
 all_wave: 
-	@rm build -r
-	@rm wave.vcd
 	@make all
 	@make wave
 
@@ -36,7 +40,5 @@ help:
 	@echo "| make all: make clean -> make build -> make run  	"
 	@echo "| make all_wave: make all -> make wave             	"
 	@echo "|========================================================"
-	@echo "| To select between test CarrySelectAdder and     	"
-	@echo "| test RippleCarryAdder change variable TOP by           "
-	@echo "| name of top module. The default top module is test_CSA "
-	@echo "=========================================================="
+	@echo "| To select top module, use option TOP=module_name     	"
+	@echo "========================================================="

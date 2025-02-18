@@ -1,0 +1,49 @@
+module ascon_finalization (
+	input wire clk, rst_n,
+
+	input wire [127:0] key,
+
+	input wire [63:0] x0_i,
+	input wire [63:0] x1_i,
+	input wire [63:0] x2_i,
+	input wire [63:0] x3_i,
+	input wire [63:0] x4_i,
+
+	output reg [127:0] tag
+);
+
+wire [63:0] s0, s1, s2, s3, s4; 
+
+wire [63:0] x0_p12, x1_p12, x2_p12, x3_p12, x4_p12;
+
+assign s0 = x0_i;
+assign s1 = x1_i;
+assign s2 = x2_i ^ key[127:64];
+assign s3 = x3_i ^ key[63:0];
+assign s4 = x4_i ^ 64'b0;
+
+always @(posedge clk or negedge rst_n) begin
+	if(~rst_n) begin
+		tag <= 128'b0;
+	end else begin
+		tag[127:64] <= x4_p12 ^ key[63:0];
+		tag[63:0] <= x3_p12 ^ key[127:64];
+	end
+end
+
+
+ascon_permutation_p12 ascon_p12(
+	.x0_i(s0),
+	.x1_i(s1),
+	.x2_i(s2),
+	.x3_i(s3),
+	.x4_i(s4),
+
+	.x0_o(x0_p12),
+	.x1_o(x1_p12),
+	.x2_o(x2_p12),
+	.x3_o(x3_p12),
+	.x4_o(x4_p12)
+);
+
+endmodule

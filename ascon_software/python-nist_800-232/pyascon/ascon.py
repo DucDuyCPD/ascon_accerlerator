@@ -40,10 +40,17 @@ def ascon_hash(message, variant="Ascon-Hash256", hashlength=32):
     m_padding = to_bytes([0x01]) + zero_bytes(rate - (len(message) % rate) - 1)
     m_padded = message + m_padding
 
+    # printstate(m_padded, "m_padded")
+    # print(bytes_to_hex(m_padded))
+
     # message blocks 0,...,n
     for block in range(0, len(m_padded), rate):
+        # print(block)
         S[0] ^= bytes_to_int(m_padded[block:block+rate])
+
+        # printstate(S, "S before permutation = ")
         ascon_permutation(S, 12)
+        # printstate(S, "S after permutation = ")
     if debug: printstate(S, "process message:")
 
     # Finalization (Squeezing)
@@ -234,14 +241,25 @@ def ascon_process_associated_data(S, b, rate, associateddata):
         a_padding = to_bytes([0x01]) + zero_bytes(rate - (len(associateddata) % rate) - 1)
         a_padded = associateddata + a_padding
 
-        printstate(a_padded, "a_padded = ")
+        # printstate(a_padded, "a_padded = ")
+        # print("a_padded = ")
+        # print(c);
+        # printstate(S, "S = ")
+
 
         for block in range(0, len(a_padded), rate):
+
+            # print(block)
+            
             S[0] ^= bytes_to_int(a_padded[block:block+8])
             if rate == 16:
                 S[1] ^= bytes_to_int(a_padded[block+8:block+16])
 
+            # printstate(S, "S before permutation = ")
+
             ascon_permutation(S, b)
+
+            # printstate(S, "S after permutation = ")
 
     S[4] ^= 1<<63
     if debug: printstate(S, "process associated data:")
@@ -260,19 +278,36 @@ def ascon_process_plaintext(S, b, rate, plaintext):
     p_padding = to_bytes([0x01]) + zero_bytes(rate-p_lastlen-1)
     p_padded = plaintext + p_padding
 
+    # printstate (p_padded,"p_padded = ")
+    # print(bytes_to_hex(p_padded))
+
     # first t-1 blocks
     ciphertext = to_bytes([])
     for block in range(0, len(p_padded) - rate, rate):
+
+        # print(block)
+
         S[0] ^= bytes_to_int(p_padded[block:block+8])
         S[1] ^= bytes_to_int(p_padded[block+8:block+16])
         ciphertext += (int_to_bytes(S[0], 8) + int_to_bytes(S[1], 8))
+        
+        # print("ciphertext = ")
+        # print(bytes_to_hex(ciphertext))
+
+        # printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
+        # printstate(S, "S after permutation = ")
 
     # last block t
     block = len(p_padded) - rate
+    # print("last block:", block, ", len p_padded:", len(p_padded))
     S[0] ^= bytes_to_int(p_padded[block:block+8])
     S[1] ^= bytes_to_int(p_padded[block+8:block+16])
     ciphertext += (int_to_bytes(S[0], 8)[:min(8,p_lastlen)] + int_to_bytes(S[1], 8)[:max(0,p_lastlen-8)])
+    
+    # print("ciphertext = ")
+    # print(bytes_to_hex(ciphertext))
+
     if debug: printstate(S, "process plaintext:")
     return ciphertext
 
@@ -289,14 +324,27 @@ def ascon_process_ciphertext(S, b, rate, ciphertext):
     c_lastlen = len(ciphertext) % rate
     c_padded = ciphertext + zero_bytes(rate - c_lastlen)
 
+    # printstate (c_padded,"c_padded = ")
+    # print(bytes_to_hex(c_padded))
+
     # first t-1 blocks
     plaintext = to_bytes([])
     for block in range(0, len(c_padded) - rate, rate):
+
+        # print(block)
+
         Ci = (bytes_to_int(c_padded[block:block+8]), bytes_to_int(c_padded[block+8:block+16]))
         plaintext += (int_to_bytes(S[0] ^ Ci[0], 8) + int_to_bytes(S[1] ^ Ci[1], 8))
         S[0] = Ci[0]
         S[1] = Ci[1]
+
+
+        # print("plaintext = ")
+        # print(bytes_to_hex(plaintext))  
+
+        # printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
+        # printstate(S, "S after permutation = ")
 
     # last block t
     block = len(c_padded) - rate
@@ -318,15 +366,22 @@ def ascon_finalize(S, rate, a, key):
     key: a bytes object of size 16 (for Ascon-AEAD128; 128-bit security)
     returns the tag, updates S
     """
+
+    printstate(S,"final input")
+
     assert(len(key) == 16)
     S[rate//8+0] ^= bytes_to_int(key[0:8])
     S[rate//8+1] ^= bytes_to_int(key[8:16])
 
+    printstate(S, "S before permutation = ")
     ascon_permutation(S, a)
+    printstate(S, "S after permutation = ")
 
     S[3] ^= bytes_to_int(key[-16:-8])
     S[4] ^= bytes_to_int(key[-8:])
     tag = int_to_bytes(S[3], 8) + int_to_bytes(S[4], 8)
+
+    printstate (S, "S = ")
     if debug: printstate(S, "finalization:")
     return tag
 
@@ -419,13 +474,14 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = get_random_bytes(16)  # zero_bytes(16)
+    key   = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
     nonce = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
 
+    # print("key = ",key)
     # printstate(key, "key = ")
     
-    associateddata = b"ASCON"
-    plaintext      = b"ascon"
+    associateddata = b"This is my test for processing associated data step and absorb" #62 bytes
+    plaintext      = b"This is my test for processing associated data step and absorb"
 
     ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
     receivedplaintext = ascon_decrypt(key, nonce, associateddata, ciphertext, variant)
@@ -445,7 +501,7 @@ def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = b"ascon"
+    message = b"This is my test for processing associated data step and absorb"
     tag = ascon_hash(message, variant, hashlength) # TODO CXOF interface
 
     demo_print([("message", message), ("tag", tag)])
@@ -464,7 +520,7 @@ def demo_mac(variant="Ascon-Mac", taglength=16):
 
 if __name__ == "__main__":
     demo_aead("Ascon-AEAD128")
-    demo_hash("Ascon-Hash256")
-    demo_hash("Ascon-XOF128")
-    demo_hash("Ascon-CXOF128")
-    demo_mac("Ascon-Mac")
+    # demo_hash("Ascon-Hash256")
+    # demo_hash("Ascon-XOF128")
+    # demo_hash("Ascon-CXOF128")
+    # demo_mac("Ascon-Mac")

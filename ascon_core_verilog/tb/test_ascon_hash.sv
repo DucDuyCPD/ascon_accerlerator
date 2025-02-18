@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module test_ascon_process_associated_data;
+module test_ascon_hash;
 	reg clk, rst_n;
 
 //initialization i/o port
@@ -44,10 +44,14 @@ module test_ascon_process_associated_data;
 	// parameter A2 = 128'h65746169636f7373_7320617461642064; //little: 65746169636f7373_7320617461642064  big: 73736f6369617465_6420646174612073
 	// parameter A3 = 128'h706574; //little: 706574  big: 746570
 
-	parameter A0 = 128'h2073692073696854_207473657420796d; //little: 2073692073696854_207473657420796d  big: 5468697320697320_6d79207465737420
-	parameter A1 = 128'h636f727020726f66_6120676e69737365; //little: 636f727020726f66_6120676e69737365  big: 666f722070726f63_657373696e672061
-	parameter A2 = 128'h65746169636f7373_7320617461642064; //little: 65746169636f7373_7320617461642064  big: 73736f6369617465_6420646174612073
-	parameter A3 = 128'h20646e6120706574_62726f736261; //little: 20646e6120706574_74726f736261  big: 74657020616e6420_6162736f7274
+	parameter A0 = 64'h2073692073696854;
+	parameter A1 = 64'h207473657420796d; //little: 2073692073696854_207473657420796d  big: 5468697320697320_6d79207465737420
+	parameter A2 = 64'h636f727020726f66;
+	parameter A3 = 64'h6120676e69737365; //little: 636f727020726f66_6120676e69737365  big: 666f722070726f63_657373696e672061
+	parameter A4 = 64'h65746169636f7373;
+	parameter A5 = 64'h7320617461642064; //little: 65746169636f7373_7320617461642064  big: 73736f6369617465_6420646174612073
+	parameter A6 = 64'h20646e6120706574;
+	parameter A7 = 64'h74726f736261; //little: 20646e6120706574_74726f736261  big: 74657020616e6420_6162736f7274
 
 //========
 	ascon_initialization ascon_initialization_dut(
@@ -63,7 +67,7 @@ module test_ascon_process_associated_data;
 		.x4(x4_init)
 	);
 
-	ascon_AE_AM ascon_process_associated_data_dut(
+	ascon_AE_AM ascon_hash_dut(
 	.clk(clk), .rst_n(rst_n),
 
 	.process_en(process_en),
@@ -97,7 +101,7 @@ module test_ascon_process_associated_data;
 		
 		key = 0;
 		nonce = 0;
-		sel_type = 0;
+		sel_type = 1;
 
 		process_en = 0;
 
@@ -144,8 +148,8 @@ module test_ascon_process_associated_data;
 		$display("x4_o = %16h",x4_o);
 
 		data_length = 62;
-		data_position = 16;
-		data = A1; // "ASCONenc"
+		data_position = 8;
+		data = A1;
 		x0_i = x0_o;
 		x1_i = x1_o;
 		x2_i = x2_o;
@@ -160,7 +164,7 @@ module test_ascon_process_associated_data;
 		$display("x4_o = %16h",x4_o);
 
 		data_length = 62;
-		data_position = 32;
+		data_position = 16;
 		data = A2; // "ASCONenc"
 		x0_i = x0_o;
 		x1_i = x1_o;
@@ -176,8 +180,72 @@ module test_ascon_process_associated_data;
 		$display("x4_o = %16h",x4_o);
 
 		data_length = 62;
-		data_position = 48;
+		data_position = 24;
 		data = A3; // "ASCONenc"
+		x0_i = x0_o;
+		x1_i = x1_o;
+		x2_i = x2_o;
+		x3_i = x3_o;
+		x4_i = x4_o;
+		#100;
+		$display("=========================");
+		$display("x0_o = %16h",x0_o);
+		$display("x1_o = %16h",x1_o);
+		$display("x2_o = %16h",x2_o);
+		$display("x3_o = %16h",x3_o);
+		$display("x4_o = %16h",x4_o);
+
+		data_length = 62;
+		data_position = 32;
+		data = A4; // "ASCONenc"
+		x0_i = x0_o;
+		x1_i = x1_o;
+		x2_i = x2_o;
+		x3_i = x3_o;
+		x4_i = x4_o;
+		#100;
+		$display("=========================");
+		$display("x0_o = %16h",x0_o);
+		$display("x1_o = %16h",x1_o);
+		$display("x2_o = %16h",x2_o);
+		$display("x3_o = %16h",x3_o);
+		$display("x4_o = %16h",x4_o);
+
+		data_length = 62;
+		data_position = 40;
+		data = A5; // "ASCONenc"
+		x0_i = x0_o;
+		x1_i = x1_o;
+		x2_i = x2_o;
+		x3_i = x3_o;
+		x4_i = x4_o;
+		#100;
+		$display("=========================");
+		$display("x0_o = %16h",x0_o);
+		$display("x1_o = %16h",x1_o);
+		$display("x2_o = %16h",x2_o);
+		$display("x3_o = %16h",x3_o);
+		$display("x4_o = %16h",x4_o);
+
+		data_length = 62;
+		data_position = 48;
+		data = A6; // "ASCONenc"
+		x0_i = x0_o;
+		x1_i = x1_o;
+		x2_i = x2_o;
+		x3_i = x3_o;
+		x4_i = x4_o;
+		#100;
+		$display("=========================");
+		$display("x0_o = %16h",x0_o);
+		$display("x1_o = %16h",x1_o);
+		$display("x2_o = %16h",x2_o);
+		$display("x3_o = %16h",x3_o);
+		$display("x4_o = %16h",x4_o);
+
+		data_length = 62;
+		data_position = 56;
+		data = A7; // "ASCONenc"
 		x0_i = x0_o;
 		x1_i = x1_o;
 		x2_i = x2_o;
