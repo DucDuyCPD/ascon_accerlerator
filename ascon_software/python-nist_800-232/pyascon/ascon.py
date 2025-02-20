@@ -57,7 +57,9 @@ def ascon_hash(message, variant="Ascon-Hash256", hashlength=32):
     H = b""
     while len(H) < hashlength:
         H += int_to_bytes(S[0], rate)
+        printstate(S, "S before permutation = ")
         ascon_permutation(S, 12)
+        printstate(S, "S after permutation = ")
     if debug: printstate(S, "finalization:")
     return H[:hashlength]
 
@@ -474,7 +476,7 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
+    key   = int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
     nonce = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
 
     # print("key = ",key)
@@ -519,8 +521,8 @@ def demo_mac(variant="Ascon-Mac", taglength=16):
 
 
 if __name__ == "__main__":
-    demo_aead("Ascon-AEAD128")
-    # demo_hash("Ascon-Hash256")
+    # demo_aead("Ascon-AEAD128")
+    demo_hash("Ascon-Hash256")
     # demo_hash("Ascon-XOF128")
     # demo_hash("Ascon-CXOF128")
     # demo_mac("Ascon-Mac")

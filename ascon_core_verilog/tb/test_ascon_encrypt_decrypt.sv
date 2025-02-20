@@ -177,9 +177,9 @@ module test_ascon_encrypt_decrypt;
 		clk = 0;
 		rst_n = 0;
 
-		// key = 128'hadc05342320247b1_78fd74d65422c04a;
+		key = 128'hadc05342320247b1_78fd74d65422c04a;
 		// key = 128'h78fd74d65422c04a_adc05342320247b1;
-		key = 0;
+		// key = 0;
 		nonce = 0;
 		sel_type = 0;
 
@@ -310,36 +310,12 @@ module test_ascon_encrypt_decrypt;
 
 // ENCRYPT_DECRYPT_LOOP
 	//ENCRYPT
-		// process_en_encrypt_decrypt = 1;
-		// encrypt_decrypt_mode_sel = 0;
-
-		// plaintext_ciphertext_length = 62;
-		// plaintext_ciphertext_position = 0;
-		// plaintext_ciphertext_datain = A0;
-		// x0_i_encrypt_decrypt = x0_o_AE_AM;
-		// x1_i_encrypt_decrypt = x1_o_AE_AM;
-		// x2_i_encrypt_decrypt = x2_o_AE_AM;
-		// x3_i_encrypt_decrypt = x3_o_AE_AM;
-		// x4_i_encrypt_decrypt = x4_o_AE_AM;
-		// #100;
-		// $display("=====ENCRYPT_DECRYPT_LOOP=====");
-		// $display("x0_o = %16h",x0_o_encrypt_decrypt);
-		// $display("x1_o = %16h",x1_o_encrypt_decrypt);
-		// $display("x2_o = %16h",x2_o_encrypt_decrypt);
-		// $display("x3_o = %16h",x3_o_encrypt_decrypt);
-		// $display("x4_o = %16h",x4_o_encrypt_decrypt);
-		// $display("plaintext_ciphertext = %16h",plaintext_ciphertext_dataout);
-
-		// ENCRYPT_DECRYPT_LOOP(62,16, A1);
-		// ENCRYPT_DECRYPT_LOOP(62,32, A2);
-		// ENCRYPT_DECRYPT_LOOP(62,48, A3);
-	//DECRYPT
 		process_en_encrypt_decrypt = 1;
-		encrypt_decrypt_mode_sel = 1;
+		encrypt_decrypt_mode_sel = 0;
 
 		plaintext_ciphertext_length = 62;
 		plaintext_ciphertext_position = 0;
-		plaintext_ciphertext_datain = C0;
+		plaintext_ciphertext_datain = A0;
 		x0_i_encrypt_decrypt = x0_o_AE_AM;
 		x1_i_encrypt_decrypt = x1_o_AE_AM;
 		x2_i_encrypt_decrypt = x2_o_AE_AM;
@@ -354,9 +330,33 @@ module test_ascon_encrypt_decrypt;
 		$display("x4_o = %16h",x4_o_encrypt_decrypt);
 		$display("plaintext_ciphertext = %16h",plaintext_ciphertext_dataout);
 
-		ENCRYPT_DECRYPT_LOOP(62,16, C1);
-		ENCRYPT_DECRYPT_LOOP(62,32, C2);
-		ENCRYPT_DECRYPT_LOOP(62,48, C3);
+		ENCRYPT_DECRYPT_LOOP(62,16, A1);
+		ENCRYPT_DECRYPT_LOOP(62,32, A2);
+		ENCRYPT_DECRYPT_LOOP(62,48, A3);
+	//DECRYPT
+		// process_en_encrypt_decrypt = 1;
+		// encrypt_decrypt_mode_sel = 1;
+
+		// plaintext_ciphertext_length = 62;
+		// plaintext_ciphertext_position = 0;
+		// plaintext_ciphertext_datain = C0;
+		// x0_i_encrypt_decrypt = x0_o_AE_AM;
+		// x1_i_encrypt_decrypt = x1_o_AE_AM;
+		// x2_i_encrypt_decrypt = x2_o_AE_AM;
+		// x3_i_encrypt_decrypt = x3_o_AE_AM;
+		// x4_i_encrypt_decrypt = x4_o_AE_AM;
+		// #100;
+		// $display("=====ENCRYPT_DECRYPT_LOOP=====");
+		// $display("x0_o = %16h",x0_o_encrypt_decrypt);
+		// $display("x1_o = %16h",x1_o_encrypt_decrypt);
+		// $display("x2_o = %16h",x2_o_encrypt_decrypt);
+		// $display("x3_o = %16h",x3_o_encrypt_decrypt);
+		// $display("x4_o = %16h",x4_o_encrypt_decrypt);
+		// $display("plaintext_ciphertext = %16h",plaintext_ciphertext_dataout);
+
+		// ENCRYPT_DECRYPT_LOOP(62,16, C1);
+		// ENCRYPT_DECRYPT_LOOP(62,32, C2);
+		// ENCRYPT_DECRYPT_LOOP(62,48, C3);
 //FINALIZATION
 		process_en_encrypt_decrypt = 0;
 		encrypt_decrypt_mode_sel = 0;

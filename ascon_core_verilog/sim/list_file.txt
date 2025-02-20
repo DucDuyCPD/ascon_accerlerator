@@ -2,9 +2,12 @@
 ../rtl/ascon_permutation.v
 ../rtl/ascon_AE_AM.v
 ../rtl/ascon_encrypt_decrypt.v
+../rtl/ascon_hash.v
 ../rtl/ascon_finalization.v
+../rtl/ascon_core.v
 ../tb/test_ascon_permutation.sv
 ../tb/test_ascon_initialization.sv
 ../tb/test_ascon_process_associated_data.sv
 ../tb/test_ascon_hash.sv
 ../tb/test_ascon_encrypt_decrypt.sv
+../tb/test_ascon_core.sv

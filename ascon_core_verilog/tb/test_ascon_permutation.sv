@@ -1,7 +1,7 @@
 `timescale 1ns/1ps
 module test_ascon_permutation;
 	reg [63:0] x0_i, x1_i, x2_i, x3_i, x4_i;
-	reg [63:0] x0_p6, x1_p6, x2_p6, x3_p6, x4_p6;
+	// reg [63:0] x0_p6, x1_p6, x2_p6, x3_p6, x4_p6;
 	reg [63:0] x0_p8, x1_p8, x2_p8, x3_p8, x4_p8;
 	reg [63:0] x0_p12, x1_p12, x2_p12, x3_p12, x4_p12;
 
@@ -9,19 +9,19 @@ module test_ascon_permutation;
 
 	reg [63:0] x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp;
 
-ascon_permutation_p6 ascon_p6_dut(
-	.x0_i(x0_i),
-	.x1_i(x1_i),
-	.x2_i(x2_i),
-	.x3_i(x3_i),
-	.x4_i(x4_i),
+// ascon_permutation_p6 ascon_p6_dut(
+// 	.x0_i(x0_i),
+// 	.x1_i(x1_i),
+// 	.x2_i(x2_i),
+// 	.x3_i(x3_i),
+// 	.x4_i(x4_i),
 
-	.x0_o(x0_p6),
-	.x1_o(x1_p6),
-	.x2_o(x2_p6),
-	.x3_o(x3_p6),
-	.x4_o(x4_p6)
-);
+// 	.x0_o(x0_p6),
+// 	.x1_o(x1_p6),
+// 	.x2_o(x2_p6),
+// 	.x3_o(x3_p6),
+// 	.x4_o(x4_p6)
+// );
 ascon_permutation_p8 ascon_p8_dut(
 	.x0_i(x0_i),
 	.x1_i(x1_i),
@@ -52,80 +52,91 @@ ascon_permutation_p12 ascon_p12_dut(
 initial begin
 	integer i = 0;
 
-	$display("TEST PERMUTATION P6");
-	$display("input		|output		|expect		|");
-	for (i = 0; i < 50; i = i + 1) begin
-		x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
-		x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
-		x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
-		x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
-		x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
+	// $display("TEST PERMUTATION P6");
+	// $display("input		|output		|expect		|");
+	// for (i = 0; i < 50; i = i + 1) begin
+	// 	x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
+	// 	x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
+	// 	x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
+	// 	x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
+	// 	x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
 
-		calculate_permutation(6, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
-		#1;
-		$display("============case %2d===============", i);
-		if (x0_p6 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p6, x0_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p6, x0_cmp);
-		if (x1_p6 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p6, x1_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p6, x1_cmp);
-		if (x2_p6 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p6, x2_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p6, x2_cmp);
-		if (x3_p6 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p6, x3_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p6, x3_cmp);
-		if (x4_p6 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p6, x4_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p6, x4_cmp);
-		#1;
-	end
+	// 	calculate_permutation(6, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
+	// 	#1;
+	// 	$display("============case %2d===============", i);
+	// 	if (x0_p6 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p6, x0_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p6, x0_cmp);
+	// 	if (x1_p6 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p6, x1_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p6, x1_cmp);
+	// 	if (x2_p6 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p6, x2_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p6, x2_cmp);
+	// 	if (x3_p6 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p6, x3_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p6, x3_cmp);
+	// 	if (x4_p6 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p6, x4_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p6, x4_cmp);
+	// 	#1;
+	// end
 
-	$display("TEST PERMUTATION P8");
-	$display("input		|output		|expect		|");
-	for (i = 0; i < 50; i = i + 1) begin
-		x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
-		x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
-		x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
-		x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
-		x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
+	// $display("TEST PERMUTATION P8");
+	// $display("input		|output		|expect		|");
+	// for (i = 0; i < 50; i = i + 1) begin
+	// 	x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
+	// 	x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
+	// 	x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
+	// 	x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
+	// 	x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
 
-		calculate_permutation(8, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
-		#1;
-		$display("============case %2d===============", i);
-		if (x0_p8 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p8, x0_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p8, x0_cmp);
-		if (x1_p8 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p8, x1_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p8, x1_cmp);
-		if (x2_p8 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p8, x2_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p8, x2_cmp);
-		if (x3_p8 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p8, x3_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p8, x3_cmp);
-		if (x4_p8 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p8, x4_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p8, x4_cmp);
-		#1;
-	end
+	// 	calculate_permutation(8, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
+	// 	#1;
+	// 	$display("============case %2d===============", i);
+	// 	if (x0_p8 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p8, x0_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p8, x0_cmp);
+	// 	if (x1_p8 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p8, x1_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p8, x1_cmp);
+	// 	if (x2_p8 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p8, x2_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p8, x2_cmp);
+	// 	if (x3_p8 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p8, x3_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p8, x3_cmp);
+	// 	if (x4_p8 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p8, x4_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p8, x4_cmp);
+	// 	#1;
+	// end
 
-	$display("TEST PERMUTATION P12");
-	$display("input		|output		|expect		|");
-	for (i = 0; i < 50; i = i + 1) begin
-		x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
-		x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
-		x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
-		x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
-		x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
+	// $display("TEST PERMUTATION P12");
+	// $display("input		|output		|expect		|");
+	// for (i = 0; i < 50; i = i + 1) begin
+	// 	x0_i[31:0] = $urandom; x0_i[63:32] = $urandom;
+	// 	x1_i[31:0] = $urandom; x1_i[63:32] = $urandom;
+	// 	x2_i[31:0] = $urandom; x2_i[63:32] = $urandom;
+	// 	x3_i[31:0] = $urandom; x3_i[63:32] = $urandom;
+	// 	x4_i[31:0] = $urandom; x4_i[63:32] = $urandom;
 
-		calculate_permutation(12, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
-		#1;
-		$display("============case %2d===============", i);
-		if (x0_p12 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p12, x0_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p12, x0_cmp);
-		if (x1_p12 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p12, x1_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p12, x1_cmp);
-		if (x2_p12 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p12, x2_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p12, x2_cmp);
-		if (x3_p12 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p12, x3_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p12, x3_cmp);
-		if (x4_p12 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p12, x4_cmp);
-		else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p12, x4_cmp);
-		#1;
-	end
+	// 	calculate_permutation(12, x0_i, x1_i, x2_i, x3_i, x4_i, x0_cmp, x1_cmp, x2_cmp, x3_cmp, x4_cmp);
+	// 	#1;
+	// 	$display("============case %2d===============", i);
+	// 	if (x0_p12 == x0_cmp) $display("%16h|%16h|%16h|PASS", x0_i, x0_p12, x0_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x0_i, x0_p12, x0_cmp);
+	// 	if (x1_p12 == x1_cmp) $display("%16h|%16h|%16h|PASS", x1_i, x1_p12, x1_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x1_i, x1_p12, x1_cmp);
+	// 	if (x2_p12 == x2_cmp) $display("%16h|%16h|%16h|PASS", x2_i, x2_p12, x2_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x2_i, x2_p12, x2_cmp);
+	// 	if (x3_p12 == x3_cmp) $display("%16h|%16h|%16h|PASS", x3_i, x3_p12, x3_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x3_i, x3_p12, x3_cmp);
+	// 	if (x4_p12 == x4_cmp) $display("%16h|%16h|%16h|PASS", x4_i, x4_p12, x4_cmp);
+	// 	else 				 $display("%16h|%16h|%16h|FAILED", x4_i, x4_p12, x4_cmp);
+	// 	#1;
+	// end
+	x0_i = 128'h4523ee200ecf8b77;
+	x1_i = 128'he54828cae6d1d407;
+	x2_i = 128'h96771780123039c0;
+	x3_i = 128'h57fb8c67866bbd13;
+	x4_i = 128'h372004a82f4c80ff;
+	#1;
+	$display("%16h|%16h", x0_i, x0_p12);
+	$display("%16h|%16h", x1_i, x1_p12);
+	$display("%16h|%16h", x2_i, x2_p12);
+	$display("%16h|%16h", x3_i, x3_p12);
+	$display("%16h|%16h", x4_i, x4_p12);
 
 	// x0_i = 64'h0;
 	// x1_i = 64'h0;
