@@ -10,10 +10,6 @@
 Vtest_ascon_core::Vtest_ascon_core(VerilatedContext* _vcontextp__, const char* _vcname__)
     : VerilatedModel{*_vcontextp__}
     , vlSymsp{new Vtest_ascon_core__Syms(contextp(), _vcname__, this)}
-    , __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_initialization_module__DOT__ascon_p12{vlSymsp->TOP.__PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_initialization_module__DOT__ascon_p12}
-    , __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_process_associated_data_module__DOT__ascon_p12{vlSymsp->TOP.__PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_process_associated_data_module__DOT__ascon_p12}
-    , __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_finalization_module__DOT__ascon_p12{vlSymsp->TOP.__PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_finalization_module__DOT__ascon_p12}
-    , __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_hash_module__DOT__ascon_p12{vlSymsp->TOP.__PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_hash_module__DOT__ascon_p12}
     , rootp{&(vlSymsp->TOP)}
 {
     // Register model with the context

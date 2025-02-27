@@ -42,10 +42,10 @@ initial begin
 	#10 rst_n = 0;
 	#10 rst_n = 1;
 
-	key = 128'hadc05342320247b1_78fd74d65422c04a;
-	// key = 0;
+	// key = 128'hadc05342320247b1_78fd74d65422c04a;
+	key = 0;
 	nonce = 0;
-	sel_type = 1;
+	sel_type = 0;
 
 	mode_sel_encrypt_decrypt = 0;
 
@@ -63,88 +63,13 @@ end
 
 initial begin
 //ENCRYPT_DECRYPT
-	// #120;
-	// process_en_init = 1;
-	// process_en_AE_AM = 0;
-	// process_en_encrypt_decrypt = 0;
-	// process_en_hash = 0;
-	// process_en_final = 0;
-	
-	// #100;
-	// process_en_init = 0;
-	// process_en_AE_AM = 1;
-	// process_en_encrypt_decrypt = 0;
-	// process_en_hash = 0;
-	// process_en_final = 0;
-
-	// data_length = 62;
-	// data_position = 0;
-	// data_in = A0;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 16;
-	// data_in = A1;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 32;
-	// data_in = A2;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 48;
-	// data_in = A3;
-	// #200;
-
-	// process_en_init = 0;
-	// process_en_AE_AM = 0;
-	// process_en_encrypt_decrypt = 1;
-	// process_en_hash = 0;
-	// process_en_final = 0;
-
-	// data_length = 62;
-	// data_position = 0;
-	// data_in = A0;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 16;
-	// data_in = A1;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 32;
-	// data_in = A2;
-	// #200;
-
-	// data_length = 62;
-	// data_position = 48;
-	// data_in = A3;
-	// #200;
-
-	// process_en_init = 0;
-	// process_en_AE_AM = 0;
-	// process_en_encrypt_decrypt = 0;
-	// process_en_hash = 0;
-	// process_en_final = 1;
-	// #200;
-
-	// process_en_init = 0;
-	// process_en_AE_AM = 0;
-	// process_en_encrypt_decrypt = 0;
-	// process_en_hash = 0;
-	// process_en_final = 0;
-	// #200;
-
-//HASH
 	#120;
 	process_en_init = 1;
 	process_en_AE_AM = 0;
 	process_en_encrypt_decrypt = 0;
 	process_en_hash = 0;
 	process_en_final = 0;
-
+	
 	#100;
 	process_en_init = 0;
 	process_en_AE_AM = 1;
@@ -154,55 +79,135 @@ initial begin
 
 	data_length = 62;
 	data_position = 0;
-	data_in = M0;
-	#200;
-
-	data_length = 62;
-	data_position = 8;
-	data_in = M1;
+	data_in = A0;
 	#200;
 
 	data_length = 62;
 	data_position = 16;
-	data_in = M2;
-	#200;
-
-	data_length = 62;
-	data_position = 24;
-	data_in = M3;
+	data_in = A1;
 	#200;
 
 	data_length = 62;
 	data_position = 32;
-	data_in = M4;
-	#200;
-
-	data_length = 62;
-	data_position = 40;
-	data_in = M5;
+	data_in = A2;
 	#200;
 
 	data_length = 62;
 	data_position = 48;
-	data_in = M6;
+	data_in = A3;
+	#200;
+
+	process_en_init = 0;
+	process_en_AE_AM = 0;
+	process_en_encrypt_decrypt = 1;
+	process_en_hash = 0;
+	process_en_final = 0;
+
+	data_length = 62;
+	data_position = 0;
+	data_in = A0;
 	#200;
 
 	data_length = 62;
-	data_position = 56;
-	data_in = M7;
+	data_position = 16;
+	data_in = A1;
+	#200;
+
+	data_length = 62;
+	data_position = 32;
+	data_in = A2;
+	#200;
+
+	data_length = 62;
+	data_position = 48;
+	data_in = A3;
 	#200;
 
 	process_en_init = 0;
 	process_en_AE_AM = 0;
 	process_en_encrypt_decrypt = 0;
-	process_en_hash = 1;
-	process_en_final = 0;
+	process_en_hash = 0;
+	process_en_final = 1;
+	#200;
 
+	process_en_init = 0;
+	process_en_AE_AM = 0;
+	process_en_encrypt_decrypt = 0;
+	process_en_hash = 0;
+	process_en_final = 0;
 	#200;
-	#200;
-	#200;
-	#200;
-	
+
+//HASH
+	// #120;
+	// process_en_init = 1;
+	// process_en_AE_AM = 0;
+	// process_en_encrypt_decrypt = 0;
+	// process_en_hash = 0;
+	// process_en_final = 0;
+
+	// #100;
+	// process_en_init = 0;
+	// process_en_AE_AM = 1;
+	// process_en_encrypt_decrypt = 0;
+	// process_en_hash = 0;
+	// process_en_final = 0;
+
+	// data_length = 62;
+	// data_position = 0;
+	// data_in = M0;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 8;
+	// data_in = M1;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 16;
+	// data_in = M2;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 24;
+	// data_in = M3;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 32;
+	// data_in = M4;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 40;
+	// data_in = M5;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 48;
+	// data_in = M6;
+	// #200;
+
+	// data_length = 62;
+	// data_position = 56;
+	// data_in = M7;
+	// #200;
+
+	// process_en_init = 0;
+	// process_en_AE_AM = 0;
+	// process_en_encrypt_decrypt = 0;
+	// process_en_hash = 1;
+	// process_en_final = 0;
+
+	// #200;
+	// #200;
+	// #200;
+	// #200;
+
+	// process_en_init = 0;
+	// process_en_AE_AM = 0;
+	// process_en_encrypt_decrypt = 0;
+	// process_en_hash = 0;
+	// process_en_final = 0;
 
 	#1000;
 	$finish;

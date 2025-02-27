@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Thu Feb 20 03:29:49 2025
+[*] Thu Feb 27 06:13:40 2025
 [*]
 [dumpfile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/wave.vcd"
-[dumpfile_mtime] "Thu Feb 20 03:16:38 2025"
-[dumpfile_size] 1373835
+[dumpfile_mtime] "Thu Feb 27 06:10:42 2025"
+[dumpfile_size] 819523
 [savefile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/gtkwave_savefile.gtkw"
-[timestart] 1493000
+[timestart] 0
 [size] 1920 946
 [pos] -51 -51
-*-17.835737 1929000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.835737 1992000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] test_ascon_core.
 [treeopen] test_ascon_core.ascon_core_dut.
 [sst_width] 233
-[signals_width] 504
+[signals_width] 524
 [sst_expanded] 1
-[sst_vpaned_height] 159
+[sst_vpaned_height] 200
 @28
 test_ascon_core.ascon_core_dut.clk
 test_ascon_core.ascon_core_dut.process_en_init
@@ -57,9 +57,7 @@ test_ascon_core.ascon_core_dut.x2_i_hash[63:0]
 test_ascon_core.ascon_core_dut.x3_i_hash[63:0]
 test_ascon_core.ascon_core_dut.x4_i_hash[63:0]
 test_ascon_core.ascon_core_dut.hash_out[63:0]
-@23
 test_ascon_core.ascon_core_dut.x0_o_hash[63:0]
-@22
 test_ascon_core.ascon_core_dut.x1_o_hash[63:0]
 test_ascon_core.ascon_core_dut.x2_o_hash[63:0]
 test_ascon_core.ascon_core_dut.x3_o_hash[63:0]

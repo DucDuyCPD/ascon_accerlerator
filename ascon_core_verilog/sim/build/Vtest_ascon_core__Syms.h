@@ -16,7 +16,6 @@
 
 // INCLUDE MODULE CLASSES
 #include "Vtest_ascon_core___024root.h"
-#include "Vtest_ascon_core_ascon_permutation_p12.h"
 
 // SYMS CLASS (contains all model state)
 class alignas(VL_CACHE_LINE_BYTES)Vtest_ascon_core__Syms final : public VerilatedSyms {
@@ -33,10 +32,6 @@ class alignas(VL_CACHE_LINE_BYTES)Vtest_ascon_core__Syms final : public Verilate
 
     // MODULE INSTANCE STATE
     Vtest_ascon_core___024root     TOP;
-    Vtest_ascon_core_ascon_permutation_p12 TOP__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_finalization_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12 TOP__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_hash_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12 TOP__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_initialization_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12 TOP__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_process_associated_data_module__DOT__ascon_p12;
 
     // CONSTRUCTORS
     Vtest_ascon_core__Syms(VerilatedContext* contextp, const char* namep, Vtest_ascon_core* modelp);

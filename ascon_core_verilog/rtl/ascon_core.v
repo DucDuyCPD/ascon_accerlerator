@@ -38,6 +38,26 @@ wire [63:0] x0_i_hash, x1_i_hash, x2_i_hash, x3_i_hash, x4_i_hash, x0_o_hash, x1
 wire [127:0] encrypt_decrypt_out;
 wire [63:0] hash_out;
 
+wire [63:0] x0_i_p12, x1_i_p12, x2_i_p12, x3_i_p12, x4_i_p12, x0_i_p8, x1_i_p8, x2_i_p8, x3_i_p8, x4_i_p8;
+wire [63:0] x0_o_p12, x1_o_p12, x2_o_p12, x3_o_p12, x4_o_p12, x0_o_p8, x1_o_p8, x2_o_p8, x3_o_p8, x4_o_p8;
+
+wire [63:0] x0_i_init_p12, x1_i_init_p12, x2_i_init_p12, x3_i_init_p12, x4_i_init_p12;
+wire [63:0] x0_o_init_p12, x1_o_init_p12, x2_o_init_p12, x3_o_init_p12, x4_o_init_p12;
+
+wire [63:0] x0_i_AE_AM_p8, x1_i_AE_AM_p8, x2_i_AE_AM_p8, x3_i_AE_AM_p8, x4_i_AE_AM_p8;
+wire [63:0] x0_o_AE_AM_p8, x1_o_AE_AM_p8, x2_o_AE_AM_p8, x3_o_AE_AM_p8, x4_o_AE_AM_p8;
+wire [63:0] x0_i_AE_AM_p12, x1_i_AE_AM_p12, x2_i_AE_AM_p12, x3_i_AE_AM_p12, x4_i_AE_AM_p12;
+wire [63:0] x0_o_AE_AM_p12, x1_o_AE_AM_p12, x2_o_AE_AM_p12, x3_o_AE_AM_p12, x4_o_AE_AM_p12;
+
+wire [63:0] x0_i_encrypt_decrypt_p8, x1_i_encrypt_decrypt_p8, x2_i_encrypt_decrypt_p8, x3_i_encrypt_decrypt_p8, x4_i_encrypt_decrypt_p8;
+wire [63:0] x0_o_encrypt_decrypt_p8, x1_o_encrypt_decrypt_p8, x2_o_encrypt_decrypt_p8, x3_o_encrypt_decrypt_p8, x4_o_encrypt_decrypt_p8;
+
+wire [63:0] x0_i_hash_p12, x1_i_hash_p12, x2_i_hash_p12, x3_i_hash_p12, x4_i_hash_p12;
+wire [63:0] x0_o_hash_p12, x1_o_hash_p12, x2_o_hash_p12, x3_o_hash_p12, x4_o_hash_p12;
+
+wire [63:0] x0_i_final_p12, x1_i_final_p12, x2_i_final_p12, x3_i_final_p12, x4_i_final_p12;
+wire [63:0] x0_o_final_p12, x1_o_final_p12, x2_o_final_p12, x3_o_final_p12, x4_o_final_p12;
+
 assign data_out = 	(process_en_encrypt_decrypt) ? encrypt_decrypt_out :
 		(process_en_hash) ? hash_out : 128'b0;
 
@@ -96,6 +116,74 @@ always @(posedge clk or negedge rst_n) begin
 	end
 end
 
+assign x0_i_p8 = 	(process_en_AE_AM) ? x0_i_AE_AM_p8 : 
+		(process_en_encrypt_decrypt) ? x0_i_encrypt_decrypt_p8 : 64'b0;
+assign x1_i_p8 = 	(process_en_AE_AM) ? x1_i_AE_AM_p8 : 
+		(process_en_encrypt_decrypt) ? x1_i_encrypt_decrypt_p8 : 64'b0;
+assign x2_i_p8 = 	(process_en_AE_AM) ? x2_i_AE_AM_p8 : 
+		(process_en_encrypt_decrypt) ? x2_i_encrypt_decrypt_p8 : 64'b0;
+assign x3_i_p8 = 	(process_en_AE_AM) ? x3_i_AE_AM_p8 : 
+		(process_en_encrypt_decrypt) ? x3_i_encrypt_decrypt_p8 : 64'b0;
+assign x4_i_p8 = 	(process_en_AE_AM) ? x4_i_AE_AM_p8 : 
+		(process_en_encrypt_decrypt) ? x4_i_encrypt_decrypt_p8 : 64'b0;
+
+assign x0_i_p12 =	(process_en_init) ? x0_i_init_p12 :
+		(process_en_AE_AM) ? x0_i_AE_AM_p12 :
+		(process_en_final) ? x0_i_final_p12 :
+		(process_en_hash) ? x0_i_hash_p12 : 64'b0;
+assign x1_i_p12 =	(process_en_init) ? x1_i_init_p12 :
+		(process_en_AE_AM) ? x1_i_AE_AM_p12 :
+		(process_en_final) ? x1_i_final_p12 :
+		(process_en_hash) ? x1_i_hash_p12 : 64'b0;
+assign x2_i_p12 =	(process_en_init) ? x2_i_init_p12 :
+		(process_en_AE_AM) ? x2_i_AE_AM_p12 :
+		(process_en_final) ? x2_i_final_p12 :
+		(process_en_hash) ? x2_i_hash_p12 : 64'b0; 
+assign x3_i_p12 =	(process_en_init) ? x3_i_init_p12 :
+		(process_en_AE_AM) ? x3_i_AE_AM_p12 :
+		(process_en_final) ? x3_i_final_p12 :
+		(process_en_hash) ? x3_i_hash_p12 : 64'b0;
+assign x4_i_p12 =	(process_en_init) ? x4_i_init_p12 :
+		(process_en_AE_AM) ? x4_i_AE_AM_p12 :
+		(process_en_final) ? x4_i_final_p12 :
+		(process_en_hash) ? x4_i_hash_p12 : 64'b0;
+
+assign x0_o_init_p12 = (process_en_init) ? x0_o_p12 : 64'b0;
+assign x1_o_init_p12 = (process_en_init) ? x1_o_p12 : 64'b0;
+assign x2_o_init_p12 = (process_en_init) ? x2_o_p12 : 64'b0;
+assign x3_o_init_p12 = (process_en_init) ? x3_o_p12 : 64'b0;
+assign x4_o_init_p12 = (process_en_init) ? x4_o_p12 : 64'b0;
+
+assign x0_o_AE_AM_p8 = (process_en_AE_AM) ? x0_o_p8 : 64'b0;
+assign x1_o_AE_AM_p8 = (process_en_AE_AM) ? x1_o_p8 : 64'b0;
+assign x2_o_AE_AM_p8 = (process_en_AE_AM) ? x2_o_p8 : 64'b0;
+assign x3_o_AE_AM_p8 = (process_en_AE_AM) ? x3_o_p8 : 64'b0;
+assign x4_o_AE_AM_p8 = (process_en_AE_AM) ? x4_o_p8 : 64'b0;
+
+assign x0_o_AE_AM_p12 = (process_en_AE_AM) ? x0_o_p12 : 64'b0;
+assign x1_o_AE_AM_p12 = (process_en_AE_AM) ? x1_o_p12 : 64'b0;
+assign x2_o_AE_AM_p12 = (process_en_AE_AM) ? x2_o_p12 : 64'b0;
+assign x3_o_AE_AM_p12 = (process_en_AE_AM) ? x3_o_p12 : 64'b0;
+assign x4_o_AE_AM_p12 = (process_en_AE_AM) ? x4_o_p12 : 64'b0;
+
+assign x0_o_encrypt_decrypt_p8 = (process_en_encrypt_decrypt) ? x0_o_p8 : 64'b0;
+assign x1_o_encrypt_decrypt_p8 = (process_en_encrypt_decrypt) ? x1_o_p8 : 64'b0;
+assign x2_o_encrypt_decrypt_p8 = (process_en_encrypt_decrypt) ? x2_o_p8 : 64'b0;
+assign x3_o_encrypt_decrypt_p8 = (process_en_encrypt_decrypt) ? x3_o_p8 : 64'b0;
+assign x4_o_encrypt_decrypt_p8 = (process_en_encrypt_decrypt) ? x4_o_p8 : 64'b0;
+
+assign x0_o_hash_p12 = (process_en_hash) ? x0_o_p12 : 64'b0;
+assign x1_o_hash_p12 = (process_en_hash) ? x1_o_p12 : 64'b0;
+assign x2_o_hash_p12 = (process_en_hash) ? x2_o_p12 : 64'b0;
+assign x3_o_hash_p12 = (process_en_hash) ? x3_o_p12 : 64'b0;
+assign x4_o_hash_p12 = (process_en_hash) ? x4_o_p12 : 64'b0;
+
+assign x0_o_final_p12 = (process_en_final) ? x0_o_p12 : 64'b0;
+assign x1_o_final_p12 = (process_en_final) ? x1_o_p12 : 64'b0;
+assign x2_o_final_p12 = (process_en_final) ? x2_o_p12 : 64'b0;
+assign x3_o_final_p12 = (process_en_final) ? x3_o_p12 : 64'b0;
+assign x4_o_final_p12 = (process_en_final) ? x4_o_p12 : 64'b0;
+
 ascon_initialization ascon_initialization_module(
 	.clk(clk), .rst_n(rst_n),
 	.sel_type(sel_type),
@@ -106,7 +194,19 @@ ascon_initialization ascon_initialization_module(
 	.x1(x1_init),
 	.x2(x2_init),
 	.x3(x3_init),
-	.x4(x4_init)
+	.x4(x4_init),
+
+	.x0_i_init_p12(x0_i_init_p12),
+	.x1_i_init_p12(x1_i_init_p12),
+	.x2_i_init_p12(x2_i_init_p12),
+	.x3_i_init_p12(x3_i_init_p12),
+	.x4_i_init_p12(x4_i_init_p12),
+
+	.x0_o_init_p12(x0_o_init_p12),
+	.x1_o_init_p12(x1_o_init_p12),
+	.x2_o_init_p12(x2_o_init_p12),
+	.x3_o_init_p12(x3_o_init_p12),
+	.x4_o_init_p12(x4_o_init_p12)
 );
 
 assign x0_i_AE_AM = (process_en_AE_AM) ? x0 : 64'b0;
@@ -138,7 +238,31 @@ ascon_AE_AM ascon_process_associated_data_module(
 	.x3_o(x3_o_AE_AM),
 	.x4_o(x4_o_AE_AM),
 
-	.process_err(process_err_AE_AM)
+	.process_err(process_err_AE_AM),
+
+	.x0_i_AE_AM_p8(x0_i_AE_AM_p8),
+	.x1_i_AE_AM_p8(x1_i_AE_AM_p8),
+	.x2_i_AE_AM_p8(x2_i_AE_AM_p8),
+	.x3_i_AE_AM_p8(x3_i_AE_AM_p8),
+	.x4_i_AE_AM_p8(x4_i_AE_AM_p8),
+
+	.x0_o_AE_AM_p8(x0_o_AE_AM_p8),
+	.x1_o_AE_AM_p8(x1_o_AE_AM_p8),
+	.x2_o_AE_AM_p8(x2_o_AE_AM_p8),
+	.x3_o_AE_AM_p8(x3_o_AE_AM_p8),
+	.x4_o_AE_AM_p8(x4_o_AE_AM_p8),
+
+	.x0_i_AE_AM_p12(x0_i_AE_AM_p12),
+	.x1_i_AE_AM_p12(x1_i_AE_AM_p12),
+	.x2_i_AE_AM_p12(x2_i_AE_AM_p12),
+	.x3_i_AE_AM_p12(x3_i_AE_AM_p12),
+	.x4_i_AE_AM_p12(x4_i_AE_AM_p12),
+
+	.x0_o_AE_AM_p12(x0_o_AE_AM_p12),
+	.x1_o_AE_AM_p12(x1_o_AE_AM_p12),
+	.x2_o_AE_AM_p12(x2_o_AE_AM_p12),
+	.x3_o_AE_AM_p12(x3_o_AE_AM_p12),
+	.x4_o_AE_AM_p12(x4_o_AE_AM_p12)
 );
 
 assign x0_i_encrypt_decrypt = (process_en_encrypt_decrypt) ? x0 : 64'b0;
@@ -172,7 +296,19 @@ ascon_encrypt_decrypt ascon_encrypt_decrypt_module(
 	.x3_o(x3_o_encrypt_decrypt),
 	.x4_o(x4_o_encrypt_decrypt),
 
-	.process_err(process_err_plaintext_ciphertext)
+	.process_err(process_err_plaintext_ciphertext),
+
+	.x0_i_encrypt_decrypt_p8(x0_i_encrypt_decrypt_p8),
+	.x1_i_encrypt_decrypt_p8(x1_i_encrypt_decrypt_p8),
+	.x2_i_encrypt_decrypt_p8(x2_i_encrypt_decrypt_p8),
+	.x3_i_encrypt_decrypt_p8(x3_i_encrypt_decrypt_p8),
+	.x4_i_encrypt_decrypt_p8(x4_i_encrypt_decrypt_p8),
+
+	.x0_o_encrypt_decrypt_p8(x0_o_encrypt_decrypt_p8),
+	.x1_o_encrypt_decrypt_p8(x1_o_encrypt_decrypt_p8),
+	.x2_o_encrypt_decrypt_p8(x2_o_encrypt_decrypt_p8),
+	.x3_o_encrypt_decrypt_p8(x3_o_encrypt_decrypt_p8),
+	.x4_o_encrypt_decrypt_p8(x4_o_encrypt_decrypt_p8)
 );
 
 assign x0_i_final = (process_en_final) ? x0 : 64'b0;
@@ -192,7 +328,19 @@ ascon_finalization ascon_finalization_module(
 	.x3_i(x3_i_final),
 	.x4_i(x4_i_final),
 
-	.tag(tag)
+	.tag(tag),
+
+	.x0_i_final_p12(x0_i_final_p12),
+	.x1_i_final_p12(x1_i_final_p12),
+	.x2_i_final_p12(x2_i_final_p12),
+	.x3_i_final_p12(x3_i_final_p12),
+	.x4_i_final_p12(x4_i_final_p12),
+
+	.x0_o_final_p12(x0_o_final_p12),
+	.x1_o_final_p12(x1_o_final_p12),
+	.x2_o_final_p12(x2_o_final_p12),
+	.x3_o_final_p12(x3_o_final_p12),
+	.x4_o_final_p12(x4_o_final_p12)
 );
 
 assign x0_i_hash = (process_en_hash) ? x0 : 64'b0;
@@ -219,7 +367,47 @@ ascon_hash ascon_hash_module(
 	.x3_o(x3_o_hash),
 	.x4_o(x4_o_hash),
 
-	.hash_out(hash_out)
+	.hash_out(hash_out),
+
+	.x0_i_hash_p12(x0_i_hash_p12),
+	.x1_i_hash_p12(x1_i_hash_p12),
+	.x2_i_hash_p12(x2_i_hash_p12),
+	.x3_i_hash_p12(x3_i_hash_p12),
+	.x4_i_hash_p12(x4_i_hash_p12),
+
+	.x0_o_hash_p12(x0_o_hash_p12),
+	.x1_o_hash_p12(x1_o_hash_p12),
+	.x2_o_hash_p12(x2_o_hash_p12),
+	.x3_o_hash_p12(x3_o_hash_p12),
+	.x4_o_hash_p12(x4_o_hash_p12)
+);
+
+ascon_permutation_p12 ascon_p12(
+	.x0_i(x0_i_p12),
+	.x1_i(x1_i_p12),
+	.x2_i(x2_i_p12),
+	.x3_i(x3_i_p12),
+	.x4_i(x4_i_p12),
+
+	.x0_o(x0_o_p12),
+	.x1_o(x1_o_p12),
+	.x2_o(x2_o_p12),
+	.x3_o(x3_o_p12),
+	.x4_o(x4_o_p12)
+);
+
+ascon_permutation_p8 ascon_p8(
+	.x0_i(x0_i_p8),
+	.x1_i(x1_i_p8),
+	.x2_i(x2_i_p8),
+	.x3_i(x3_i_p8),
+	.x4_i(x4_i_p8),
+
+	.x0_o(x0_o_p8),
+	.x1_o(x1_o_p8),
+	.x2_o(x2_o_p8),
+	.x3_o(x3_o_p8),
+	.x4_o(x4_o_p8)
 );
 
 endmodule : ascon_core

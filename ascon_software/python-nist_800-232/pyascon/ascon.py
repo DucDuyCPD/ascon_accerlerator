@@ -280,29 +280,29 @@ def ascon_process_plaintext(S, b, rate, plaintext):
     p_padding = to_bytes([0x01]) + zero_bytes(rate-p_lastlen-1)
     p_padded = plaintext + p_padding
 
-    # printstate (p_padded,"p_padded = ")
-    # print(bytes_to_hex(p_padded))
+    printstate (p_padded,"p_padded = ")
+    print(bytes_to_hex(p_padded))
 
     # first t-1 blocks
     ciphertext = to_bytes([])
     for block in range(0, len(p_padded) - rate, rate):
 
-        # print(block)
+        print(block)
 
         S[0] ^= bytes_to_int(p_padded[block:block+8])
         S[1] ^= bytes_to_int(p_padded[block+8:block+16])
         ciphertext += (int_to_bytes(S[0], 8) + int_to_bytes(S[1], 8))
         
-        # print("ciphertext = ")
-        # print(bytes_to_hex(ciphertext))
+        print("ciphertext = ")
+        print(bytes_to_hex(ciphertext))
 
-        # printstate(S, "S before permutation = ")
+        printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
-        # printstate(S, "S after permutation = ")
+        printstate(S, "S after permutation = ")
 
     # last block t
     block = len(p_padded) - rate
-    # print("last block:", block, ", len p_padded:", len(p_padded))
+    print("last block:", block, ", len p_padded:", len(p_padded))
     S[0] ^= bytes_to_int(p_padded[block:block+8])
     S[1] ^= bytes_to_int(p_padded[block+8:block+16])
     ciphertext += (int_to_bytes(S[0], 8)[:min(8,p_lastlen)] + int_to_bytes(S[1], 8)[:max(0,p_lastlen-8)])
@@ -375,15 +375,15 @@ def ascon_finalize(S, rate, a, key):
     S[rate//8+0] ^= bytes_to_int(key[0:8])
     S[rate//8+1] ^= bytes_to_int(key[8:16])
 
-    printstate(S, "S before permutation = ")
+    # printstate(S, "S before permutation = ")
     ascon_permutation(S, a)
-    printstate(S, "S after permutation = ")
+    # printstate(S, "S after permutation = ")
 
     S[3] ^= bytes_to_int(key[-16:-8])
     S[4] ^= bytes_to_int(key[-8:])
     tag = int_to_bytes(S[3], 8) + int_to_bytes(S[4], 8)
 
-    printstate (S, "S = ")
+    # printstate (S, "S = ")
     if debug: printstate(S, "finalization:")
     return tag
 
@@ -476,7 +476,7 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
+    key   = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
     nonce = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
 
     # print("key = ",key)
@@ -521,8 +521,8 @@ def demo_mac(variant="Ascon-Mac", taglength=16):
 
 
 if __name__ == "__main__":
-    # demo_aead("Ascon-AEAD128")
-    demo_hash("Ascon-Hash256")
+    demo_aead("Ascon-AEAD128")
+    # demo_hash("Ascon-Hash256")
     # demo_hash("Ascon-XOF128")
     # demo_hash("Ascon-CXOF128")
     # demo_mac("Ascon-Mac")

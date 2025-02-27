@@ -13,8 +13,6 @@
 class Vtest_ascon_core__Syms;
 class Vtest_ascon_core___024root;
 class VerilatedVcdC;
-class Vtest_ascon_core_ascon_permutation_p12;
-
 
 // This class is the main interface to the Verilated model
 class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core VL_NOT_FINAL : public VerilatedModel {
@@ -35,10 +33,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core VL_NOT_FINAL : public Verila
     // CELLS
     // Public to allow access to /* verilator public */ items.
     // Otherwise the application code can consider these internals.
-    Vtest_ascon_core_ascon_permutation_p12* const __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_initialization_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12* const __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_process_associated_data_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12* const __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_finalization_module__DOT__ascon_p12;
-    Vtest_ascon_core_ascon_permutation_p12* const __PVT__test_ascon_core__DOT__ascon_core_dut__DOT__ascon_hash_module__DOT__ascon_p12;
 
     // Root instance pointer to allow access to model internals,
     // including inlined /* verilator public_flat_* */ items.

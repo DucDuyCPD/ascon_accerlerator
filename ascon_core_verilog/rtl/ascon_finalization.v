@@ -9,7 +9,19 @@ module ascon_finalization (
 	input wire [63:0] x3_i,
 	input wire [63:0] x4_i,
 
-	output reg [127:0] tag
+	output reg [127:0] tag,
+
+	output wire [63:0] x0_i_final_p12,
+	output wire [63:0] x1_i_final_p12,
+	output wire [63:0] x2_i_final_p12,
+	output wire [63:0] x3_i_final_p12,
+	output wire [63:0] x4_i_final_p12,
+
+	input  wire [63:0] x0_o_final_p12,
+	input  wire [63:0] x1_o_final_p12,
+	input  wire [63:0] x2_o_final_p12,
+	input  wire [63:0] x3_o_final_p12,
+	input  wire [63:0] x4_o_final_p12
 );
 
 wire [63:0] s0, s1, s2, s3, s4; 
@@ -31,19 +43,30 @@ always @(posedge clk or negedge rst_n) begin
 	end
 end
 
+assign x0_i_final_p12 = s0;
+assign x1_i_final_p12 = s1;
+assign x2_i_final_p12 = s2;
+assign x3_i_final_p12 = s3;
+assign x4_i_final_p12 = s4;
 
-ascon_permutation_p12 ascon_p12(
-	.x0_i(s0),
-	.x1_i(s1),
-	.x2_i(s2),
-	.x3_i(s3),
-	.x4_i(s4),
+assign x0_p12 = x0_o_final_p12;
+assign x1_p12 = x1_o_final_p12;
+assign x2_p12 = x2_o_final_p12;
+assign x3_p12 = x3_o_final_p12;
+assign x4_p12 = x4_o_final_p12;
 
-	.x0_o(x0_p12),
-	.x1_o(x1_p12),
-	.x2_o(x2_p12),
-	.x3_o(x3_p12),
-	.x4_o(x4_p12)
-);
+// ascon_permutation_p12 ascon_p12(
+// 	.x0_i(s0),
+// 	.x1_i(s1),
+// 	.x2_i(s2),
+// 	.x3_i(s3),
+// 	.x4_i(s4),
+
+// 	.x0_o(x0_p12),
+// 	.x1_o(x1_p12),
+// 	.x2_o(x2_p12),
+// 	.x3_o(x3_p12),
+// 	.x4_o(x4_p12)
+// );
 
 endmodule

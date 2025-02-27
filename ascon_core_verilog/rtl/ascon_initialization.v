@@ -9,7 +9,19 @@ module ascon_initialization (
 	output wire [63:0] x1,
 	output wire [63:0] x2,
 	output wire [63:0] x3,
-	output wire [63:0] x4
+	output wire [63:0] x4,
+
+	output wire [63:0] x0_i_init_p12,
+	output wire [63:0] x1_i_init_p12,
+	output wire [63:0] x2_i_init_p12,
+	output wire [63:0] x3_i_init_p12,
+	output wire [63:0] x4_i_init_p12,
+
+	input  wire [63:0] x0_o_init_p12,
+	input  wire [63:0] x1_o_init_p12,
+	input  wire [63:0] x2_o_init_p12,
+	input  wire [63:0] x3_o_init_p12,
+	input  wire [63:0] x4_o_init_p12
 );
 parameter AEAD128 = 2'b00;
 parameter Hash256 = 2'b01;
@@ -47,19 +59,31 @@ assign nonce_in = (sel_type == AEAD128) ? nonce :
 				(sel_type == XOF128 ) ? 128'b0 :
 				(sel_type == CXOF128) ? 128'b0 : 128'b0;
 
-ascon_permutation_p12 ascon_p12(
-	.x0_i(IV),
-	.x1_i(key_in[127:64]),
-	.x2_i(key_in[63:0]),
-	.x3_i(nonce_in[127:64]),
-	.x4_i(nonce_in[63:0]),
+assign x0_i_init_p12 = IV;
+assign x1_i_init_p12 = key_in[127:64];
+assign x2_i_init_p12 = key_in[63:0];
+assign x3_i_init_p12 = nonce_in[127:64];
+assign x4_i_init_p12 = nonce_in[63:0];
 
-	.x0_o(S[0]),
-	.x1_o(S[1]),
-	.x2_o(S[2]),
-	.x3_o(S[3]),
-	.x4_o(S[4])
-);
+assign S[0] = x0_o_init_p12;
+assign S[1] = x1_o_init_p12;
+assign S[2] = x2_o_init_p12;
+assign S[3] = x3_o_init_p12;
+assign S[4] = x4_o_init_p12;
+
+// ascon_permutation_p12 ascon_p12(
+// 	.x0_i(IV),
+// 	.x1_i(key_in[127:64]),
+// 	.x2_i(key_in[63:0]),
+// 	.x3_i(nonce_in[127:64]),
+// 	.x4_i(nonce_in[63:0]),
+
+// 	.x0_o(S[0]),
+// 	.x1_o(S[1]),
+// 	.x2_o(S[2]),
+// 	.x3_o(S[3]),
+// 	.x4_o(S[4])
+// );
 
 reg [319:0] zeros_key;
 always @(posedge clk or negedge rst_n) begin

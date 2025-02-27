@@ -26,8 +26,6 @@ VM_CLASSES_FAST += \
 	Vtest_ascon_core \
 	Vtest_ascon_core___024root__DepSet_hfcbb70ce__0 \
 	Vtest_ascon_core___024root__DepSet_h7a574ba7__0 \
-	Vtest_ascon_core_ascon_permutation_p12__DepSet_hd4c833cf__0 \
-	Vtest_ascon_core_ascon_permutation_p12__DepSet_h62288ea8__0 \
 	Vtest_ascon_core__main \
 
 # Generated module classes, non-fast-path, compile with low/medium optimization
@@ -36,9 +34,6 @@ VM_CLASSES_SLOW += \
 	Vtest_ascon_core___024root__Slow \
 	Vtest_ascon_core___024root__DepSet_hfcbb70ce__0__Slow \
 	Vtest_ascon_core___024root__DepSet_h7a574ba7__0__Slow \
-	Vtest_ascon_core_ascon_permutation_p12__Slow \
-	Vtest_ascon_core_ascon_permutation_p12__DepSet_hd4c833cf__0__Slow \
-	Vtest_ascon_core_ascon_permutation_p12__DepSet_h62288ea8__0__Slow \
 
 # Generated support classes, fast-path, compile with highest optimization
 VM_SUPPORT_FAST += \

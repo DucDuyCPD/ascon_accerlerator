@@ -22,7 +22,31 @@ module ascon_AE_AM ( //ascon's associated data and absorb message
 	output reg [63:0] x3_o,
 	output reg [63:0] x4_o,
 
-	output wire process_err
+	output wire process_err,
+
+	output wire [63:0] x0_i_AE_AM_p8,
+	output wire [63:0] x1_i_AE_AM_p8,
+	output wire [63:0] x2_i_AE_AM_p8,
+	output wire [63:0] x3_i_AE_AM_p8,
+	output wire [63:0] x4_i_AE_AM_p8,
+
+	input  wire [63:0] x0_o_AE_AM_p8,
+	input  wire [63:0] x1_o_AE_AM_p8,
+	input  wire [63:0] x2_o_AE_AM_p8,
+	input  wire [63:0] x3_o_AE_AM_p8,
+	input  wire [63:0] x4_o_AE_AM_p8,
+
+	output wire [63:0] x0_i_AE_AM_p12,
+	output wire [63:0] x1_i_AE_AM_p12,
+	output wire [63:0] x2_i_AE_AM_p12,
+	output wire [63:0] x3_i_AE_AM_p12,
+	output wire [63:0] x4_i_AE_AM_p12,
+
+	input  wire [63:0] x0_o_AE_AM_p12,
+	input  wire [63:0] x1_o_AE_AM_p12,
+	input  wire [63:0] x2_o_AE_AM_p12,
+	input  wire [63:0] x3_o_AE_AM_p12,
+	input  wire [63:0] x4_o_AE_AM_p12
 );
 parameter AEAD128 = 2'b00;
 parameter Hash256 = 2'b01;
@@ -117,38 +141,57 @@ assign s2 = x2_i;
 assign s3 = x3_i;
 assign s4 = x4_i;
 
-// assign x0_o = (process_en) ? x0 : 64'h0;
-// assign x1_o = (process_en) ? x1 : 64'h0;
-// assign x2_o = (process_en) ? x2 : 64'h0;
-// assign x3_o = (process_en) ? x3 : 64'h0;
-// assign x4_o = (process_en) ? x4 : 64'h0;
+assign x0_i_AE_AM_p8 = s0;
+assign x1_i_AE_AM_p8 = s1;
+assign x2_i_AE_AM_p8 = s2;
+assign x3_i_AE_AM_p8 = s3;
+assign x4_i_AE_AM_p8 = s4;
 
-ascon_permutation_p8 ascon_p8(
-	.x0_i(s0),
-	.x1_i(s1),
-	.x2_i(s2),
-	.x3_i(s3),
-	.x4_i(s4),
+assign x0_p8 = x0_o_AE_AM_p8;
+assign x1_p8 = x1_o_AE_AM_p8;
+assign x2_p8 = x2_o_AE_AM_p8;
+assign x3_p8 = x3_o_AE_AM_p8;
+assign x4_p8 = x4_o_AE_AM_p8;
 
-	.x0_o(x0_p8),
-	.x1_o(x1_p8),
-	.x2_o(x2_p8),
-	.x3_o(x3_p8),
-	.x4_o(x4_p8)
-);
+assign x0_i_AE_AM_p12 = s0;
+assign x1_i_AE_AM_p12 = s1;
+assign x2_i_AE_AM_p12 = s2;
+assign x3_i_AE_AM_p12 = s3;
+assign x4_i_AE_AM_p12 = s4;
 
-ascon_permutation_p12 ascon_p12(
-	.x0_i(s0),
-	.x1_i(s1),
-	.x2_i(s2),
-	.x3_i(s3),
-	.x4_i(s4),
+assign x0_p8 = x0_o_AE_AM_p12;
+assign x1_p8 = x1_o_AE_AM_p12;
+assign x2_p8 = x2_o_AE_AM_p12;
+assign x3_p8 = x3_o_AE_AM_p12;
+assign x4_p8 = x4_o_AE_AM_p12;
 
-	.x0_o(x0_p12),
-	.x1_o(x1_p12),
-	.x2_o(x2_p12),
-	.x3_o(x3_p12),
-	.x4_o(x4_p12)
-);
+
+// ascon_permutation_p8 ascon_p8(
+// 	.x0_i(s0),
+// 	.x1_i(s1),
+// 	.x2_i(s2),
+// 	.x3_i(s3),
+// 	.x4_i(s4),
+
+// 	.x0_o(x0_p8),
+// 	.x1_o(x1_p8),
+// 	.x2_o(x2_p8),
+// 	.x3_o(x3_p8),
+// 	.x4_o(x4_p8)
+// );
+
+// ascon_permutation_p12 ascon_p12(
+// 	.x0_i(s0),
+// 	.x1_i(s1),
+// 	.x2_i(s2),
+// 	.x3_i(s3),
+// 	.x4_i(s4),
+
+// 	.x0_o(x0_p12),
+// 	.x1_o(x1_p12),
+// 	.x2_o(x2_p12),
+// 	.x3_o(x3_p12),
+// 	.x4_o(x4_p12)
+// );
 
 endmodule
