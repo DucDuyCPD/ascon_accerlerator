@@ -43,7 +43,7 @@ Vtest_ascon_core__Syms::Vtest_ascon_core__Syms(VerilatedContext* contextp, const
     , TOP{this, namep}
 {
         // Check resources
-        Verilated::stackCheck(878);
+        Verilated::stackCheck(1166);
     // Configure time unit / time precision
     _vm_contextp__->timeunit(-9);
     _vm_contextp__->timeprecision(-12);

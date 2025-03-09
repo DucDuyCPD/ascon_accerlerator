@@ -5,8 +5,9 @@ Implementation of Ascon, an authenticated cipher and hash function
 NIST SP 800-232
 https://ascon.iaik.tugraz.at/
 """
+from hwcounter import Timer, count, count_end
 
-debug = True
+debug = False
 debugpermutation = False
 
 # === Ascon hash/xof ===
@@ -220,7 +221,7 @@ def ascon_initialize(S, k, rate, a, b, version, key, nonce):
 
     zero_key = bytes_to_state(zero_bytes(40-len(key)) + key)
 
-    printstate(zero_key, "zero_key = ")
+    # printstate(zero_key, "zero_key = ")
 
     S[0] ^= zero_key[0]
     S[1] ^= zero_key[1]
@@ -243,24 +244,24 @@ def ascon_process_associated_data(S, b, rate, associateddata):
         a_padding = to_bytes([0x01]) + zero_bytes(rate - (len(associateddata) % rate) - 1)
         a_padded = associateddata + a_padding
 
-        printstate(a_padded, "a_padded = ")
-        print("a_padded = ")
-        printstate(S, "S = ")
+        # printstate(a_padded, "a_padded = ")
+        # print("a_padded = ")
+        # printstate(S, "S = ")
 
 
         for block in range(0, len(a_padded), rate):
 
-            print(block)
+            # print(block)
             
             S[0] ^= bytes_to_int(a_padded[block:block+8])
             if rate == 16:
                 S[1] ^= bytes_to_int(a_padded[block+8:block+16])
 
-            printstate(S, "S before permutation = ")
+            # printstate(S, "S before permutation = ")
 
             ascon_permutation(S, b)
 
-            printstate(S, "S after permutation = ")
+            # printstate(S, "S after permutation = ")
 
     S[4] ^= 1<<63
     if debug: printstate(S, "process associated data:")
@@ -301,13 +302,12 @@ def ascon_process_plaintext(S, b, rate, plaintext):
 
     # last block t
     block = len(p_padded) - rate
-    print("last block:", block, ", len p_padded:", len(p_padded))
+
+    # print("last block:", block, ", len p_padded:", len(p_padded))
+
     S[0] ^= bytes_to_int(p_padded[block:block+8])
     S[1] ^= bytes_to_int(p_padded[block+8:block+16])
     ciphertext += (int_to_bytes(S[0], 8)[:min(8,p_lastlen)] + int_to_bytes(S[1], 8)[:max(0,p_lastlen-8)])
-    
-    # print("ciphertext = ")
-    # print(bytes_to_hex(ciphertext))
 
     if debug: printstate(S, "process plaintext:")
     return ciphertext
@@ -368,7 +368,7 @@ def ascon_finalize(S, rate, a, key):
     returns the tag, updates S
     """
 
-    printstate(S,"final input")
+    # printstate(S,"final input")
 
     assert(len(key) == 16)
     S[rate//8+0] ^= bytes_to_int(key[0:8])
@@ -481,17 +481,25 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
-    nonce = zero_bytes(16) #get_random_bytes(16)  # zero_bytes(16)
+    key   = get_random_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
+    nonce = get_random_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
 
     # print("key = ",key)
     # printstate(key, "key = ")
     
-    associateddata = b"This is my test for processing associated data step and absorb" #62 bytes
-    plaintext      = b"This is my test for processing associated data step and absorb"
+    associateddata = get_random_bytes(64) #62 bytes
+    plaintext      = get_random_bytes(64)
 
+    start = count() #start measure cycle used 
     ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
+    end = count_end() #end measure cycle used
+    print("CPU cycles used for encrypt: ", end - start)
+
+    start = count() #start measure cycle used 
     receivedplaintext = ascon_decrypt(key, nonce, associateddata, ciphertext, variant)
+    end = count_end() #end measure cycle used
+    print("CPU cycles used for decrypt: ", end - start)
+
 
     if receivedplaintext == None: print("verification failed!")
         
@@ -504,21 +512,34 @@ def demo_aead(variant="Ascon-AEAD128"):
                 ("received", receivedplaintext), 
                ])
 
+    demo_write_to_file([("key", key), 
+                ("nonce", nonce), 
+                ("plaintext", plaintext),
+                ("ass_data", associateddata), 
+                ("ciphertext", ciphertext[:-16]), 
+                ("tag", ciphertext[-16:]), 
+               ], filename="output_aead.txt")
+
 def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = b"This is my test for processing associated data step and absorb"
-    tag = ascon_hash(message, variant, hashlength) # TODO CXOF interface
+    message = get_random_bytes(63)
 
-    demo_print([("message", message), ("tag", tag)])
+    start = count() #start measure cycle used
+    hash_out = ascon_hash(message, variant, hashlength) # TODO CXOF interface
+    end = count_end() #end measure cycle used
+    print("CPU cycles used for hash256: ", end - start)
+
+    demo_print([("message", message), ("hash_out", hash_out)])
+    demo_write_to_file([("message", message), ("hash_out", hash_out)], filename="output_hash.txt")
 
 def demo_mac(variant="Ascon-Mac", taglength=16):
     # TODO rename variants
     assert variant in ["Ascon-Mac", "Ascon-Prf", "Ascon-PrfShort"]
     print("=== demo MAC using {variant} ===".format(variant=variant))
 
-    key = get_random_bytes(16)
+    key = get_random_bytes(6)
     message = b"ascon"
     tag = ascon_mac(key, message, variant)
 
@@ -527,7 +548,7 @@ def demo_mac(variant="Ascon-Mac", taglength=16):
 
 if __name__ == "__main__":
     demo_aead("Ascon-AEAD128")
-    # demo_hash("Ascon-Hash256")
+    demo_hash("Ascon-Hash256")
     # demo_hash("Ascon-XOF128")
     # demo_hash("Ascon-CXOF128")
     # demo_mac("Ascon-Mac")

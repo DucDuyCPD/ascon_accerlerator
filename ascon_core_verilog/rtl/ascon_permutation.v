@@ -1,4 +1,4 @@
-`timescale 1ns/1ps
+`timescale  1ns/1ps
 module ascon_permutation_1p(
 	input wire [63:0] round_const,
 	

@@ -1,0 +1,29 @@
+[H[2J[3J==========calculate result:
+=== demo encryption using Ascon-AEAD128 ===
+CPU cycles used for encrypt:  1196643
+CPU cycles used for decrypt:  857346
+key:        0x1b211ac931cbad59e1b2cffe88f8d1f4 (16 bytes)
+nonce:      0x9be0b34915d22f987fdf23ba0b3812a4 (16 bytes)
+plaintext:  0xfd58579122b44e0763e8f730d0b9cc07d0516b7f1dc4e061d8df37c1bdc4596294506ad4c8 (37 bytes)
+ass.data:   0x00465b02bc5625a299e1a35651506e7cec2db10b9f23a4343a17fd4bedee85cb024305 (35 bytes)
+ciphertext: 0x7a8b4715edf64a1f1d36c2ac72bfc721b705c812c725f70623f8ddc510b709fb3a23fd52bf (37 bytes)
+tag:        0x0640d1f0e67ea5e59edb3aa5e91cd15d (16 bytes)
+received:   0xfd58579122b44e0763e8f730d0b9cc07d0516b7f1dc4e061d8df37c1bdc4596294506ad4c8 (37 bytes)
+=== demo hash using Ascon-Hash256 ===
+CPU cycles used for hash256:  1406013
+message:  0x631566dfbe77233e6bbbf900cdda6c25de0bc76efb0c0beb9b1cd36aa881f7da29925b (35 bytes)
+hash_out: 0x4554d09020c85d9d3c3b4d835eeeff1a6f25d900ae4ad2758d3158944d501d2f (32 bytes)
+==========generate input file for test:
+Done! Result save in key.hex
+Done! Result save in nonce.hex
+Done! Result save in plaintext_conv.txt
+Done! Result save in ass_data_conv.txt
+Done! Result save in ciphertext_conv.txt
+Done! Result save in tag.hex
+Done! Result save in message_conv.txt
+Done! Result save in hash_out.hex
+==========compile and run testbench:
+make[1]: Entering directory '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim'
+make[1]: Leaving directory '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim'
+make[1]: Entering directory '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim'
+make[1]: Leaving directory '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim'

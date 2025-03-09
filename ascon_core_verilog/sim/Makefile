@@ -5,7 +5,7 @@ TOP				?= test_bench
 #====================================
 
 build:
-	@verilator -Mdir build --binary -j $(nproc) --sv --trace -f $(LIST_FILE_NAME) -Wno-WIDTH -Wno-UNOPTFLAT --top-module $(TOP)
+	@verilator -Mdir build --binary -j $(nproc) --sv --trace -f $(LIST_FILE_NAME) -Wno-WIDTHEXPAND --top-module $(TOP)
 	
 run:
 	@./build/V$(TOP)

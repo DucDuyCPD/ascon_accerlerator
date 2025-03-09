@@ -1,3 +1,4 @@
+`timescale  1ns/1ps
 module ascon_hash (
 	input wire clk,
 	input wire rst_n,

@@ -1,3 +1,4 @@
+`timescale  1ns/1ps
 module ascon_finalization (
 	input wire clk, rst_n,
 
