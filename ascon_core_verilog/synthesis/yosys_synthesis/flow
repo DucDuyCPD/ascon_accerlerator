@@ -1,9 +1,0 @@
-read_verilog ../../rtl/ascon_permutation.v ../../rtl/ascon_initialization.v ../../rtl/ascon_AD_AM.v ../../rtl/ascon_encrypt_decrypt.v ../../rtl/ascon_hash.v ../../rtl/ascon_finalization.v ../../rtl/ascon_core.v 
-hierarchy -check -top ascon_core
-proc; opt; fsm; opt; memory; opt
-techmap; opt
-dfflibmap -liberty ../sky130_lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
-abc -liberty ../sky130_lib/sky130_fd_sc_hd__tt_025C_1v80.lib 
-clean
-write_verilog ascon_core_synthesis.v
-

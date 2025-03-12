@@ -1,6 +1,0 @@
-{
-  "DESIGN_NAME": "ascon_core",
-  "VERILOG_FILES": ["dir::../rtl/ascon_core.v", "dir::../rtl/ascon_permutation.v", "dir::../rtl/ascon_initialization.v", "dir::../rtl/ascon_AD_AM.v", "dir::../rtl/ascon_encrypt_decrypt.v", "dir::../rtl/ascon_hash.v", "dir::../rtl/ascon_finalization.v"],
-  "CLOCK_PERIOD": 100,
-  "CLOCK_PORT": "clk"
-}
