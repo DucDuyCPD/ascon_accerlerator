@@ -29,7 +29,14 @@ module ascon_core (
 reg [63:0] x0, x1, x2, x3, x4;
 reg count;
 
-assign err = (data_length < data_position) ? 1'b1 : 1'b0;
+wire err_length, err_process_en;
+assign err_length = (data_length < data_position) ? 1'b1 : 1'b0;
+assign err_process_en = 	~((process_en_init&~process_en_AD_AM&~process_en_encrypt_decrypt&~process_en_hash&~process_en_final) | 
+			~process_en_init&(~process_en_AD_AM&~process_en_encrypt_decrypt&~process_en_hash | 
+			~process_en_AD_AM&~process_en_hash&~process_en_final | 
+			~process_en_AD_AM&~process_en_encrypt_decrypt&~process_en_hash | 
+			~process_en_encrypt_decrypt&~process_en_hash&~process_en_final));
+assign err = err_length | err_process_en;
 
 wire [63:0] x0_init, x1_init, x2_init, x3_init, x4_init;
 wire [63:0] x0_i_AD_AM, x1_i_AD_AM, x2_i_AD_AM, x3_i_AD_AM, x4_i_AD_AM, x0_o_AD_AM, x1_o_AD_AM, x2_o_AD_AM, x3_o_AD_AM, x4_o_AD_AM;
@@ -63,6 +70,33 @@ wire [63:0] x0_o_final_p12, x1_o_final_p12, x2_o_final_p12, x3_o_final_p12, x4_o
 assign data_out = 	(process_en_encrypt_decrypt) ? encrypt_decrypt_out :
 		(process_en_hash) ? {hash_out,64'b0} : 128'b0;
 
+wire [63:0] x0_mux, x1_mux, x2_mux, x3_mux, x4_mux;
+
+assign x0_mux = 	~((process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) && (count)) ? x0 :
+		(process_en_AD_AM) ? x0_o_AD_AM : 
+		(process_en_encrypt_decrypt) ? x0_o_encrypt_decrypt : 
+		(process_en_hash) ? x0_o_hash : x0;
+
+assign x1_mux = 	~((process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) && (count)) ? x1 :
+		(process_en_AD_AM) ? x1_o_AD_AM : 
+		(process_en_encrypt_decrypt) ? x1_o_encrypt_decrypt : 
+		(process_en_hash) ? x1_o_hash : x1;
+
+assign x2_mux = 	~((process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) && (count)) ? x2 :
+		(process_en_AD_AM) ? x2_o_AD_AM : 
+		(process_en_encrypt_decrypt) ? x2_o_encrypt_decrypt : 
+		(process_en_hash) ? x2_o_hash : x2;
+
+assign x3_mux = 	~((process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) && (count)) ? x3 :
+		(process_en_AD_AM) ? x3_o_AD_AM : 
+		(process_en_encrypt_decrypt) ? x3_o_encrypt_decrypt : 
+		(process_en_hash) ? x3_o_hash : x3;
+
+assign x4_mux = 	~((process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) && (count)) ? x4 :
+		(process_en_AD_AM) ? x4_o_AD_AM : 
+		(process_en_encrypt_decrypt) ? x4_o_encrypt_decrypt : 
+		(process_en_hash) ? x4_o_hash : x4;
+
 always @(posedge clk or negedge rst_n) begin
 	if(~rst_n) begin
 		x0 <= 64'b0;
@@ -79,41 +113,53 @@ always @(posedge clk or negedge rst_n) begin
 			x3 <= x3_init;
 			x4 <= x4_init;
 		end else begin
-			if (process_en_AD_AM) begin
-				count <= 1;
-				if (count == 1) begin
-					x0 <= x0_o_AD_AM;
-					x1 <= x1_o_AD_AM;
-					x2 <= x2_o_AD_AM;
-					x3 <= x3_o_AD_AM;
-					x4 <= x4_o_AD_AM;
-					count <= 0;
-				end
+			if (count == 1'b0) begin
+				if (process_en_AD_AM || process_en_encrypt_decrypt || process_en_hash) count <= 1'b1;
+				else count <= 1'b0;
 			end else begin
-				if (process_en_encrypt_decrypt) begin
-					count <= 1;
-					if (count == 1) begin
-						x0 <= x0_o_encrypt_decrypt;
-						x1 <= x1_o_encrypt_decrypt;
-						x2 <= x2_o_encrypt_decrypt;
-						x3 <= x3_o_encrypt_decrypt;
-						x4 <= x4_o_encrypt_decrypt;
-						count <= 0;
-					end
-				end else begin
-					if (process_en_hash) begin
-						count <= 1;
-						if (count == 1) begin
-							x0 <= x0_o_hash;
-							x1 <= x1_o_hash;
-							x2 <= x2_o_hash;
-							x3 <= x3_o_hash;
-							x4 <= x4_o_hash;
-							count <= 0;
-						end
-					end	
-				end
+				x0 <= x0_mux;
+				x1 <= x1_mux;
+				x2 <= x2_mux;
+				x3 <= x3_mux;
+				x4 <= x4_mux;
+				count <= 1'b0;
 			end
+
+			// if (process_en_AD_AM) begin
+			// 	count <= 1;
+			// 	if (count == 1) begin
+			// 		x0 <= x0_o_AD_AM;
+			// 		x1 <= x1_o_AD_AM;
+			// 		x2 <= x2_o_AD_AM;
+			// 		x3 <= x3_o_AD_AM;
+			// 		x4 <= x4_o_AD_AM;
+			// 		count <= 0;
+			// 	end
+			// end else begin
+			// 	if (process_en_encrypt_decrypt) begin
+			// 		count <= 1;
+			// 		if (count == 1) begin
+			// 			x0 <= x0_o_encrypt_decrypt;
+			// 			x1 <= x1_o_encrypt_decrypt;
+			// 			x2 <= x2_o_encrypt_decrypt;
+			// 			x3 <= x3_o_encrypt_decrypt;
+			// 			x4 <= x4_o_encrypt_decrypt;
+			// 			count <= 0;
+			// 		end
+			// 	end else begin
+			// 		if (process_en_hash) begin
+			// 			count <= 1;
+			// 			if (count == 1) begin
+			// 				x0 <= x0_o_hash;
+			// 				x1 <= x1_o_hash;
+			// 				x2 <= x2_o_hash;
+			// 				x3 <= x3_o_hash;
+			// 				x4 <= x4_o_hash;
+			// 				count <= 0;
+			// 			end
+			// 		end	
+			// 	end
+			// end
 		end
 	end
 end
@@ -187,7 +233,6 @@ assign x3_o_final_p12 = (process_en_final) ? x3_o_p12 : 64'b0;
 assign x4_o_final_p12 = (process_en_final) ? x4_o_p12 : 64'b0;
 
 ascon_initialization ascon_initialization_module(
-	.clk(clk), .rst_n(rst_n),
 	.sel_type(sel_type),
 	.key(key),
 	.nonce(nonce),
@@ -408,4 +453,4 @@ ascon_permutation_p8 ascon_p8(
 	.x4_o(x4_o_p8)
 );
 
-endmodule : ascon_core
+endmodule

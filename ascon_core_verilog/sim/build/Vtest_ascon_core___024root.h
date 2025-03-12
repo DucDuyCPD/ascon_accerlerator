@@ -21,12 +21,24 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         CData/*0:0*/ test_ascon_core__DOT__rst_n;
         CData/*1:0*/ test_ascon_core__DOT__sel_type;
         CData/*0:0*/ test_ascon_core__DOT__mode_sel_encrypt_decrypt;
+        CData/*0:0*/ test_ascon_core__DOT__err;
         CData/*0:0*/ test_ascon_core__DOT__process_en_init;
         CData/*0:0*/ test_ascon_core__DOT__process_en_AD_AM;
         CData/*0:0*/ test_ascon_core__DOT__process_en_encrypt_decrypt;
         CData/*0:0*/ test_ascon_core__DOT__process_en_hash;
         CData/*0:0*/ test_ascon_core__DOT__process_en_final;
+        CData/*0:0*/ test_ascon_core__DOT__a;
+        CData/*0:0*/ test_ascon_core__DOT__b;
+        CData/*0:0*/ test_ascon_core__DOT__c;
+        CData/*0:0*/ test_ascon_core__DOT__d;
+        CData/*0:0*/ test_ascon_core__DOT__e;
+        CData/*0:0*/ test_ascon_core__DOT__y;
+        CData/*4:0*/ test_ascon_core__DOT__test;
         CData/*0:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__count;
+        CData/*0:0*/ test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_3;
+        CData/*0:0*/ test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_4;
+        CData/*0:0*/ test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_5;
+        CData/*0:0*/ __VdfgRegularize_hd87f99a1_0_0;
         CData/*0:0*/ __VstlFirstIteration;
         CData/*0:0*/ __Vtrigprevexpr___TOP__test_ascon_core__DOT__clk__0;
         CData/*0:0*/ __Vtrigprevexpr___TOP__test_ascon_core__DOT__rst_n__0;
@@ -47,10 +59,11 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         IData/*31:0*/ test_ascon_core__DOT__MESSAGE_LENGTH;
         IData/*31:0*/ test_ascon_core__DOT__count;
         IData/*31:0*/ test_ascon_core__DOT__unnamedblk1__DOT__i;
-        IData/*31:0*/ test_ascon_core__DOT__unnamedblk3__DOT__i;
-        IData/*31:0*/ test_ascon_core__DOT__unnamedblk5__DOT__i;
-        IData/*31:0*/ test_ascon_core__DOT__unnamedblk7__DOT__i;
-        IData/*31:0*/ test_ascon_core__DOT__unnamedblk9__DOT__i;
+        IData/*31:0*/ test_ascon_core__DOT__unnamedblk2__DOT__i;
+        IData/*31:0*/ test_ascon_core__DOT__unnamedblk4__DOT__i;
+        IData/*31:0*/ test_ascon_core__DOT__unnamedblk6__DOT__i;
+        IData/*31:0*/ test_ascon_core__DOT__unnamedblk8__DOT__i;
+        IData/*31:0*/ test_ascon_core__DOT__unnamedblk10__DOT__i;
         VlWide<4>/*127:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__encrypt_decrypt_out;
         IData/*31:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_AD_AM_module__DOT____VdfgRegularize_h32e126ea_0_0;
         VlWide<4>/*127:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_encrypt_decrypt_module__DOT__data_out_last;
@@ -68,6 +81,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x0_i_AD_AM;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x1_i_AD_AM;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x2_i_AD_AM;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x3_i_AD_AM;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x4_i_AD_AM;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x0_o_AD_AM;
@@ -81,8 +96,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x1_o_encrypt_decrypt;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x2_o_encrypt_decrypt;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x3_o_encrypt_decrypt;
-    };
-    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x4_o_encrypt_decrypt;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x0_o_hash;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x1_o_hash;
@@ -111,6 +124,11 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x3_o_init_p12;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x4_o_init_p12;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x1_i_AD_AM_p8;
+        QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x0_mux;
+        QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x1_mux;
+        QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x2_mux;
+        QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x3_mux;
+        QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__x4_mux;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_AD_AM_module__DOT__x0_p8;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_AD_AM_module__DOT__x1_p8;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_AD_AM_module__DOT__x2_p8;
@@ -129,6 +147,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_encrypt_decrypt_module__DOT__data_out_last_0;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_encrypt_decrypt_module__DOT__data_out_last_1;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_hash_module__DOT__x0_p12;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT____Vcellout__r0__x2_o;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT____Vcellout__r1__x2_o;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT____Vcellout__r2__x2_o;
@@ -147,8 +167,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r0__DOT__x1_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r0__DOT__x3_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r0__DOT____VdfgRegularize_h66faf083_0_0;
-    };
-    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r0__DOT____VdfgRegularize_h66faf083_0_1;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r0__DOT____VdfgRegularize_h66faf083_0_2;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r1__DOT__x0_rc;
@@ -195,6 +213,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__x3_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__x4_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__f;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__h;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__j;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r4__DOT__x0_s;
@@ -213,8 +233,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT__x0_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT__x1_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT__x3_s;
-    };
-    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT____VdfgRegularize_h66faf083_0_0;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT____VdfgRegularize_h66faf083_0_1;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r5__DOT____VdfgRegularize_h66faf083_0_2;
@@ -261,6 +279,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__x1_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__x3_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__x4_rc;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__f;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__h;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r9__DOT__j;
@@ -279,8 +299,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT__j;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT__x0_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT__x1_s;
-    };
-    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT__x3_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT____VdfgRegularize_h66faf083_0_0;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__r10__DOT____VdfgRegularize_h66faf083_0_1;
@@ -327,6 +345,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r1__DOT____VdfgRegularize_h66faf083_0_0;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r1__DOT____VdfgRegularize_h66faf083_0_1;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r1__DOT____VdfgRegularize_h66faf083_0_2;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r2__DOT__x0_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r2__DOT__x1_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r2__DOT__x3_rc;
@@ -345,8 +365,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__x3_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__x4_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__f;
-    };
-    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__h;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__j;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r3__DOT__x0_s;
@@ -393,6 +411,8 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r6__DOT__x3_s;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r6__DOT____VdfgRegularize_h66faf083_0_0;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r6__DOT____VdfgRegularize_h66faf083_0_1;
+    };
+    struct {
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r6__DOT____VdfgRegularize_h66faf083_0_2;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r7__DOT__x0_rc;
         QData/*63:0*/ test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r7__DOT__x1_rc;
@@ -411,8 +431,6 @@ class alignas(VL_CACHE_LINE_BYTES) Vtest_ascon_core___024root final : public Ver
         VlUnpacked<QData/*63:0*/, 11> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__x0_round;
         VlUnpacked<QData/*63:0*/, 11> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__x1_round;
         VlUnpacked<QData/*63:0*/, 11> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__x2_round;
-    };
-    struct {
         VlUnpacked<QData/*63:0*/, 11> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__x3_round;
         VlUnpacked<QData/*63:0*/, 11> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p12__DOT__x4_round;
         VlUnpacked<QData/*63:0*/, 7> test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__x0_round;

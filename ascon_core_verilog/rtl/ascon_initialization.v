@@ -1,6 +1,5 @@
 `timescale  1ns/1ps
 module ascon_initialization (
-	input wire clk, rst_n,
 	input wire [1:0] sel_type,
 	input wire [127:0] key,
 	input wire [127:0] nonce,

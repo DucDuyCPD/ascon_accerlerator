@@ -38,6 +38,21 @@ ascon_core ascon_core_dut(.*);
 parameter CLOCK_PERIOD = 100;
 always #(CLOCK_PERIOD/2) clk = ~clk;
 
+// reg a, b, c, d, e, y;
+// reg [4:0] test_err;
+// initial begin
+// 	for (int i =0; i < 32; i = i + 1) begin
+// 		a = test[4];
+// 		b = test[3];
+// 		c = test[2];
+// 		d = test[1];
+// 		e = test[0];
+// 		y = ~((a&~b&~c&~d&~e) | ~a&(~b&~c&~d | ~b&~d&~e | ~b&~c&~e | ~c&~d&~e));
+// 		$display("case %2d, a=%d, b=%d, c=%d, d=%d, e=%d, y = %d",test, a, b, c, d, e, y);
+// 		test = test + 1;
+// 	end
+// end
+
 //==============doc file==============
 bit [63:0] data_read_file_key [int];
 bit [63:0] data_read_file_nonce [int];
@@ -428,6 +443,9 @@ initial begin
 
 
 	#1000;
+
+
+
 	$finish;
 end
 

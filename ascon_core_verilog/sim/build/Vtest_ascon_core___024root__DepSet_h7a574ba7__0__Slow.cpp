@@ -176,12 +176,20 @@ VL_ATTR_COLD void Vtest_ascon_core___024root___ctor_var_reset(Vtest_ascon_core__
     vlSelf->test_ascon_core__DOT__data_position = VL_RAND_RESET_I(32);
     VL_RAND_RESET_W(128, vlSelf->test_ascon_core__DOT__data_in);
     VL_RAND_RESET_W(128, vlSelf->test_ascon_core__DOT__data_out);
+    vlSelf->test_ascon_core__DOT__err = VL_RAND_RESET_I(1);
     vlSelf->test_ascon_core__DOT__process_en_init = VL_RAND_RESET_I(1);
     vlSelf->test_ascon_core__DOT__process_en_AD_AM = VL_RAND_RESET_I(1);
     vlSelf->test_ascon_core__DOT__process_en_encrypt_decrypt = VL_RAND_RESET_I(1);
     vlSelf->test_ascon_core__DOT__process_en_hash = VL_RAND_RESET_I(1);
     vlSelf->test_ascon_core__DOT__process_en_final = VL_RAND_RESET_I(1);
     VL_RAND_RESET_W(128, vlSelf->test_ascon_core__DOT__tag);
+    vlSelf->test_ascon_core__DOT__a = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__b = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__c = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__d = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__e = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__y = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__test = VL_RAND_RESET_I(5);
     vlSelf->test_ascon_core__DOT__data_read_file_key.atDefault() = 0;
     vlSelf->test_ascon_core__DOT__data_read_file_nonce.atDefault() = 0;
     vlSelf->test_ascon_core__DOT__data_read_file_plaintext.atDefault() = 0;
@@ -206,10 +214,11 @@ VL_ATTR_COLD void Vtest_ascon_core___024root___ctor_var_reset(Vtest_ascon_core__
     vlSelf->test_ascon_core__DOT__start_time = 0;
     vlSelf->test_ascon_core__DOT__end_time = 0;
     vlSelf->test_ascon_core__DOT__unnamedblk1__DOT__i = 0;
-    vlSelf->test_ascon_core__DOT__unnamedblk3__DOT__i = 0;
-    vlSelf->test_ascon_core__DOT__unnamedblk5__DOT__i = 0;
-    vlSelf->test_ascon_core__DOT__unnamedblk7__DOT__i = 0;
-    vlSelf->test_ascon_core__DOT__unnamedblk9__DOT__i = 0;
+    vlSelf->test_ascon_core__DOT__unnamedblk2__DOT__i = 0;
+    vlSelf->test_ascon_core__DOT__unnamedblk4__DOT__i = 0;
+    vlSelf->test_ascon_core__DOT__unnamedblk6__DOT__i = 0;
+    vlSelf->test_ascon_core__DOT__unnamedblk8__DOT__i = 0;
+    vlSelf->test_ascon_core__DOT__unnamedblk10__DOT__i = 0;
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x0 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x1 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x2 = VL_RAND_RESET_Q(64);
@@ -264,6 +273,14 @@ VL_ATTR_COLD void Vtest_ascon_core___024root___ctor_var_reset(Vtest_ascon_core__
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x3_o_init_p12 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x4_o_init_p12 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x1_i_AD_AM_p8 = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x0_mux = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x1_mux = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x2_mux = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x3_mux = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__x4_mux = VL_RAND_RESET_Q(64);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_3 = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_4 = VL_RAND_RESET_I(1);
+    vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT____VdfgRegularize_h5e23165b_1_5 = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 5; ++__Vi0) {
         vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__ascon_initialization_module__DOT__S[__Vi0] = VL_RAND_RESET_Q(64);
     }
@@ -587,6 +604,7 @@ VL_ATTR_COLD void Vtest_ascon_core___024root___ctor_var_reset(Vtest_ascon_core__
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r7__DOT____VdfgRegularize_h66faf083_0_0 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r7__DOT____VdfgRegularize_h66faf083_0_1 = VL_RAND_RESET_Q(64);
     vlSelf->test_ascon_core__DOT__ascon_core_dut__DOT__ascon_p8__DOT__r7__DOT____VdfgRegularize_h66faf083_0_2 = VL_RAND_RESET_Q(64);
+    vlSelf->__VdfgRegularize_hd87f99a1_0_0 = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigprevexpr___TOP__test_ascon_core__DOT__clk__0 = VL_RAND_RESET_I(1);
     vlSelf->__Vtrigprevexpr___TOP__test_ascon_core__DOT__rst_n__0 = VL_RAND_RESET_I(1);
     for (int __Vi0 = 0; __Vi0 < 7; ++__Vi0) {

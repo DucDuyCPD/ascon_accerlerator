@@ -524,7 +524,7 @@ def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = get_random_bytes(63)
+    message = get_random_bytes(64)
 
     start = count() #start measure cycle used
     hash_out = ascon_hash(message, variant, hashlength) # TODO CXOF interface

@@ -1,0 +1,7 @@
+../../rtl/ascon_permutation.v
+../../rtl/ascon_initialization.v
+../../rtl/ascon_AD_AM.v
+../../rtl/ascon_encrypt_decrypt.v
+../../rtl/ascon_hash.v
+../../rtl/ascon_finalization.v
+../../rtl/ascon_core.v

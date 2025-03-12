@@ -1,0 +1,5 @@
+`verilator_config
+lint_off -rule DECLFILENAME
+lint_off -rule EOFNEWLINE
+lint_off -rule UNDRIVEN -file "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/tmp/4c4c435d5449403381307490e4c42bf7.bb.v"
+lint_off -rule UNUSEDSIGNAL -file "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/tmp/4c4c435d5449403381307490e4c42bf7.bb.v"

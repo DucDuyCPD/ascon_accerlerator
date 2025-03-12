@@ -1,0 +1,1562 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2024  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)
+Loaded SDC plugin
+
+1. Executing Liberty frontend: /home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+Imported 428 cell types from liberty file.
+[INFO] Using SDC file '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/06-yosys-synthesis/synthesis.abc.sdc' for ABC…
+
+2. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_core'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_permutation_1p'.
+Storing AST representation for module `$abstract\ascon_permutation_p8'.
+Storing AST representation for module `$abstract\ascon_permutation_p12'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_initialization'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_AD_AM'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_encrypt_decrypt'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_hash'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v
+Parsing SystemVerilog input from `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v' to AST representation.
+Storing AST representation for module `$abstract\ascon_finalization'.
+Successfully finished Verilog frontend.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+10. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_core'.
+Generating RTLIL representation for module `\ascon_core'.
+
+10.1. Analyzing design hierarchy..
+Top module:  \ascon_core
+
+10.2. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_permutation_p8'.
+Generating RTLIL representation for module `\ascon_permutation_p8'.
+
+10.3. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_permutation_p12'.
+Generating RTLIL representation for module `\ascon_permutation_p12'.
+
+10.4. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_hash'.
+Generating RTLIL representation for module `\ascon_hash'.
+
+10.5. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_finalization'.
+Generating RTLIL representation for module `\ascon_finalization'.
+
+10.6. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_encrypt_decrypt'.
+Generating RTLIL representation for module `\ascon_encrypt_decrypt'.
+
+10.7. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_AD_AM'.
+Generating RTLIL representation for module `\ascon_AD_AM'.
+
+10.8. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_initialization'.
+Generating RTLIL representation for module `\ascon_initialization'.
+
+10.9. Analyzing design hierarchy..
+Top module:  \ascon_core
+Used module:     \ascon_permutation_p8
+Used module:     \ascon_permutation_p12
+Used module:     \ascon_hash
+Used module:     \ascon_finalization
+Used module:     \ascon_encrypt_decrypt
+Used module:     \ascon_AD_AM
+Used module:     \ascon_initialization
+
+10.10. Executing AST frontend in derive mode using pre-parsed AST for module `\ascon_permutation_1p'.
+Generating RTLIL representation for module `\ascon_permutation_1p'.
+Reprocessing module ascon_permutation_p12 because instantiated module ascon_permutation_1p has become available.
+Generating RTLIL representation for module `\ascon_permutation_p12'.
+Reprocessing module ascon_permutation_p8 because instantiated module ascon_permutation_1p has become available.
+Generating RTLIL representation for module `\ascon_permutation_p8'.
+
+10.11. Analyzing design hierarchy..
+Top module:  \ascon_core
+Used module:     \ascon_permutation_p8
+Used module:         \ascon_permutation_1p
+Used module:     \ascon_permutation_p12
+Used module:     \ascon_hash
+Used module:     \ascon_finalization
+Used module:     \ascon_encrypt_decrypt
+Used module:     \ascon_AD_AM
+Used module:     \ascon_initialization
+
+10.12. Analyzing design hierarchy..
+Top module:  \ascon_core
+Used module:     \ascon_permutation_p8
+Used module:         \ascon_permutation_1p
+Used module:     \ascon_permutation_p12
+Used module:     \ascon_hash
+Used module:     \ascon_finalization
+Used module:     \ascon_encrypt_decrypt
+Used module:     \ascon_AD_AM
+Used module:     \ascon_initialization
+Removing unused module `$abstract\ascon_finalization'.
+Removing unused module `$abstract\ascon_hash'.
+Removing unused module `$abstract\ascon_encrypt_decrypt'.
+Removing unused module `$abstract\ascon_AD_AM'.
+Removing unused module `$abstract\ascon_initialization'.
+Removing unused module `$abstract\ascon_permutation_p12'.
+Removing unused module `$abstract\ascon_permutation_p8'.
+Removing unused module `$abstract\ascon_permutation_1p'.
+Removing unused module `$abstract\ascon_core'.
+Removed 9 unused modules.
+Renaming module ascon_core to ascon_core.
+
+11. Generating Graphviz representation of design.
+Writing dot description to `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/06-yosys-synthesis/hierarchy.dot'.
+Dumping module ascon_core to page 1.
+
+12. Executing TRIBUF pass.
+
+13. Executing HIERARCHY pass (managing design hierarchy).
+
+13.1. Analyzing design hierarchy..
+Top module:  \ascon_core
+Used module:     \ascon_permutation_p8
+Used module:         \ascon_permutation_1p
+Used module:     \ascon_permutation_p12
+Used module:     \ascon_hash
+Used module:     \ascon_finalization
+Used module:     \ascon_encrypt_decrypt
+Used module:     \ascon_AD_AM
+Used module:     \ascon_initialization
+
+13.2. Analyzing design hierarchy..
+Top module:  \ascon_core
+Used module:     \ascon_permutation_p8
+Used module:         \ascon_permutation_1p
+Used module:     \ascon_permutation_p12
+Used module:     \ascon_hash
+Used module:     \ascon_finalization
+Used module:     \ascon_encrypt_decrypt
+Used module:     \ascon_AD_AM
+Used module:     \ascon_initialization
+Removed 0 unused modules.
+
+14. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+15. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 4 switch rules as full_case in process $proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81 in module ascon_core.
+Marked 4 switch rules as full_case in process $proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337 in module ascon_AD_AM.
+Marked 3 switch rules as full_case in process $proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175 in module ascon_encrypt_decrypt.
+Marked 1 switch rules as full_case in process $proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v:38$171 in module ascon_finalization.
+Marked 1 switch rules as full_case in process $proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166 in module ascon_hash.
+Removed a total of 0 dead cases.
+
+16. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 95 assignments to connections.
+
+17. Executing PROC_INIT pass (extract init attributes).
+
+18. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \rst_n in `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+Found async reset \rst_n in `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+Found async reset \rst_n in `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+Found async reset \rst_n in `\ascon_finalization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v:38$171'.
+Found async reset \rst_n in `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+
+19. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~12 debug messages>
+
+20. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+     1/6: $0\count[0:0]
+     2/6: $0\x4[63:0]
+     3/6: $0\x3[63:0]
+     4/6: $0\x2[63:0]
+     5/6: $0\x1[63:0]
+     6/6: $0\x0[63:0]
+Creating decoders for process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+Creating decoders for process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+     1/5: $0\x4_o[63:0]
+     2/5: $0\x3_o[63:0]
+     3/5: $0\x2_o[63:0]
+     4/5: $0\x1_o[63:0]
+     5/5: $0\x0_o[63:0]
+Creating decoders for process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+     1/6: $0\x4_o[63:0]
+     2/6: $0\x3_o[63:0]
+     3/6: $0\x2_o[63:0]
+     4/6: $0\x1_o[63:0]
+     5/6: $0\x0_o[63:0]
+     6/6: $0\data_out[127:0]
+Creating decoders for process `\ascon_finalization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v:38$171'.
+     1/2: $0\tag[127:0] [63:0]
+     2/2: $0\tag[127:0] [127:64]
+Creating decoders for process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+     1/6: $0\x4_o[63:0]
+     2/6: $0\x3_o[63:0]
+     3/6: $0\x2_o[63:0]
+     4/6: $0\x1_o[63:0]
+     5/6: $0\x0_o[63:0]
+     6/6: $0\hash_out[63:0]
+Creating decoders for process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+Creating decoders for process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+
+21. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\ascon_initialization.\S[0]' from process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+No latch inferred for signal `\ascon_initialization.\S[1]' from process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+No latch inferred for signal `\ascon_initialization.\S[2]' from process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+No latch inferred for signal `\ascon_initialization.\S[3]' from process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+No latch inferred for signal `\ascon_initialization.\S[4]' from process `\ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[0]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[1]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[2]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[3]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[4]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[5]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[6]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[0]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[1]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[2]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[3]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[4]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[5]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[6]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[0]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[1]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[2]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[3]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[4]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[5]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[6]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[0]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[1]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[2]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[3]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[4]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[5]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[6]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[0]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[1]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[2]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[3]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[4]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[5]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[6]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[7]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[8]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[9]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x0_round[10]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[7]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[8]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[9]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x1_round[10]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[7]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[8]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[9]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x2_round[10]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[7]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[8]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[9]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x3_round[10]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[7]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[8]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[9]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p12.\x4_round[10]' from process `\ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[0]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[1]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[2]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[3]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[4]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[5]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x0_round[6]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[0]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[1]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[2]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[3]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[4]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[5]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x1_round[6]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[0]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[1]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[2]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[3]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[4]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[5]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x2_round[6]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[0]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[1]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[2]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[3]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[4]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[5]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x3_round[6]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[0]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[1]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[2]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[3]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[4]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[5]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+No latch inferred for signal `\ascon_permutation_p8.\x4_round[6]' from process `\ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+
+22. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\ascon_core.\x0' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$871' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_core.\x1' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$876' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_core.\x2' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$881' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_core.\x3' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$886' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_core.\x4' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$891' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_core.\count' using process `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+  created $adff cell `$procdff$896' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_AD_AM.\x0_o' using process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+  created $adff cell `$procdff$901' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_AD_AM.\x1_o' using process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+  created $adff cell `$procdff$906' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_AD_AM.\x2_o' using process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+  created $adff cell `$procdff$911' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_AD_AM.\x3_o' using process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+  created $adff cell `$procdff$916' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_AD_AM.\x4_o' using process `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+  created $adff cell `$procdff$921' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\data_out' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$926' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\x0_o' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$931' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\x1_o' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$936' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\x2_o' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$941' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\x3_o' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$946' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_encrypt_decrypt.\x4_o' using process `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+  created $adff cell `$procdff$951' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_finalization.\tag' using process `\ascon_finalization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v:38$171'.
+  created $adff cell `$procdff$956' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\hash_out' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$961' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\x0_o' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$966' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\x1_o' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$971' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\x2_o' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$976' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\x3_o' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$981' with positive edge clock and positive level reset.
+Creating register for signal `\ascon_hash.\x4_o' using process `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+  created $adff cell `$procdff$986' with positive edge clock and positive level reset.
+
+23. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+24. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `\ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+Removing empty process `ascon_core.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:100$81'.
+Removing empty process `ascon_initialization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:0$467'.
+Found and cleaned up 4 empty switches in `\ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+Removing empty process `ascon_AD_AM.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:60$337'.
+Found and cleaned up 4 empty switches in `\ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+Removing empty process `ascon_encrypt_decrypt.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:47$175'.
+Removing empty process `ascon_finalization.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_finalization.v:38$171'.
+Found and cleaned up 1 empty switch in `\ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+Removing empty process `ascon_hash.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_hash.v:37$166'.
+Removing empty process `ascon_permutation_p12.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$617'.
+Removing empty process `ascon_permutation_p8.$proc$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_permutation.v:0$688'.
+Cleaned up 12 empty switches.
+
+25. Executing CHECK pass (checking for obvious problems).
+Checking module ascon_core...
+Checking module ascon_initialization...
+Checking module ascon_AD_AM...
+Checking module ascon_encrypt_decrypt...
+Checking module ascon_finalization...
+Checking module ascon_hash...
+Checking module ascon_permutation_1p...
+Checking module ascon_permutation_p12...
+Checking module ascon_permutation_p8...
+Found and reported 0 problems.
+
+26. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~24 debug messages>
+Optimizing module ascon_initialization.
+<suppressed ~10 debug messages>
+Optimizing module ascon_AD_AM.
+<suppressed ~16 debug messages>
+Optimizing module ascon_encrypt_decrypt.
+<suppressed ~21 debug messages>
+Optimizing module ascon_finalization.
+<suppressed ~3 debug messages>
+Optimizing module ascon_hash.
+<suppressed ~12 debug messages>
+Optimizing module ascon_permutation_1p.
+<suppressed ~6 debug messages>
+Optimizing module ascon_permutation_p12.
+Optimizing module ascon_permutation_p8.
+
+27. Executing FLATTEN pass (flatten design).
+Deleting now unused module ascon_initialization.
+Deleting now unused module ascon_AD_AM.
+Deleting now unused module ascon_encrypt_decrypt.
+Deleting now unused module ascon_finalization.
+Deleting now unused module ascon_hash.
+Deleting now unused module ascon_permutation_1p.
+Deleting now unused module ascon_permutation_p12.
+Deleting now unused module ascon_permutation_p8.
+<suppressed ~27 debug messages>
+
+28. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~20 debug messages>
+
+29. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 47 unused cells and 1062 unused wires.
+<suppressed ~57 debug messages>
+
+30. Executing OPT pass (performing simple optimizations).
+
+30.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+30.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+<suppressed ~948 debug messages>
+Removed a total of 316 cells.
+
+30.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:199$116.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:200$117.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:201$118.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:205$121.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:206$122.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:207$123.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:208$124.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:211$126.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:212$127.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:213$128.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:214$129.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:215$130.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:217$131.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:218$132.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:219$133.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:220$134.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:221$135.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:223$136.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:224$137.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:225$138.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:226$139.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:227$140.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:261$148.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:262$149.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:263$150.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:315$153.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:316$154.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:317$155.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:357$156.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:358$157.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:361$160.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:389$161.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:390$162.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:391$163.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:392$164.
+    dead port 2/2 on $mux $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:393$165.
+Removed 36 multiplexer ports.
+<suppressed ~60 debug messages>
+
+30.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+    New ctrl vector for $pmux cell $flatten\ascon_encrypt_decrypt_module.$procmux$800: { $auto$opt_reduce.cc:134:opt_pmux$1073 $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:161$403_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:162$406_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:163$409_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:164$412_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:165$415_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:166$418_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:167$421_Y }
+    New ctrl vector for $pmux cell $flatten\ascon_encrypt_decrypt_module.$procmux$825: { $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:152$384_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:153$386_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:154$388_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:155$390_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:128$358_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:129$361_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:130$364_Y $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:131$367_Y $auto$opt_reduce.cc:134:opt_pmux$1075 }
+  Optimizing cells in module \ascon_core.
+Performed a total of 2 changes.
+
+30.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+30.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+30.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 0 unused cells and 316 unused wires.
+<suppressed ~1 debug messages>
+
+30.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+30.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+30.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~52 debug messages>
+
+30.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+30.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+30.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+30.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+30.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+30.16. Finished OPT passes. (There is nothing left to do.)
+
+31. Executing FSM pass (extract and optimize FSM).
+
+31.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+31.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+31.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+31.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+31.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+31.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+31.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+31.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+32. Executing OPT pass (performing simple optimizations).
+
+32.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+32.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+32.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~52 debug messages>
+
+32.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+32.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+32.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$896 ($adff) from module ascon_core (D = $procmux$693_Y, Q = \count).
+Adding EN signal on $procdff$891 ($adff) from module ascon_core (D = $0\x4[63:0], Q = \x4).
+Adding EN signal on $procdff$886 ($adff) from module ascon_core (D = $0\x3[63:0], Q = \x3).
+Adding EN signal on $procdff$881 ($adff) from module ascon_core (D = $0\x2[63:0], Q = \x2).
+Adding EN signal on $procdff$876 ($adff) from module ascon_core (D = $0\x1[63:0], Q = \x1).
+Adding EN signal on $procdff$871 ($adff) from module ascon_core (D = $0\x0[63:0], Q = \x0).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$986 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x4_o_AD_AM_p12, Q = \ascon_hash_module.x4_o).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$981 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x3_o_AD_AM_p12, Q = \ascon_hash_module.x3_o).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$976 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x2_o_AD_AM_p12, Q = \ascon_hash_module.x2_o).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$971 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x1_o_AD_AM_p12, Q = \ascon_hash_module.x1_o).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$966 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x0_o_AD_AM_p12, Q = \ascon_hash_module.x0_o).
+Adding EN signal on $flatten\ascon_hash_module.$procdff$961 ($adff) from module ascon_core (D = \ascon_AD_AM_module.x0_o_AD_AM_p12, Q = \ascon_hash_module.hash_out).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$951 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$782_Y, Q = \ascon_encrypt_decrypt_module.x4_o).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$946 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$789_Y, Q = \ascon_encrypt_decrypt_module.x3_o).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$941 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$796_Y, Q = \ascon_encrypt_decrypt_module.x2_o).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$936 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$821_Y, Q = \ascon_encrypt_decrypt_module.x1_o).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$931 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$846_Y, Q = \ascon_encrypt_decrypt_module.x0_o).
+Adding EN signal on $flatten\ascon_encrypt_decrypt_module.$procdff$926 ($adff) from module ascon_core (D = $flatten\ascon_encrypt_decrypt_module.$procmux$851_Y, Q = \ascon_encrypt_decrypt_module.data_out).
+Adding EN signal on $flatten\ascon_AD_AM_module.$procdff$921 ($adff) from module ascon_core (D = $flatten\ascon_AD_AM_module.$procmux$735_Y, Q = \ascon_AD_AM_module.x4_o).
+Adding EN signal on $flatten\ascon_AD_AM_module.$procdff$916 ($adff) from module ascon_core (D = $flatten\ascon_AD_AM_module.$procmux$745_Y, Q = \ascon_AD_AM_module.x3_o).
+Adding EN signal on $flatten\ascon_AD_AM_module.$procdff$911 ($adff) from module ascon_core (D = $flatten\ascon_AD_AM_module.$procmux$755_Y, Q = \ascon_AD_AM_module.x2_o).
+Adding EN signal on $flatten\ascon_AD_AM_module.$procdff$906 ($adff) from module ascon_core (D = $flatten\ascon_AD_AM_module.$procmux$765_Y, Q = \ascon_AD_AM_module.x1_o).
+Adding EN signal on $flatten\ascon_AD_AM_module.$procdff$901 ($adff) from module ascon_core (D = $flatten\ascon_AD_AM_module.$procmux$775_Y, Q = \ascon_AD_AM_module.x0_o).
+
+32.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 18 unused cells and 18 unused wires.
+<suppressed ~19 debug messages>
+
+32.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~5 debug messages>
+
+32.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+32.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~46 debug messages>
+
+32.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+32.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+<suppressed ~51 debug messages>
+Removed a total of 17 cells.
+
+32.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+32.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 0 unused cells and 16 unused wires.
+<suppressed ~1 debug messages>
+
+32.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+32.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+32.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~46 debug messages>
+
+32.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+32.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+32.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+32.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+32.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+32.23. Finished OPT passes. (There is nothing left to do.)
+
+33. Executing WREDUCE pass (reducing word size of cells).
+Removed top 61 bits (of 64) from mux cell ascon_core.$flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:34$444 ($mux).
+Removed top 1 bits (of 3) from port B of cell ascon_core.$auto$opt_dff.cc:195:make_patterns_logic$1083 ($ne).
+Removed top 7 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:167$422 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:167$421 ($eq).
+Removed top 15 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:166$419 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:166$418 ($eq).
+Removed top 23 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:165$416 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:165$415 ($eq).
+Removed top 31 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:164$413 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:164$412 ($eq).
+Removed top 39 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:163$410 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:163$409 ($eq).
+Removed top 47 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:162$407 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:162$406 ($eq).
+Removed top 55 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:161$404 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:161$403 ($eq).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:160$400 ($eq).
+Removed top 30 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:155$390 ($eq).
+Removed top 30 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:154$388 ($eq).
+Removed top 31 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:153$386 ($eq).
+Removed top 1 bits (of 2) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:151$378 ($eq).
+Removed top 7 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:131$368 ($xor).
+Removed top 29 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:131$367 ($eq).
+Removed top 15 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:130$365 ($xor).
+Removed top 29 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:130$364 ($eq).
+Removed top 23 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:129$362 ($xor).
+Removed top 29 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:129$361 ($eq).
+Removed top 31 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:128$359 ($xor).
+Removed top 29 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:128$358 ($eq).
+Removed top 39 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:127$356 ($xor).
+Removed top 47 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:126$353 ($xor).
+Removed top 55 bits (of 64) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$xor$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:125$350 ($xor).
+Removed top 28 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:87$344 ($ge).
+Removed top 27 bits (of 32) from port B of cell ascon_core.$flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:71$341 ($ge).
+Removed top 10 bits (of 11) from port B of cell ascon_core.$auto$opt_dff.cc:195:make_patterns_logic$1138 ($ne).
+Removed top 9 bits (of 10) from port B of cell ascon_core.$auto$opt_dff.cc:195:make_patterns_logic$1133 ($ne).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:196$321 ($mux).
+Removed top 64 bits (of 128) from mux cell ascon_core.$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:195$322 ($mux).
+Removed top 61 bits (of 64) from wire ascon_core.$flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:34$444_Y.
+
+34. Executing PEEPOPT pass (run peephole optimizers).
+
+35. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+36. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module ascon_core:
+  creating $macc model for $flatten\ascon_AD_AM_module.$sub$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:124$345 ($sub).
+  creating $alu model for $macc $flatten\ascon_AD_AM_module.$sub$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:124$345.
+  creating $alu model for $flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:71$341 ($ge): new $alu
+  creating $alu model for $flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:87$344 ($ge): new $alu
+  creating $alu model for $lt$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:33$1 ($lt): merged with $flatten\ascon_AD_AM_module.$sub$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:124$345.
+  creating $alu model for $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:160$400 ($eq): merged with $flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:87$344.
+  creating $alu cell for $flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:87$344, $flatten\ascon_AD_AM_module.$eq$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:160$400: $auto$alumacc.cc:485:replace_alu$1150
+  creating $alu cell for $flatten\ascon_AD_AM_module.$ge$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:71$341: $auto$alumacc.cc:485:replace_alu$1159
+  creating $alu cell for $flatten\ascon_AD_AM_module.$sub$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_AD_AM.v:124$345, $lt$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:33$1: $auto$alumacc.cc:485:replace_alu$1168
+  created 3 $alu and 0 $macc cells.
+
+37. Executing SHARE pass (SAT-based resource sharing).
+
+38. Executing OPT pass (performing simple optimizations).
+
+38.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~1 debug messages>
+
+38.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+38.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~46 debug messages>
+
+38.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+38.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+38.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+38.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 1 unused cells and 5 unused wires.
+<suppressed ~2 debug messages>
+
+38.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+38.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+38.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~46 debug messages>
+
+38.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+38.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+38.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+38.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+38.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+38.16. Finished OPT passes. (There is nothing left to do.)
+
+39. Executing MEMORY pass.
+
+39.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+39.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+39.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+39.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+39.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+39.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+39.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+39.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+39.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+39.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+40. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+41. Executing OPT pass (performing simple optimizations).
+
+41.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~159 debug messages>
+
+41.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+41.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+41.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 0 unused cells and 72 unused wires.
+<suppressed ~1 debug messages>
+
+41.5. Finished fast OPT passes.
+
+42. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+43. Executing OPT pass (performing simple optimizations).
+
+43.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+43.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+43.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~45 debug messages>
+
+43.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_AD_AM_module.$procmux$733:
+      Old ports: A={ $flatten\ascon_AD_AM_module.$auto$rtlil.cc:2493:Not$988 \ascon_AD_AM_module.x4_o_AD_AM_p8 [62:0] }, B=\ascon_AD_AM_module.x4_o_AD_AM_p8, Y=$flatten\ascon_AD_AM_module.$procmux$733_Y
+      New ports: A=$flatten\ascon_AD_AM_module.$auto$rtlil.cc:2493:Not$988, B=\ascon_AD_AM_module.x4_o_AD_AM_p8 [63], Y=$flatten\ascon_AD_AM_module.$procmux$733_Y [63]
+      New connections: $flatten\ascon_AD_AM_module.$procmux$733_Y [62:0] = \ascon_AD_AM_module.x4_o_AD_AM_p8 [62:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225:
+      Old ports: A=\data_in [127:64], B={ 8'00000001 \data_in [119:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225_Y
+      New ports: A=\data_in [127:120], B=8'00000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225_Y [63:56]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225_Y [55:0] = \data_in [119:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265:
+      Old ports: A=\data_in [63:0], B={ 8'00000001 \data_in [55:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265_Y
+      New ports: A=\data_in [63:56], B=8'00000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265_Y [63:56]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265_Y [55:0] = \data_in [55:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323:
+      Old ports: A={ \ascon_encrypt_decrypt_module.data_out_last_0 $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:195$322_Y [63:0] }, B={ 8'00000000 \ascon_encrypt_decrypt_module.data_out_last_0 [55:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y
+      New ports: A={ \ascon_encrypt_decrypt_module.data_out_last_0 [63:56] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:195$322_Y [63:0] }, B=72'000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y [127:120] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y [119:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [55:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315:
+      Old ports: A=\ascon_encrypt_decrypt_module.data_out_last_1, B={ 8'00000000 \ascon_encrypt_decrypt_module.data_out_last_1 [55:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315_Y [63:0]
+      New ports: A=\ascon_encrypt_decrypt_module.data_out_last_1 [63:56], B=8'00000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315_Y [63:56]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315_Y [55:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [55:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445:
+      Old ports: A={ 61'0000000000000000000010000000000000000000110011000000000000000 $auto$wreduce.cc:461:run$1147 [2:0] }, B=64'0000000000000000000010000000000100000000110011000000000000000010, Y=$flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y
+      New ports: A={ 1'0 $auto$wreduce.cc:461:run$1147 [2:0] }, B=4'1010, Y={ $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [32] $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [2:0] }
+      New connections: { $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [63:33] $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [31:3] } = 60'000000000000000000001000000000000000000110011000000000000000
+    Consolidated identical input bits for $mux cell $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:34$444:
+      Old ports: A=3'100, B=3'011, Y=$auto$wreduce.cc:461:run$1147 [2:0]
+      New ports: A=2'10, B=2'01, Y={ $auto$wreduce.cc:461:run$1147 [2] $auto$wreduce.cc:461:run$1147 [0] }
+      New connections: $auto$wreduce.cc:461:run$1147 [1] = $auto$wreduce.cc:461:run$1147 [0]
+    Consolidated identical input bits for $mux cell $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:71$39:
+      Old ports: A=128'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, B={ \ascon_hash_module.x0_o 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:71$39_Y
+      New ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B=\ascon_hash_module.x0_o, Y=$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:71$39_Y [127:64]
+      New connections: $ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_core.v:71$39_Y [63:0] = 64'0000000000000000000000000000000000000000000000000000000000000000
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225_Y, B={ 16'0000000000000001 \data_in [111:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:160$225_Y [63:56] \data_in [119:112] }, B=16'0000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226_Y [63:48]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226_Y [47:0] = \data_in [111:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265_Y, B={ 16'0000000000000001 \data_in [47:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:177$265_Y [63:56] \data_in [55:48] }, B=16'0000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266_Y [63:48]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266_Y [47:0] = \data_in [47:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y, B={ 16'0000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [47:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y [127:120] \ascon_encrypt_decrypt_module.data_out_last_0 [55:48] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:194$323_Y [63:0] }, B=80'00000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y [127:112] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y [111:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [47:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315_Y [63:0], B={ 16'0000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [47:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:202$315_Y [63:56] \ascon_encrypt_decrypt_module.data_out_last_1 [55:48] }, B=16'0000000000000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316_Y [63:48]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316_Y [47:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [47:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:32$446:
+      Old ports: A=$flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y, B=64'0000000000000000000100000000000010000000100011000000000000000001, Y=\x0_i_init_p12
+      New ports: A={ $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [32] 2'01 $flatten\ascon_initialization_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_initialization.v:33$445_Y [2:0] }, B=6'010001, Y={ \x0_i_init_p12 [32:31] \x0_i_init_p12 [22] \x0_i_init_p12 [2:0] }
+      New connections: { \x0_i_init_p12 [63:33] \x0_i_init_p12 [30:23] \x0_i_init_p12 [21:3] } = { 19'0000000000000000000 \x0_i_init_p12 [31] \x0_i_init_p12 [22] 37'0000000000000000010011000000000000000 }
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226_Y, B={ 24'000000000000000000000001 \data_in [103:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:159$226_Y [63:48] \data_in [111:104] }, B=24'000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227_Y [63:40]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227_Y [39:0] = \data_in [103:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266_Y, B={ 24'000000000000000000000001 \data_in [39:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:176$266_Y [63:48] \data_in [47:40] }, B=24'000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267_Y [63:40]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267_Y [39:0] = \data_in [39:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y, B={ 24'000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [39:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y [127:112] \ascon_encrypt_decrypt_module.data_out_last_0 [47:40] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:193$324_Y [63:0] }, B=88'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y [127:104] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y [103:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [39:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316_Y [63:0], B={ 24'000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [39:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:201$316_Y [63:48] \ascon_encrypt_decrypt_module.data_out_last_1 [47:40] }, B=24'000000000000000000000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317_Y [63:40]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317_Y [39:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [39:0]
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227_Y, B={ 32'00000000000000000000000000000001 \data_in [95:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:158$227_Y [63:40] \data_in [103:96] }, B=1, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228_Y [63:32]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228_Y [31:0] = \data_in [95:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267_Y, B={ 32'00000000000000000000000000000001 \data_in [31:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:175$267_Y [63:40] \data_in [39:32] }, B=1, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268_Y [63:32]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268_Y [31:0] = \data_in [31:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y, B={ 32'00000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [31:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y [127:104] \ascon_encrypt_decrypt_module.data_out_last_0 [39:32] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:192$325_Y [63:0] }, B=96'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y [127:96] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y [95:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [31:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317_Y [63:0], B={ 32'00000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [31:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:200$317_Y [63:40] \ascon_encrypt_decrypt_module.data_out_last_1 [39:32] }, B=0, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318_Y [63:32]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318_Y [31:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [31:0]
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228_Y, B={ 40'0000000000000000000000000000000000000001 \data_in [87:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:157$228_Y [63:32] \data_in [95:88] }, B=40'0000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229_Y [63:24]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229_Y [23:0] = \data_in [87:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268_Y, B={ 40'0000000000000000000000000000000000000001 \data_in [23:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:174$268_Y [63:32] \data_in [31:24] }, B=40'0000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269_Y [63:24]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269_Y [23:0] = \data_in [23:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y, B={ 40'0000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [23:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y [127:96] \ascon_encrypt_decrypt_module.data_out_last_0 [31:24] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:191$326_Y [63:0] }, B=104'00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y [127:88] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y [87:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [23:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318_Y [63:0], B={ 40'0000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [23:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:199$318_Y [63:32] \ascon_encrypt_decrypt_module.data_out_last_1 [31:24] }, B=40'0000000000000000000000000000000000000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319_Y [63:24]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319_Y [23:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [23:0]
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229_Y, B={ 48'000000000000000000000000000000000000000000000001 \data_in [79:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:156$229_Y [63:24] \data_in [87:80] }, B=48'000000000000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230_Y [63:16]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230_Y [15:0] = \data_in [79:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269_Y, B={ 48'000000000000000000000000000000000000000000000001 \data_in [15:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:173$269_Y [63:24] \data_in [23:16] }, B=48'000000000000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270_Y [63:16]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270_Y [15:0] = \data_in [15:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y, B={ 48'000000000000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [15:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y [127:88] \ascon_encrypt_decrypt_module.data_out_last_0 [23:16] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:190$327_Y [63:0] }, B=112'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y [127:80] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y [79:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [15:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319_Y [63:0], B={ 48'000000000000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [15:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:198$319_Y [63:24] \ascon_encrypt_decrypt_module.data_out_last_1 [23:16] }, B=48'000000000000000000000000000000000000000000000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320_Y [63:16]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320_Y [15:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [15:0]
+  Optimizing cells in module \ascon_core.
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:154$231:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230_Y, B={ 56'00000000000000000000000000000000000000000000000000000001 \data_in [71:64] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:154$231_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:155$230_Y [63:16] \data_in [79:72] }, B=56'00000000000000000000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:154$231_Y [63:8]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:154$231_Y [7:0] = \data_in [71:64]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:171$271:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270_Y, B={ 56'00000000000000000000000000000000000000000000000000000001 \data_in [7:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:171$271_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:172$270_Y [63:16] \data_in [15:8] }, B=56'00000000000000000000000000000000000000000000000000000001, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:171$271_Y [63:8]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:171$271_Y [7:0] = \data_in [7:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:188$329:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y, B={ 56'00000000000000000000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_0 [7:0] 64'0000000000000000000000000000000000000000000000000000000000000000 }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:188$329_Y
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y [127:80] \ascon_encrypt_decrypt_module.data_out_last_0 [15:8] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:189$328_Y [63:0] }, B=120'000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000, Y={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:188$329_Y [127:72] $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:188$329_Y [63:0] }
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:188$329_Y [71:64] = \ascon_encrypt_decrypt_module.data_out_last_0 [7:0]
+    Consolidated identical input bits for $mux cell $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:196$321:
+      Old ports: A=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320_Y [63:0], B={ 56'00000000000000000000000000000000000000000000000000000000 \ascon_encrypt_decrypt_module.data_out_last_1 [7:0] }, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:196$321_Y [63:0]
+      New ports: A={ $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:197$320_Y [63:16] \ascon_encrypt_decrypt_module.data_out_last_1 [15:8] }, B=56'00000000000000000000000000000000000000000000000000000000, Y=$flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:196$321_Y [63:8]
+      New connections: $flatten\ascon_encrypt_decrypt_module.$ternary$/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/rtl/ascon_encrypt_decrypt.v:196$321_Y [7:0] = \ascon_encrypt_decrypt_module.data_out_last_1 [7:0]
+  Optimizing cells in module \ascon_core.
+Performed a total of 33 changes.
+
+43.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+43.6. Executing OPT_SHARE pass.
+
+43.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+43.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+43.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+43.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+43.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~45 debug messages>
+
+43.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+43.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+43.14. Executing OPT_SHARE pass.
+
+43.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+43.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+43.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+43.18. Finished OPT passes. (There is nothing left to do.)
+
+44. Executing TECHMAP pass (map to technology primitives).
+
+44.1. Executing Verilog-2005 frontend: /nix/store/c26m31cifv9fyym8p72j6cj5ilqgnh2z-yosys/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/nix/store/c26m31cifv9fyym8p72j6cj5ilqgnh2z-yosys/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu_brent_kung'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+44.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $adffe.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $logic_or.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using template $paramod$a7817265ef3ab2ee43da53bbd8a90f6450d412d9\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$b0777dc865134c8525a4aa84de8cfa938974cad1\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $logic_not.
+Using template $paramod$52bc915be9674d34d3804ad3e1d1b75dad97a6cc\_90_pmux for cells of type $pmux.
+Using template $paramod$fd83f0dc90bc6cfa066a0ab3a52828ecd0c3243c\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $adff.
+Using template $paramod\_90_lcu_brent_kung\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+No more expansions possible.
+<suppressed ~1848 debug messages>
+
+45. Executing OPT pass (performing simple optimizations).
+
+45.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~5001 debug messages>
+
+45.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+<suppressed ~4281 debug messages>
+Removed a total of 1427 cells.
+
+45.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+45.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 113 unused cells and 851 unused wires.
+<suppressed ~114 debug messages>
+
+45.5. Finished fast OPT passes.
+
+46. Executing OPT pass (performing simple optimizations).
+
+46.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~448 debug messages>
+
+46.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+46.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+46.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+46.5. Finished fast OPT passes.
+
+47. Executing ABC pass (technology mapping using ABC).
+
+47.1. Extracting gate netlist of module `\ascon_core' to `<abc-temp-dir>/input.blif'..
+Extracted 53005 gates and 54872 wires to a netlist network with 1865 inputs and 1669 outputs.
+
+47.1.1. Executing ABC.
+Running ABC command: "/nix/store/6l3aj1gi4lja8z5s4lan2k2cfz9mqkrz-yosys-abc/bin/abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+47.1.2. Re-integrating ABC results.
+ABC RESULTS:              NAND cells:      259
+ABC RESULTS:               AND cells:     1760
+ABC RESULTS:              XNOR cells:     8351
+ABC RESULTS:               NOT cells:     4068
+ABC RESULTS:               MUX cells:     7273
+ABC RESULTS:             ORNOT cells:       50
+ABC RESULTS:               NOR cells:      457
+ABC RESULTS:                OR cells:     3101
+ABC RESULTS:            ANDNOT cells:     4631
+ABC RESULTS:               XOR cells:    17632
+ABC RESULTS:        internal signals:    51338
+ABC RESULTS:           input signals:     1865
+ABC RESULTS:          output signals:     1669
+Removing temp directory.
+
+48. Executing OPT pass (performing simple optimizations).
+
+48.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+<suppressed ~780 debug messages>
+
+48.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+48.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+48.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 0 unused cells and 4572 unused wires.
+<suppressed ~1019 debug messages>
+
+48.5. Finished fast OPT passes.
+
+49. Executing HIERARCHY pass (managing design hierarchy).
+
+49.1. Analyzing design hierarchy..
+Top module:  \ascon_core
+
+49.2. Analyzing design hierarchy..
+Top module:  \ascon_core
+Removed 0 unused modules.
+
+50. Executing CHECK pass (checking for obvious problems).
+Checking module ascon_core...
+Found and reported 0 problems.
+
+51. Printing statistics.
+
+=== ascon_core ===
+
+   Number of wires:              47055
+   Number of wire bits:          61432
+   Number of public wires:         238
+   Number of public wire bits:   14300
+   Number of ports:                 17
+   Number of port bits:            715
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              49145
+     $_ANDNOT_                    4631
+     $_AND_                       1760
+     $_DFFE_PN0N_                    1
+     $_DFFE_PN0P_                 1408
+     $_DFF_PN0_                    128
+     $_MUX_                       7273
+     $_NAND_                       259
+     $_NOR_                        457
+     $_NOT_                       4068
+     $_ORNOT_                       50
+     $_OR_                        3100
+     $_XNOR_                      8351
+     $_XOR_                      17632
+     $scopeinfo                     27
+
+52. Generating Graphviz representation of design.
+Writing dot description to `/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/06-yosys-synthesis/primitive_techmap.dot'.
+Dumping module ascon_core to page 1.
+
+53. Executing OPT pass (performing simple optimizations).
+
+53.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+53.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+53.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \ascon_core..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+53.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \ascon_core.
+Performed a total of 0 changes.
+
+53.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\ascon_core'.
+Removed a total of 0 cells.
+
+53.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+53.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+
+53.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module ascon_core.
+
+53.9. Finished OPT passes. (There is nothing left to do.)
+
+54. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \ascon_core..
+Removed 27 unused cells and 194 unused wires.
+<suppressed ~221 debug messages>
+{
+   "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/tmp/fb412ab6abdb4c74bbbbecf01cfb453b.lib ",
+   "modules": {
+      "\\ascon_core": {
+         "num_wires":         46861,
+         "num_wire_bits":     49576,
+         "num_pub_wires":     44,
+         "num_pub_wire_bits": 2444,
+         "num_ports":         17,
+         "num_port_bits":     715,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         49118,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 4631,
+            "$_AND_": 1760,
+            "$_DFFE_PN0N_": 1,
+            "$_DFFE_PN0P_": 1408,
+            "$_DFF_PN0_": 128,
+            "$_MUX_": 7273,
+            "$_NAND_": 259,
+            "$_NOR_": 457,
+            "$_NOT_": 4068,
+            "$_ORNOT_": 50,
+            "$_OR_": 3100,
+            "$_XNOR_": 8351,
+            "$_XOR_": 17632
+         }
+      }
+   },
+      "design": {
+         "num_wires":         46861,
+         "num_wire_bits":     49576,
+         "num_pub_wires":     44,
+         "num_pub_wire_bits": 2444,
+         "num_ports":         17,
+         "num_port_bits":     715,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         49118,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 4631,
+            "$_AND_": 1760,
+            "$_DFFE_PN0N_": 1,
+            "$_DFFE_PN0P_": 1408,
+            "$_DFF_PN0_": 128,
+            "$_MUX_": 7273,
+            "$_NAND_": 259,
+            "$_NOR_": 457,
+            "$_NOT_": 4068,
+            "$_ORNOT_": 50,
+            "$_OR_": 3100,
+            "$_XNOR_": 8351,
+            "$_XOR_": 17632
+         }
+      }
+}
+
+55. Printing statistics.
+
+=== ascon_core ===
+
+   Number of wires:              46861
+   Number of wire bits:          49576
+   Number of public wires:          44
+   Number of public wire bits:    2444
+   Number of ports:                 17
+   Number of port bits:            715
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              49118
+     $_ANDNOT_                    4631
+     $_AND_                       1760
+     $_DFFE_PN0N_                    1
+     $_DFFE_PN0P_                 1408
+     $_DFF_PN0_                    128
+     $_MUX_                       7273
+     $_NAND_                       259
+     $_NOR_                        457
+     $_NOT_                       4068
+     $_ORNOT_                       50
+     $_OR_                        3100
+     $_XNOR_                      8351
+     $_XOR_                      17632
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_DFF_PN0_ is unknown!
+   Area for cell type $_DFFE_PN0N_ is unknown!
+   Area for cell type $_DFFE_PN0P_ is unknown!
+
+[INFO] Applying tri-state buffer mapping from '/home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v'…
+
+56. Executing TECHMAP pass (map to technology primitives).
+
+56.1. Executing Verilog-2005 frontend: /home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v
+Parsing Verilog input from `/home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/tribuff_map.v' to AST representation.
+Generating RTLIL representation for module `\$_TBUF_'.
+Successfully finished Verilog frontend.
+
+56.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~3 debug messages>
+
+57. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+[INFO] Applying latch mapping from '/home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v'…
+
+58. Executing TECHMAP pass (map to technology primitives).
+
+58.1. Executing Verilog-2005 frontend: /home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v
+Parsing Verilog input from `/home/leducduy/.volare/volare/sky130/versions/0fe599b2afb6708d281543108caf8310912f54af/sky130A/libs.tech/openlane/sky130_fd_sc_hd/latch_map.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+58.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+59. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+60. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+  cell sky130_fd_sc_hd__dfxtp_2 (noninv, pins=3, area=21.27) is a direct match for cell type $_DFF_P_.
+  cell sky130_fd_sc_hd__dfrtp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN0_.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+  cell sky130_fd_sc_hd__dfbbn_2 (noninv, pins=6, area=35.03) is a direct match for cell type $_DFFSR_NNN_.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_2 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    unmapped dff cell: $_DFF_NN0_
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_2 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_2 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    unmapped dff cell: $_DFFSR_PNN_
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+60.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\ascon_core':
+  mapped 1537 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_2 cells.
+{
+   "creator": "Yosys 0.46 (git sha1 e97731b9dda91fa5fa53ed87df7c34163ba59a41, clang++ 17.0.6 -fPIC -O3)",
+   "invocation": "stat -json -liberty /home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/tmp/fb412ab6abdb4c74bbbbecf01cfb453b.lib ",
+   "modules": {
+      "\\ascon_core": {
+         "num_wires":         48270,
+         "num_wire_bits":     50985,
+         "num_pub_wires":     44,
+         "num_pub_wire_bits": 2444,
+         "num_ports":         17,
+         "num_port_bits":     715,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         50527,
+         "area":              40384.982400,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 4631,
+            "$_AND_": 1760,
+            "$_MUX_": 8682,
+            "$_NAND_": 259,
+            "$_NOR_": 457,
+            "$_NOT_": 4068,
+            "$_ORNOT_": 50,
+            "$_OR_": 3100,
+            "$_XNOR_": 8351,
+            "$_XOR_": 17632,
+            "sky130_fd_sc_hd__dfrtp_2": 1537
+         }
+      }
+   },
+      "design": {
+         "num_wires":         48270,
+         "num_wire_bits":     50985,
+         "num_pub_wires":     44,
+         "num_pub_wire_bits": 2444,
+         "num_ports":         17,
+         "num_port_bits":     715,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         50527,
+         "area":              40384.982400,
+         "num_cells_by_type": {
+            "$_ANDNOT_": 4631,
+            "$_AND_": 1760,
+            "$_MUX_": 8682,
+            "$_NAND_": 259,
+            "$_NOR_": 457,
+            "$_NOT_": 4068,
+            "$_ORNOT_": 50,
+            "$_OR_": 3100,
+            "$_XNOR_": 8351,
+            "$_XOR_": 17632,
+            "sky130_fd_sc_hd__dfrtp_2": 1537
+         }
+      }
+}
+
+61. Printing statistics.
+
+=== ascon_core ===
+
+   Number of wires:              48270
+   Number of wire bits:          50985
+   Number of public wires:          44
+   Number of public wire bits:    2444
+   Number of ports:                 17
+   Number of port bits:            715
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              50527
+     $_ANDNOT_                    4631
+     $_AND_                       1760
+     $_MUX_                       8682
+     $_NAND_                       259
+     $_NOR_                        457
+     $_NOT_                       4068
+     $_ORNOT_                       50
+     $_OR_                        3100
+     $_XNOR_                      8351
+     $_XOR_                      17632
+     sky130_fd_sc_hd__dfrtp_2     1537
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+
+   Chip area for module '\ascon_core': 40384.982400
+     of which used for sequential elements: 40384.982400 (100.00%)
+
+[INFO] Using generated ABC script '/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/synthesis/runs/RUN_2025-03-12_10-28-58/06-yosys-synthesis/AREA_0.abc'…
+
+62. Executing ABC pass (technology mapping using ABC).
+
+62.1. Extracting gate netlist of module `\ascon_core' to `/tmp/yosys-abc-Cc4fON/input.blif'..
+Extracted 48990 gates and 50855 wires to a netlist network with 1865 inputs and 1666 outputs.
+
+62.1.1. Executing ABC.
+ERROR: ABC: execution of command ""/nix/store/6l3aj1gi4lja8z5s4lan2k2cfz9mqkrz-yosys-abc/bin/abc" -s -f /tmp/yosys-abc-Cc4fON/abc.script 2>&1" failed: return code 137.

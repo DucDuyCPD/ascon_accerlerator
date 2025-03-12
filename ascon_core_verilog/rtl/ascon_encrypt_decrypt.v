@@ -150,7 +150,6 @@ end
 
 wire [63:0] x0_last, x1_last, x2_last, x3_last, x4_last;
 
-wire [63:0] x0_last_encrypt, x1_last_encrypt, x0_last_decrypt, x1_last_decrypt;
 assign x0_last = 		(text_length - text_position == 0 ) ?  64'h1 :
 			(text_length - text_position == 1 ) ? {56'h1,data_in[71:64]} :
 			(text_length - text_position == 2 ) ? {48'h1,data_in[79:64]} :

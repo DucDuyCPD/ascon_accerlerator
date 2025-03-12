@@ -81,4 +81,4 @@ assign x4_p12 = x4_o_hash_p12;
 // 	.x4_o(x4_p12)
 // );
 
-endmodule : ascon_hash
+endmodule
