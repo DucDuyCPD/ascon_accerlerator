@@ -52,6 +52,7 @@ To run test:
 **```````
 cd ./ascon_core_verilog/sim
 ./test_flow
+**```````
 
  
 
