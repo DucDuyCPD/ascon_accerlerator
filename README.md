@@ -53,8 +53,8 @@ Software require before test:
 To run test:
 
 ```
-	cd ./ascon_core_verilog/sim
-	./test_flow
+cd ./ascon_core_verilog/sim
+./test_flow
 ```
 
  
