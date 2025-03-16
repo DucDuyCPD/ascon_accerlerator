@@ -49,10 +49,10 @@ Software require before test:
 - lcov
 
 To run test:
-**```````
-cd ./ascon_core_verilog/sim
-./test_flow
-**```````
+.. code:: bash
+	cd ./ascon_core_verilog/sim
+	./test_flow
+
 
  
 
