@@ -19,6 +19,8 @@ Each encryption step is handled by a dedicated module:
 
 ![Ascon Core (Top module)](document/image/ascon_core.png)
 
+IO port list of Ascon Core (Top module)
+
 | Pin name | Width | Direction | Function |
 |----------|-------|-----------|----------|
 | Clk, rst_n | 1 | input | clock and reset |
