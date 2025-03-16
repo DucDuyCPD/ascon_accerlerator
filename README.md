@@ -40,6 +40,14 @@ IO port list of Ascon Core (Top module)
 | tag | 128 | output | tag generate in AEAD mode |
 | err | 1 | output | return 1 when: <br>- two or more process_en_[module_name] equal to 1 at the same time <br>- data_length < data_position |
 
+The waveform of this implementation have the specific case, when data_lenght is multiple of 16 in AEAD mode and when data_length is multiple of 8 in Hash mode
+
+Normal case waveform
+![Normal case waveform](document/image/normal_case_waveform.png)
+
+Special case waveform
+![Special case waveform](document/image/special_case_waveform.png)
+
 Using this implementation
 ====================
 The top module of this implementation is [ascon_core.v](ascon_code_verilog/rtl/ascon_core.v)
