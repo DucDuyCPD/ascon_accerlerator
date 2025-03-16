@@ -50,7 +50,7 @@ Special case waveform
 
 Using this implementation
 ====================
-The top module of this implementation is [ascon_core.v](ascon_code_verilog/rtl/ascon_core.v)
+The top module of this implementation is [ascon_core.v](ascon_core_verilog/rtl/ascon_core.v)
 This implementation is use [Python implementation of Ascon](https://github.com/meichlseder/pyascon) as golden model to test.
 
 Software require before test:
