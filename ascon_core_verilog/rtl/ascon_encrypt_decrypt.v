@@ -55,98 +55,48 @@ always @(posedge clk or negedge rst_n)begin
 	end
 	else begin
 		if (process_en) begin
-			if (text_length - text_position >= 16) begin
-				x0_o <= x0_p8;
-				x1_o <= x1_p8;
-				x2_o <= x2_p8;
-				x3_o <= x3_p8;
-				x4_o <= x4_p8;
-				data_out <= {x0_i ^ data_in[127:64], x1_i ^ data_in[63:0]};
-			end 
-			else begin
-				data_out <= data_out_last;
-				if (~process_mode_sel) begin
-					x0_o <= x0_last ^ x0_i;
-					x1_o <= x1_last ^ x1_i;
-					x2_o <= x2_last;
-					x3_o <= x3_last;
-					x4_o <= x4_last;
-				end
-				else begin 
-					x2_o <= x2_last;
-					x3_o <= x3_last;
-					x4_o <= x4_last;
-					case (text_length - text_position)
-						32'h0 : begin
-							x0_o <= x0_i ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end						
-						32'h1 : begin
-							x0_o <= {x0_i[63:8], 8'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h2 : begin
-							x0_o <= {x0_i[63:16], 16'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h3 : begin
-							x0_o <= {x0_i[63:24], 24'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h4 : begin
-							x0_o <= {x0_i[63:32], 32'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h5 : begin
-							x0_o <= {x0_i[63:40], 40'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h6 : begin
-							x0_o <= {x0_i[63:48], 48'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h7 : begin
-							x0_o <= {x0_i[63:56], 56'b0} ^ x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h8 : begin 
-							x0_o <= x0_last;
-							x1_o <= x1_i ^ x1_last;
-						end
-						32'h9 : begin 
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:8], 8'b0} ^ x1_last;
-						end
-						32'ha : begin
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:16], 16'b0} ^ x1_last;	
-						end
-						32'hb : begin
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:24], 24'b0} ^ x1_last;
-						end
-						32'hc : begin 
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:32], 32'b0} ^ x1_last;
-						end
-						32'hd : begin
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:40], 40'b0} ^ x1_last;	
-						end
-						32'he : begin
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:48], 48'b0} ^ x1_last;
-						end
-						32'hf : begin  
-							x0_o <= x0_last;
-							x1_o <= {x1_i[63:56], 56'b0} ^ x1_last;
-						end
-					endcase
-				end
-			end
+			x0_o <= x0_o_temp;
+			x1_o <= x1_o_temp;
+			x2_o <= x2_o_temp;
+			x3_o <= x3_o_temp;
+			x4_o <= x4_o_temp;
+			data_out <= data_out_temp;
 		end
 	end
 end
+
+wire [63:0] x0_o_temp, x1_o_temp, x2_o_temp, x3_o_temp, x4_o_temp;
+wire [63:0] x0_last_temp, x1_last_temp;
+
+wire [127:0] data_out_temp;
+
+assign data_out_temp = ((text_length - text_position) >= 16) ? {x0_i ^ data_in[127:64], x1_i ^ data_in[63:0]} : data_out_last;
+
+assign x2_o_temp = ((text_length - text_position) >= 16) ? x2_p8 : x2_last;
+assign x3_o_temp = ((text_length - text_position) >= 16) ? x3_p8 : x3_last;
+assign x4_o_temp = ((text_length - text_position) >= 16) ? x4_p8 : x4_last;
+
+assign x0_last_temp = 	~(process_mode_sel) ? x0_last ^ x0_i :
+						((text_length - text_position) == 0 ) ? x0_i ^ x0_last :
+						((text_length - text_position) == 1 ) ? {x0_i[63:8], 8'b0} ^ x0_last :
+						((text_length - text_position) == 2 ) ? {x0_i[63:16], 16'b0} ^ x0_last :
+						((text_length - text_position) == 3 ) ? {x0_i[63:24], 24'b0} ^ x0_last :
+						((text_length - text_position) == 4 ) ? {x0_i[63:32], 32'b0} ^ x0_last :
+						((text_length - text_position) == 5 ) ? {x0_i[63:40], 40'b0} ^ x0_last :
+						((text_length - text_position) == 6 ) ? {x0_i[63:48], 48'b0} ^ x0_last :
+						((text_length - text_position) == 7 ) ? {x0_i[63:56], 56'b0} ^ x0_last : x0_last;
+
+assign x1_last_temp = 	~(process_mode_sel) ? x1_last ^ x1_i :
+						((text_length - text_position) == 9 ) ? {x1_i[63:8], 8'b0} ^ x1_last :
+						((text_length - text_position) == 10) ? {x1_i[63:16], 16'b0} ^ x1_last :
+						((text_length - text_position) == 11) ? {x1_i[63:24], 24'b0} ^ x1_last :
+						((text_length - text_position) == 12) ? {x1_i[63:32], 32'b0} ^ x1_last :
+						((text_length - text_position) == 13) ? {x1_i[63:40], 40'b0} ^ x1_last :
+						((text_length - text_position) == 14) ? {x1_i[63:48], 48'b0} ^ x1_last :
+						((text_length - text_position) == 15) ? {x1_i[63:56], 56'b0} ^ x1_last : x1_i ^ x1_last;
+
+assign x0_o_temp = ((text_length - text_position) >= 16) ? x0_p8 : x0_last_temp;
+assign x1_o_temp = ((text_length - text_position) >= 16) ? x1_p8 : x1_last_temp;
 
 wire [63:0] x0_last, x1_last, x2_last, x3_last, x4_last;
 

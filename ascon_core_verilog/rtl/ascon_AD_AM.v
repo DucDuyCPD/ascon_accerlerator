@@ -67,41 +67,40 @@ always @(posedge clk or negedge rst_n)begin
 	end
 	else begin
 		if (process_en) begin
-			if (sel_type == AEAD128) begin
-				if ((data_length - data_position) >= 16) begin
-					x0_o <= x0_p8;
-					x1_o <= x1_p8;
-					x2_o <= x2_p8;
-					x3_o <= x3_p8;
-					x4_o <= x4_p8;
-				end
-				else begin
-					x0_o <= x0_p8;
-					x1_o <= x1_p8;
-					x2_o <= x2_p8;
-					x3_o <= x3_p8;
-					x4_o <= x4_p8 ^ 64'h80_00_00_00_00_00_00_00;
-				end
-			end
-			else begin
-				if ((data_length - data_position) >= 8) begin
-					x0_o <= x0_p12;
-					x1_o <= x1_p12;
-					x2_o <= x2_p12;
-					x3_o <= x3_p12;
-					x4_o <= x4_p12;
-				end
-				else begin
-					x0_o <= s0;
-					x1_o <= x1_i;
-					x2_o <= x2_i;
-					x3_o <= x3_i;
-					x4_o <= x4_i;
-				end
-			end
+			x0_o <= x0_o_temp;
+			x1_o <= x1_o_temp;
+			x2_o <= x2_o_temp;
+			x3_o <= x3_o_temp;
+			x4_o <= x4_o_temp;
 		end
 	end
 end
+
+wire [63:0] x0_o_temp_AD, x1_o_temp_AD, x2_o_temp_AD, x3_o_temp_AD, x4_o_temp_AD;
+
+assign x0_o_temp_AD = 	(data_length == 0) ? x0_i : x0_p8;
+assign x1_o_temp_AD = 	(data_length == 0) ? x1_i : x1_p8;
+assign x2_o_temp_AD = 	(data_length == 0) ? x2_i : x2_p8;
+assign x3_o_temp_AD = 	(data_length == 0) ? x3_i : x3_p8;
+assign x4_o_temp_AD = 	((data_length - data_position) >= 16) ? x4_p8 : 
+						(data_length == 0) ? x4_i ^ 64'h80_00_00_00_00_00_00_00 : x4_p8 ^ 64'h80_00_00_00_00_00_00_00;
+
+wire [63:0] x0_o_temp_AM, x1_o_temp_AM, x2_o_temp_AM, x3_o_temp_AM, x4_o_temp_AM;
+
+assign x0_o_temp_AM = 	((data_length - data_position) >= 8) ? x0_p12 : s0;
+assign x1_o_temp_AM = 	((data_length - data_position) >= 8) ? x1_p12 : x1_i;
+assign x2_o_temp_AM = 	((data_length - data_position) >= 8) ? x2_p12 : x2_i;
+assign x3_o_temp_AM = 	((data_length - data_position) >= 8) ? x3_p12 : x3_i;
+assign x4_o_temp_AM = 	((data_length - data_position) >= 8) ? x4_p12 : x4_i;
+
+wire [63:0] x0_o_temp, x1_o_temp, x2_o_temp, x3_o_temp, x4_o_temp;
+
+assign x0_o_temp = (sel_type == AEAD128) ? x0_o_temp_AD : x0_o_temp_AM;
+assign x1_o_temp = (sel_type == AEAD128) ? x1_o_temp_AD : x1_o_temp_AM;
+assign x2_o_temp = (sel_type == AEAD128) ? x2_o_temp_AD : x2_o_temp_AM;
+assign x3_o_temp = (sel_type == AEAD128) ? x3_o_temp_AD : x3_o_temp_AM;
+assign x4_o_temp = (sel_type == AEAD128) ? x4_o_temp_AD : x4_o_temp_AM;
+
 
 assign s0 =		((data_length - data_position) == 0 ) ? x0_i ^  64'h1 :
 			((data_length - data_position) == 1 ) ? x0_i ^ {56'h1,data[71:64]} :
