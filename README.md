@@ -17,7 +17,7 @@ Each encryption step is handled by a dedicated module:
 - Ascon-Encrypt_Decrypt & Ascon-Hash: Perform encryption/decryption (AEAD) and hashing operations.
 - Ascon-final: Generates authentication tags for AEAD.
 
-[Ascon Core (Top module)](document/image/ascon_core.png)
+![Ascon Core (Top module)](document/image/ascon_core.png)
 
 | Pin name | Width | Direction | Function |
 | Clk, rst_n | 1 | input | clock and reset |
