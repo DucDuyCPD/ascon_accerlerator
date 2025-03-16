@@ -50,10 +50,10 @@ Software require before test:
 
 To run test:
 
-.. code:: bash
+```
 	cd ./ascon_core_verilog/sim
 	./test_flow
-
+```
 
  
 
