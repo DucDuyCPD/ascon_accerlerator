@@ -66,19 +66,4 @@ assign x2_p12 = x2_o_hash_p12;
 assign x3_p12 = x3_o_hash_p12;
 assign x4_p12 = x4_o_hash_p12;
 
-
-// ascon_permutation_p12 ascon_p12(
-// 	.x0_i(x0_i),
-// 	.x1_i(x1_i),
-// 	.x2_i(x2_i),
-// 	.x3_i(x3_i),
-// 	.x4_i(x4_i),
-
-// 	.x0_o(x0_p12),
-// 	.x1_o(x1_p12),
-// 	.x2_o(x2_p12),
-// 	.x3_o(x3_p12),
-// 	.x4_o(x4_p12)
-// );
-
 endmodule

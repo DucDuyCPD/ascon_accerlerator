@@ -220,18 +220,4 @@ assign x2_p8 = x2_o_encrypt_decrypt_p8;
 assign x3_p8 = x3_o_encrypt_decrypt_p8;
 assign x4_p8 = x4_o_encrypt_decrypt_p8;
 
-// ascon_permutation_p8 ascon_p8(
-// 	.x0_i(s0),
-// 	.x1_i(s1),
-// 	.x2_i(s2),
-// 	.x3_i(s3),
-// 	.x4_i(s4),
-
-// 	.x0_o(x0_p8),
-// 	.x1_o(x1_p8),
-// 	.x2_o(x2_p8),
-// 	.x3_o(x3_p8),
-// 	.x4_o(x4_p8)
-// );
-
 endmodule

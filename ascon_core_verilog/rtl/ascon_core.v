@@ -124,42 +124,6 @@ always @(posedge clk or negedge rst_n) begin
 				x4 <= x4_mux;
 				count <= 1'b0;
 			end
-
-			// if (process_en_AD_AM) begin
-			// 	count <= 1;
-			// 	if (count == 1) begin
-			// 		x0 <= x0_o_AD_AM;
-			// 		x1 <= x1_o_AD_AM;
-			// 		x2 <= x2_o_AD_AM;
-			// 		x3 <= x3_o_AD_AM;
-			// 		x4 <= x4_o_AD_AM;
-			// 		count <= 0;
-			// 	end
-			// end else begin
-			// 	if (process_en_encrypt_decrypt) begin
-			// 		count <= 1;
-			// 		if (count == 1) begin
-			// 			x0 <= x0_o_encrypt_decrypt;
-			// 			x1 <= x1_o_encrypt_decrypt;
-			// 			x2 <= x2_o_encrypt_decrypt;
-			// 			x3 <= x3_o_encrypt_decrypt;
-			// 			x4 <= x4_o_encrypt_decrypt;
-			// 			count <= 0;
-			// 		end
-			// 	end else begin
-			// 		if (process_en_hash) begin
-			// 			count <= 1;
-			// 			if (count == 1) begin
-			// 				x0 <= x0_o_hash;
-			// 				x1 <= x1_o_hash;
-			// 				x2 <= x2_o_hash;
-			// 				x3 <= x3_o_hash;
-			// 				x4 <= x4_o_hash;
-			// 				count <= 0;
-			// 			end
-			// 		end	
-			// 	end
-			// end
 		end
 	end
 end

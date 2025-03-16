@@ -487,8 +487,8 @@ def demo_aead(variant="Ascon-AEAD128"):
     # print("key = ",key)
     # printstate(key, "key = ")
     
-    associateddata = get_random_bytes(64) #62 bytes
-    plaintext      = get_random_bytes(64)
+    associateddata = get_random_bytes(512*1024) #62 bytes
+    plaintext      = get_random_bytes(512*1024)
 
     start = count() #start measure cycle used 
     ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
@@ -524,7 +524,7 @@ def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = get_random_bytes(64)
+    message = get_random_bytes(1024*1024)
 
     start = count() #start measure cycle used
     hash_out = ascon_hash(message, variant, hashlength) # TODO CXOF interface

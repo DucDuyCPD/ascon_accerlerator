@@ -1,25 +1,6 @@
 `timescale 1ns/1ps
 module test_ascon_core;
 
-parameter A0 = 128'h2073692073696854_207473657420796d; 
-parameter A1 = 128'h636f727020726f66_6120676e69737365; 
-parameter A2 = 128'h65746169636f7373_7320617461642064; 
-parameter A3 = 128'h20646e6120706574_62726f736261; 
-
-parameter C0 = 128'h9f0543260ffbdc18_9b07659e18ce73bf;
-parameter C1 = 128'h8cccbaf0cde5c93c_c799a614bc8ceca8; 
-parameter C2 = 128'hfe1edd42a1116999_175e00bf2b9c6ad2;
-parameter C3 = 128'hb6e8bbc210323af7_c5165724dae8;
-
-parameter M0 = 64'h2073692073696854;
-parameter M1 = 64'h207473657420796d; 
-parameter M2 = 64'h636f727020726f66;
-parameter M3 = 64'h6120676e69737365; 
-parameter M4 = 64'h65746169636f7373;
-parameter M5 = 64'h7320617461642064; 
-parameter M6 = 64'h20646e6120706574;
-parameter M7 = 64'h000062726f736261; 
-
 reg clk, rst_n;
 reg [127:0] key, nonce;
 reg [1:0] sel_type;
@@ -37,21 +18,6 @@ ascon_core ascon_core_dut(.*);
 
 parameter CLOCK_PERIOD = 100;
 always #(CLOCK_PERIOD/2) clk = ~clk;
-
-// reg a, b, c, d, e, y;
-// reg [4:0] test_err;
-// initial begin
-// 	for (int i =0; i < 32; i = i + 1) begin
-// 		a = test[4];
-// 		b = test[3];
-// 		c = test[2];
-// 		d = test[1];
-// 		e = test[0];
-// 		y = ~((a&~b&~c&~d&~e) | ~a&(~b&~c&~d | ~b&~d&~e | ~b&~c&~e | ~c&~d&~e));
-// 		$display("case %2d, a=%d, b=%d, c=%d, d=%d, e=%d, y = %d",test, a, b, c, d, e, y);
-// 		test = test + 1;
-// 	end
-// end
 
 //==============doc file==============
 bit [63:0] data_read_file_key [int];
@@ -104,52 +70,52 @@ initial begin
 	KEY = {data_read_file_key[0], data_read_file_key[1]};
 	NONCE = {data_read_file_nonce[0], data_read_file_nonce[1]};
 	TAG = {data_read_file_tag[1], data_read_file_tag[0]};
-	$display("KEY: %h", KEY);
-	$display("NONCE: %h", NONCE);
-	$display("TAG: %h", TAG);
+	// $display("KEY: %h", KEY);
+	// $display("NONCE: %h", NONCE);
+	// $display("TAG: %h", TAG);
 
 	PLAINTEXT_LENGTH = data_read_file_plaintext[0][31:0];
-	$display("PLAINTEXT_LENGTH: %3d",PLAINTEXT_LENGTH);
+	// $display("PLAINTEXT_LENGTH: %3d",PLAINTEXT_LENGTH);
 	count = 0;
 	for (int i = 1; i < data_read_file_plaintext.num(); i=i+2) begin
 		PLAINTEXT[count] = {data_read_file_plaintext[i], data_read_file_plaintext[i+1]};
 		count = count + 1;
 	end
-	foreach (PLAINTEXT[i]) $display("PLAINTEXT[%3d] = %h", i, PLAINTEXT[i]);
+	// foreach (PLAINTEXT[i]) $display("PLAINTEXT[%3d] = %h", i, PLAINTEXT[i]);
 
 	ASS_DATA_LENGTH = data_read_file_ass_data[0][31:0];
-	$display("ASS_DATA_LENGTH: %3d",ASS_DATA_LENGTH);
+	// $display("ASS_DATA_LENGTH: %3d",ASS_DATA_LENGTH);
 	count = 0;
 	for (int i = 1; i < data_read_file_ass_data.num(); i=i+2) begin
 		ASS_DATA[count] = {data_read_file_ass_data[i], data_read_file_ass_data[i+1]};
 		count = count + 1;
 	end
-	foreach (ASS_DATA[i]) $display("ASS_DATA[%3d] = %h", i, ASS_DATA[i]);
+	// foreach (ASS_DATA[i]) $display("ASS_DATA[%3d] = %h", i, ASS_DATA[i]);
 
 	CIPHERTEXT_LENGTH = data_read_file_ciphertext[0][31:0];
-	$display("CIPHERTEXT_LENGTH: %3d",CIPHERTEXT_LENGTH);
+	// $display("CIPHERTEXT_LENGTH: %3d",CIPHERTEXT_LENGTH);
 	count = 0;
 	for (int i = 1; i < data_read_file_ciphertext.num(); i=i+2) begin
 		CIPHERTEXT[count] = {data_read_file_ciphertext[i], data_read_file_ciphertext[i+1]};
 		count = count + 1;
 	end
-	foreach (CIPHERTEXT[i]) $display("CIPHERTEXT[%3d] = %h", i, CIPHERTEXT[i]);
+	// foreach (CIPHERTEXT[i]) $display("CIPHERTEXT[%3d] = %h", i, CIPHERTEXT[i]);
 
 	MESSAGE_LENGTH = data_read_file_message[0][31:0];
-	$display("MESSAGE_LENGTH: %3d",MESSAGE_LENGTH);
+	// $display("MESSAGE_LENGTH: %3d",MESSAGE_LENGTH);
 	count = 0;
 	for (int i = 1; i < data_read_file_message.num(); i=i+1) begin
 		MESSAGE[count] = {data_read_file_message[i], 64'h0};
 		count = count + 1;
 	end
-	foreach (MESSAGE[i]) $display("MESSAGE[%3d] = %h", i, MESSAGE[i]);
+	// foreach (MESSAGE[i]) $display("MESSAGE[%3d] = %h", i, MESSAGE[i]);
 
 	count = 0;
 	for (int i = 0; i < data_read_file_hash_out.num(); i=i+1) begin
 		HASH_OUT[count] = {data_read_file_hash_out[i], 64'h0};
 		count = count + 1;
 	end
-	foreach (HASH_OUT[i]) $display("HASH_OUT[%3d] = %h", i, HASH_OUT[i]);
+	// foreach (HASH_OUT[i]) $display("HASH_OUT[%3d] = %h", i, HASH_OUT[i]);
 end
 
 //====================================
@@ -292,7 +258,7 @@ bit [63:0] start_time, end_time;
 initial begin
 	#20;
 //ENCRYPT
-	#100;
+	#(CLOCK_PERIOD);
 
 	$display("===ENCRYPT TEST START===");
 	start_time = $time();
@@ -426,7 +392,7 @@ initial begin
 	foreach (MESSAGE[i]) begin
 		ABSORB_MESSAGE (MESSAGE[i], 8 * i);
 	end
-	if ((MESSAGE_LENGTH % 8) == 0) ABSORB_MESSAGE (64'b0, MESSAGE_LENGTH);
+	if ((MESSAGE_LENGTH % 8) == 0) ABSORB_MESSAGE (128'b0, MESSAGE_LENGTH);
 
 	//hashing
 	HASH256 ();
@@ -452,6 +418,7 @@ end
 initial begin
 	$dumpfile("wave.vcd");
 	$dumpvars;
+	
 end
 
 endmodule : test_ascon_core

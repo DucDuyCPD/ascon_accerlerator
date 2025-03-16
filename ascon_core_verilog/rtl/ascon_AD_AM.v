@@ -103,24 +103,6 @@ always @(posedge clk or negedge rst_n)begin
 	end
 end
 
-// assign s0 = ((data_length - data_position) > 8) && ((sel_type == Hash256) || (sel_type == XOF128) || (sel_type == CXOF128)) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 0 ) ? x0_i ^  64'h00_00_00_00_00_00_00_01 :
-// 			((data_length - data_position) == 1 ) ? x0_i ^ {56'h00_00_00_00_00_00_01,data[71:64] } :
-// 			((data_length - data_position) == 2 ) ? x0_i ^ {48'h00_00_00_00_00_01,data[79:64]} :
-// 			((data_length - data_position) == 3 ) ? x0_i ^ {40'h00_00_00_00_01,data[87:64]} :
-// 			((data_length - data_position) == 4 ) ? x0_i ^ {32'h00_00_00_01,data[95:64]} :
-// 			((data_length - data_position) == 5 ) ? x0_i ^ {24'h00_00_01,data[103:64]} :
-// 			((data_length - data_position) == 6 ) ? x0_i ^ {16'h00_01,data[111:64]} :
-// 			((data_length - data_position) == 7 ) ? x0_i ^ {8'h01,data[119:64]} :
-// 			((data_length - data_position) == 8 ) && (sel_type == AEAD128) ? x0_i ^ data[127:64] : 
-// 			((data_length - data_position) == 9 ) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 10) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 11) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 12) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 13) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 14) && (sel_type == AEAD128) ? x0_i ^ data[127:64] :
-// 			((data_length - data_position) == 15) && (sel_type == AEAD128) ? x0_i ^ data[127:64] : x0_i ^ data[127:64];
-
 assign s0 =		((data_length - data_position) == 0 ) ? x0_i ^  64'h1 :
 			((data_length - data_position) == 1 ) ? x0_i ^ {56'h1,data[71:64]} :
 			((data_length - data_position) == 2 ) ? x0_i ^ {48'h1,data[79:64]} :
@@ -129,24 +111,6 @@ assign s0 =		((data_length - data_position) == 0 ) ? x0_i ^  64'h1 :
 			((data_length - data_position) == 5 ) ? x0_i ^ {24'h1,data[103:64]} :
 			((data_length - data_position) == 6 ) ? x0_i ^ {16'h1,data[111:64]} :
 			((data_length - data_position) == 7 ) ? x0_i ^ { 8'h1,data[119:64]} : x0_i ^ data[127:64];
-
-// assign s1 = ((sel_type == Hash256) || (sel_type == XOF128) || (sel_type == CXOF128)) ? x1_i : 
-// 			((data_length - data_position) == 0 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 1 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 2 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 3 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 4 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 5 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 6 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 7 ) && (sel_type == AEAD128) ? x1_i ^ 64'b0 :
-// 			((data_length - data_position) == 8 ) && (sel_type == AEAD128) ? x1_i ^ 64'h00_00_00_00_00_00_00_01:
-// 			((data_length - data_position) == 9 ) && (sel_type == AEAD128) ? x1_i ^ {56'h00_00_00_00_00_00_01,data[7:0] } :
-// 			((data_length - data_position) == 10) && (sel_type == AEAD128) ? x1_i ^ {48'h00_00_00_00_00_01,data[15:0]} :
-// 			((data_length - data_position) == 11) && (sel_type == AEAD128) ? x1_i ^ {40'h00_00_00_00_01,data[23:0]} :
-// 			((data_length - data_position) == 12) && (sel_type == AEAD128) ? x1_i ^ {32'h00_00_00_01,data[31:0]} :
-// 			((data_length - data_position) == 13) && (sel_type == AEAD128) ? x1_i ^ {24'h00_00_01,data[39:0]} :
-// 			((data_length - data_position) == 14) && (sel_type == AEAD128) ? x1_i ^ {16'h00_01,data[47:0]} :
-// 			((data_length - data_position) == 15) && (sel_type == AEAD128) ? x1_i ^ {8'h01,data[55:0]} : x1_i ^ data[63:0];
 
 assign s1 = ((sel_type == Hash256) || (sel_type == XOF128) || (sel_type == CXOF128)) ? x1_i : 
 			((data_length - data_position) == 0 ) ? x1_i :
@@ -193,34 +157,5 @@ assign x1_p12 = x1_o_AD_AM_p12;
 assign x2_p12 = x2_o_AD_AM_p12;
 assign x3_p12 = x3_o_AD_AM_p12;
 assign x4_p12 = x4_o_AD_AM_p12;
-
-
-// ascon_permutation_p8 ascon_p8(
-// 	.x0_i(s0),
-// 	.x1_i(s1),
-// 	.x2_i(s2),
-// 	.x3_i(s3),
-// 	.x4_i(s4),
-
-// 	.x0_o(x0_p8),
-// 	.x1_o(x1_p8),
-// 	.x2_o(x2_p8),
-// 	.x3_o(x3_p8),
-// 	.x4_o(x4_p8)
-// );
-
-// ascon_permutation_p12 ascon_p12(
-// 	.x0_i(s0),
-// 	.x1_i(s1),
-// 	.x2_i(s2),
-// 	.x3_i(s3),
-// 	.x4_i(s4),
-
-// 	.x0_o(x0_p12),
-// 	.x1_o(x1_p12),
-// 	.x2_o(x2_p12),
-// 	.x3_o(x3_p12),
-// 	.x4_o(x4_p12)
-// );
 
 endmodule

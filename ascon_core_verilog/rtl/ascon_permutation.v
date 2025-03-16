@@ -66,42 +66,6 @@ module ascon_permutation_1p(
 
 endmodule
 
-// module ascon_permutation_p6(
-// 	input wire [63:0] x0_i,
-// 	input wire [63:0] x1_i,
-// 	input wire [63:0] x2_i,
-// 	input wire [63:0] x3_i,
-// 	input wire [63:0] x4_i,
-
-// 	output wire [63:0] x0_o,
-// 	output wire [63:0] x1_o,
-// 	output wire [63:0] x2_o,
-// 	output wire [63:0] x3_o,
-// 	output wire [63:0] x4_o
-// );
-
-// 	parameter rc0 = 64'h96;
-// 	parameter rc1 = 64'h87;
-// 	parameter rc2 = 64'h78;
-// 	parameter rc3 = 64'h69;
-// 	parameter rc4 = 64'h5a;
-// 	parameter rc5 = 64'h4b;
-
-// 	wire [63:0] x0_round [4:0];
-// 	wire [63:0] x1_round [4:0];
-// 	wire [63:0] x2_round [4:0];
-// 	wire [63:0] x3_round [4:0];
-// 	wire [63:0] x4_round [4:0];
-
-// 	ascon_permutation_1p r0(.round_const(rc0), .x0_i(x0_i), .x1_i(x1_i), .x2_i(x2_i), .x3_i(x3_i), .x4_i(x4_i), .x0_o(x0_round[0]), .x1_o(x1_round[0]), .x2_o(x2_round[0]), .x3_o(x3_round[0]), .x4_o(x4_round[0]));
-// 	ascon_permutation_1p r1(.round_const(rc1), .x0_i(x0_round[0]), .x1_i(x1_round[0]), .x2_i(x2_round[0]), .x3_i(x3_round[0]), .x4_i(x4_round[0]), .x0_o(x0_round[1]), .x1_o(x1_round[1]), .x2_o(x2_round[1]), .x3_o(x3_round[1]), .x4_o(x4_round[1]));
-// 	ascon_permutation_1p r2(.round_const(rc2), .x0_i(x0_round[1]), .x1_i(x1_round[1]), .x2_i(x2_round[1]), .x3_i(x3_round[1]), .x4_i(x4_round[1]), .x0_o(x0_round[2]), .x1_o(x1_round[2]), .x2_o(x2_round[2]), .x3_o(x3_round[2]), .x4_o(x4_round[2]));
-// 	ascon_permutation_1p r3(.round_const(rc3), .x0_i(x0_round[2]), .x1_i(x1_round[2]), .x2_i(x2_round[2]), .x3_i(x3_round[2]), .x4_i(x4_round[2]), .x0_o(x0_round[3]), .x1_o(x1_round[3]), .x2_o(x2_round[3]), .x3_o(x3_round[3]), .x4_o(x4_round[3]));
-// 	ascon_permutation_1p r4(.round_const(rc4), .x0_i(x0_round[3]), .x1_i(x1_round[3]), .x2_i(x2_round[3]), .x3_i(x3_round[3]), .x4_i(x4_round[3]), .x0_o(x0_round[4]), .x1_o(x1_round[4]), .x2_o(x2_round[4]), .x3_o(x3_round[4]), .x4_o(x4_round[4]));
-// 	ascon_permutation_1p r5(.round_const(rc5), .x0_i(x0_round[4]), .x1_i(x1_round[4]), .x2_i(x2_round[4]), .x3_i(x3_round[4]), .x4_i(x4_round[4]), .x0_o(x0_o), .x1_o(x1_o), .x2_o(x2_o), .x3_o(x3_o), .x4_o(x4_o));
-
-// endmodule
-
 module ascon_permutation_p8(
 	input wire [63:0] x0_i,
 	input wire [63:0] x1_i,

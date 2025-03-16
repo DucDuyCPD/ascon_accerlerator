@@ -5,31 +5,30 @@ TOP				?= test_bench
 #====================================
 
 build:
-	@verilator -Mdir build --binary -j $(nproc) --sv --trace -f $(LIST_FILE_NAME) -Wno-WIDTHEXPAND --top-module $(TOP)
+	@verilator -Mdir build --binary -j $(nproc) --sv  +1800-2023ext+v  +1800-2023ext+sv --trace -f $(LIST_FILE_NAME) -Wno-WIDTHEXPAND --top-module $(TOP)
 	
 run:
 	@./build/V$(TOP)
+
+coverage:
+	@rm -rf coverage_run coverage_report coverage.dat report.info
+	@verilator --coverage --binary -Mdir coverage_run -f $(LIST_FILE_NAME) --top-module $(TOP)
+	@./coverage_run/V$(TOP)
+	@verilator_coverage coverage.dat --write-info report.info
+	@genhtml report.info --output-directory coverage_report
+	@firefox coverage_report/index.html &
 
 wave:
 	@gtkwave wave.vcd &
 
 clean:
-	@if [ -d build ]; then \
-		rm build -r; \
-	fi
+	@rm -rf build *.vcd coverage_run coverage_report coverage.dat report.info
 
-	@if [ -f *.vcd ]; then \
-		rm *.vcd; \
-	fi
+all: clean build run
 
-all: 
-	@make clean
-	@make build
-	@make run
+all_coverage: clean build run coverage
 
-all_wave: 
-	@make all
-	@make wave
+all_wave: clean build run wave
 
 help:
 	@echo "=========================================================="
@@ -39,6 +38,12 @@ help:
 	@echo "| make clean: delete generated file               	"
 	@echo "| make all: make clean -> make build -> make run  	"
 	@echo "| make all_wave: make all -> make wave             	"
+	@echo "| make coverage: code coverage             	        "
 	@echo "|========================================================"
-	@echo "| To select top module, use option TOP=module_name     	"
+	@echo "| To select top module, use option TOP=module_name, default is test_bench    	"
+	@echo "| To select list of file need to compile, use LIST_FILE_NAME=list_file, default is list_file.txt"
+	@echo "| This Makefile require:"
+	@echo "| 	+ verilator     	"
+	@echo "| 	+ gtkwave     	"
+	@echo "| 	+ lcov     	"	
 	@echo "========================================================="
