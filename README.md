@@ -20,6 +20,7 @@ Each encryption step is handled by a dedicated module:
 ![Ascon Core (Top module)](document/image/ascon_core.png)
 
 | Pin name | Width | Direction | Function |
+|----------|-------|-----------|----------|
 | Clk, rst_n | 1 | input | clock and reset |
 | key | 128 | input | key for AEAD mode, not use in Hash |
 | Pin name | Width | Direction | Function |
