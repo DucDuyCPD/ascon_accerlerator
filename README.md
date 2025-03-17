@@ -7,8 +7,8 @@ Block diagram
 ==========
 The Ascon Core module executes the Ascon algorithm based on NIST 800-232, supporting three main cryptographic modes: Ascon-AEAD128, Ascon-Hash256, and Ascon-XOF128. Based on the outlined algorithm model, the essential steps for encryption can be summarized as follows:
 1. Initialization – Set up initial values.
-2. Absorption – Process associated data.
-3. Encryption – Encrypt the main data.
+2. Absorption – Process associated data and process absorb message
+3. Encryption – Encrypt or Decrypt the main data.
 4. Authentication (for AEAD only) – Generate a tag to verify data integrity during transmission or storage (Not applicable for hash functions)
 
 Each encryption step is handled by a dedicated module:
