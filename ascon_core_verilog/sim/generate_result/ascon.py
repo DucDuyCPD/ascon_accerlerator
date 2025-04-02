@@ -57,6 +57,8 @@ def ascon_hash(message, variant="Ascon-Hash256", hashlength=32):
     # Finalization (Squeezing)
     H = b""
     while len(H) < hashlength:
+
+        # print(len(H))
         H += int_to_bytes(S[0], rate)
         # printstate(S, "S before permutation = ")
         ascon_permutation(S, 12)
@@ -280,25 +282,25 @@ def ascon_process_plaintext(S, b, rate, plaintext):
     p_padding = to_bytes([0x01]) + zero_bytes(rate-p_lastlen-1)
     p_padded = plaintext + p_padding
 
-    printstate (p_padded,"p_padded = ")
-    print(bytes_to_hex(p_padded))
+    # printstate (p_padded,"p_padded = ")
+    # print(bytes_to_hex(p_padded))
 
     # first t-1 blocks
     ciphertext = to_bytes([])
     for block in range(0, len(p_padded) - rate, rate):
 
-        print(block)
+        # print(block)
 
         S[0] ^= bytes_to_int(p_padded[block:block+8])
         S[1] ^= bytes_to_int(p_padded[block+8:block+16])
         ciphertext += (int_to_bytes(S[0], 8) + int_to_bytes(S[1], 8))
         
-        print("ciphertext = ")
-        print(bytes_to_hex(ciphertext))
+        # print("ciphertext = ")
+        # print(bytes_to_hex(ciphertext))
 
-        printstate(S, "S before permutation = ")
+        # printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
-        printstate(S, "S after permutation = ")
+        # printstate(S, "S after permutation = ")
 
     # last block t
     block = len(p_padded) - rate
@@ -487,8 +489,8 @@ def demo_aead(variant="Ascon-AEAD128"):
     # print("key = ",key)
     # printstate(key, "key = ")
     
-    associateddata = get_random_bytes(1)
-    plaintext      = get_random_bytes(50)
+    associateddata = get_random_bytes(64)
+    plaintext      = get_random_bytes(64)
 
     start = count() #start measure cycle used 
     ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
@@ -524,7 +526,7 @@ def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = get_random_bytes(1)
+    message = get_random_bytes(62)
 
     start = count() #start measure cycle used
     hash_out = ascon_hash(message, variant, hashlength) # TODO CXOF interface

@@ -1,21 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sat Mar  8 19:44:00 2025
+[*] Sun Mar 30 16:14:30 2025
 [*]
 [dumpfile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/wave.vcd"
-[dumpfile_mtime] "Sat Mar  8 19:42:09 2025"
-[dumpfile_size] 2364014
+[dumpfile_mtime] "Sun Mar 30 16:05:42 2025"
+[dumpfile_size] 1594072
 [savefile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/gtkwave_savefile.gtkw"
-[timestart] 4244000
-[size] 1920 946
-[pos] -1971 -24
+[timestart] 0
+[size] 1714 790
+[pos] -51 -51
 *-17.835737 4900000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] test_ascon_core.
 [treeopen] test_ascon_core.ascon_core_dut.
 [sst_width] 233
-[signals_width] 524
+[signals_width] 501
 [sst_expanded] 1
-[sst_vpaned_height] 216
+[sst_vpaned_height] 315
 @28
 test_ascon_core.ascon_core_dut.clk
 test_ascon_core.ascon_core_dut.rst_n
@@ -25,15 +25,17 @@ test_ascon_core.ascon_core_dut.process_en_AD_AM
 test_ascon_core.ascon_core_dut.process_en_encrypt_decrypt
 test_ascon_core.ascon_core_dut.process_en_hash
 test_ascon_core.ascon_core_dut.process_en_final
-test_ascon_core.ascon_core_dut.count[1:0]
 test_ascon_core.ascon_core_dut.mode_sel_encrypt_decrypt
 @24
 test_ascon_core.ascon_core_dut.ascon_encrypt_decrypt_module.text_length[31:0]
 test_ascon_core.ascon_core_dut.ascon_encrypt_decrypt_module.text_position[31:0]
 @22
 test_ascon_core.ascon_core_dut.key[127:0]
-@23
 test_ascon_core.ascon_core_dut.nonce[127:0]
+@28
+test_ascon_core.ascon_core_dut.err
+@29
+test_ascon_core.ascon_core_dut.done
 @22
 test_ascon_core.ascon_core_dut.x0[63:0]
 test_ascon_core.ascon_core_dut.x1[63:0]

@@ -18,34 +18,70 @@ module ascon_permutation_1p(
 	parameter one = 64'hFFFF_FFFF_FFFF_FFFF;
 
 	wire [63:0] x0_rc, x1_rc, x2_rc, x3_rc, x4_rc;
+	wire [63:0] a, b, c, d, e, f, g, h, i, j;
+	wire [63:0] x0_s, x1_s, x2_s, x3_s, x4_s;
+	wire [63:0] x0_sr19, x0_sr28, x1_sr61, x1_sr39, x2_sr1, x2_sr6, x3_sr10, x3_sr17, x4_sr7, x4_sr41;
+	wire [63:0] x0_rc_xor_x4_rc, x2_rc_xor_x1_rc, x4_rc_xor_x3_rc;
+
+	wire [63:0] rc;
+	assign rc = round_const;
+
 	assign x0_rc = x0_i;
 	assign x1_rc = x1_i;
-	assign x2_rc = x2_i ^ round_const;
+	assign x2_rc = (~x2_i & round_const) | (x2_i & ~round_const);
 	assign x3_rc = x3_i;
 	assign x4_rc = x4_i;
 
-	wire [63:0] a, b, c, d, e, f, g, h, i, j;
+//version 1
+	// assign a = ((x0_rc ^ x4_rc) ^ one) & x1_rc;
+	// assign b = (x1_rc ^ one) & (x2_rc ^ x1_rc);
+	// assign c = ((x2_rc ^ x1_rc) ^ one) & x3_rc;
+	// assign d = (x3_rc ^ one) & (x4_rc ^ x3_rc);
+	// assign e = ((x4_rc ^ x3_rc) ^ one) & (x0_rc ^ x4_rc);
+	// assign f = (x0_rc ^ x4_rc) ^ b;
+	// assign g = x1_rc ^ c;
+	// assign h = (x2_rc ^ x1_rc) ^ d;
+	// assign i = x3_rc ^ e;
+	// assign j = (x4_rc ^ x3_rc) ^ a;
 
-	assign a = ((x0_rc ^ x4_rc) ^ one) & x1_rc;
-	assign b = (x1_rc ^ one) & (x2_rc ^ x1_rc);
-	assign c = ((x2_rc ^ x1_rc) ^ one) & x3_rc;
-	assign d = (x3_rc ^ one) & (x4_rc ^ x3_rc);
-	assign e = ((x4_rc ^ x3_rc) ^ one) & (x0_rc ^ x4_rc);
-	assign f = (x0_rc ^ x4_rc) ^ b;
-	assign g = x1_rc ^ c;
-	assign h = (x2_rc ^ x1_rc) ^ d;
-	assign i = x3_rc ^ e;
-	assign j = (x4_rc ^ x3_rc) ^ a;
+	// assign x0_s = f ^ j;
+	// assign x1_s = g ^ f;
+	// assign x2_s = h ^ one;
+	// assign x3_s = i ^ h;
+	// assign x4_s = j;
 
-	wire [63:0] x0_s, x1_s, x2_s, x3_s, x4_s;
+//version 2
+	assign x0_rc_xor_x4_rc = x0_rc ^ x4_rc;
+	assign x2_rc_xor_x1_rc = x2_rc ^ x1_rc;
+	assign x4_rc_xor_x3_rc = x4_rc ^ x3_rc;
 
-	assign x0_s = f ^ j;
-	assign x1_s = g ^ f;
-	assign x2_s = h ^ one;
-	assign x3_s = i ^ h;
-	assign x4_s = j;
+	assign a = ~x0_rc_xor_x4_rc & x1_rc;
+	assign b = ~x1_rc & x2_rc_xor_x1_rc;
+	assign c = ~x2_rc_xor_x1_rc & x3_rc;
+	assign d = ~x3_rc & x4_rc_xor_x3_rc;
+	assign e = ~x4_rc_xor_x3_rc & x0_rc_xor_x4_rc;
+	assign f = x0_rc_xor_x4_rc ^ b;
 
-	wire [63:0] x0_sr19, x0_sr28, x1_sr61, x1_sr39, x2_sr1, x2_sr6, x3_sr10, x3_sr17, x4_sr7, x4_sr41;
+	assign x0_s = f ^ x4_s;
+	assign x1_s = x1_rc ^ c ^ f;
+	assign x2_s = ~(x2_rc_xor_x1_rc ^ d);
+	assign x3_s = x3_rc ^ e ^ ~x2_s;
+	assign x4_s = x4_rc_xor_x3_rc ^ a;
+
+//version 3
+	// assign x0_s = (~x4_rc & ~x3_rc & x1_rc) | (x3_rc & ~x2_rc & ~x1_rc & ~x0_rc) | (x3_rc & x2_rc & ~x1_rc & x0_rc) | (~x3_rc & ~x2_rc & ~x1_rc & x0_rc) | (~x3_rc & x2_rc & ~x1_rc & ~x0_rc) | (x4_rc & x3_rc & x1_rc);
+	// assign x1_s = (~x4_rc & ~x3_rc & ~x2_rc & ~x1_rc & x0_rc) | (~x4_rc & x3_rc & x2_rc & x1_rc & x0_rc) | (x4_rc & ~x3_rc & ~x2_rc & ~x1_rc & ~x0_rc) | (x4_rc & x3_rc & x2_rc & x1_rc & ~x0_rc) | (~x4_rc & ~x3_rc & x1_rc & ~x0_rc) | (~x4_rc & x2_rc & ~x1_rc & ~x0_rc) | (~x4_rc & x3_rc & ~x2_rc & ~x0_rc) | (x4_rc & ~x3_rc & x1_rc & x0_rc) | (x4_rc & x2_rc & ~x1_rc & x0_rc) | (x4_rc & x3_rc & ~x2_rc & x0_rc);
+	// assign x2_s = (~x4_rc & x2_rc & x1_rc) | (~x4_rc & ~x2_rc & ~x1_rc) | (x3_rc & ~x2_rc & ~x1_rc) | (x3_rc & x2_rc & x1_rc) | (x4_rc & ~x3_rc & x2_rc & ~x1_rc) | (x4_rc & ~x3_rc & ~x2_rc & x1_rc);
+	// assign x3_s = (~x2_rc & ~x1_rc & x0_rc) | (~x4_rc & ~x3_rc & ~x2_rc & x1_rc & ~x0_rc) | (~x4_rc & ~x3_rc & x2_rc & ~x1_rc & ~x0_rc) | (x2_rc & x1_rc & x0_rc) | (~x4_rc & x3_rc & ~x2_rc & ~x1_rc) | (~x4_rc & x3_rc & x2_rc & x1_rc) | (x4_rc & ~x3_rc & ~x2_rc & ~x1_rc) | (x4_rc & ~x3_rc & x2_rc & x1_rc) | (x4_rc & x3_rc & ~x2_rc & x1_rc & ~x0_rc) | (x4_rc & x3_rc & x2_rc & ~x1_rc & ~x0_rc);
+	// assign x4_s = (~x4_rc & x3_rc & ~x1_rc) | (x4_rc & ~x3_rc & ~x1_rc) | (~x3_rc & x1_rc & ~x0_rc) | (x3_rc & x1_rc & x0_rc);
+
+//version 4
+	// assign x0_s = (~x4_i & ~x3_i & x1_i) | (~rc & x3_i & ~x2_i & ~x1_i & ~x0_i) | (~rc & x3_i & x2_i & ~x1_i & x0_i) | (~rc & ~x3_i & ~x2_i & ~x1_i & x0_i) | (~rc & ~x3_i & x2_i & ~x1_i & ~x0_i) | (x4_i & x3_i & x1_i) | (rc & x3_i & ~x2_i & ~x1_i & x0_i) | (rc & x3_i & x2_i & ~x1_i & ~x0_i) | (rc & ~x3_i & ~x2_i & ~x1_i & ~x0_i) | (rc & ~x3_i & x2_i & ~x1_i & x0_i);
+	// assign x1_s = (~rc & ~x4_i & ~x3_i & ~x2_i & ~x1_i & x0_i) | (~rc & ~x4_i & x3_i & x2_i & x1_i & x0_i) | (~rc & x4_i & ~x3_i & ~x2_i & ~x1_i & ~x0_i) | (~rc & x4_i & x3_i & x2_i & x1_i & ~x0_i) | (rc & ~x4_i & ~x3_i & x2_i & ~x1_i & x0_i) | (rc & ~x4_i & x3_i & ~x2_i & x1_i & x0_i) | (rc & x4_i & ~x3_i & x2_i & ~x1_i & ~x0_i) | (rc & x4_i & x3_i & ~x2_i & x1_i & ~x0_i) | (~rc & ~x4_i & ~x2_i & x1_i & ~x0_i) | (~rc & ~x4_i & ~x3_i & x2_i & ~x0_i) | (~x4_i & x3_i & ~x1_i & ~x0_i) | (~rc & x4_i & ~x2_i & x1_i & x0_i) | (~rc & x4_i & ~x3_i & x2_i & x0_i) | (x4_i & x3_i & ~x1_i & x0_i) | (rc & ~x4_i & ~x3_i & ~x2_i & ~x0_i) | (rc & ~x4_i & x2_i & x1_i & ~x0_i) | (rc & x4_i & ~x3_i & ~x2_i & x0_i) | (rc & x4_i & x2_i & x1_i & x0_i);
+	// assign x2_s = (~rc & ~x4_i & ~x2_i & ~x1_i) | (~rc & ~x4_i & x2_i & x1_i) | (~rc & x4_i & ~x3_i & ~x2_i & x1_i) | (~rc & x4_i & ~x3_i & x2_i & ~x1_i) | (~rc & x3_i & ~x2_i & ~x1_i) | (~rc & x3_i & x2_i & x1_i) | (rc & ~x4_i & ~x2_i & x1_i) | (rc & ~x4_i & x2_i & ~x1_i) | (rc & x4_i & ~x3_i & ~x2_i & ~x1_i) | (rc & x4_i & ~x3_i & x2_i & x1_i) | (rc & x3_i & ~x2_i & x1_i) | (rc & x3_i & x2_i & ~x1_i);
+	// assign x3_s = (~rc & ~x2_i & ~x1_i & x0_i) | (~rc & ~x4_i & ~x3_i & ~x2_i & x1_i & ~x0_i) | (~rc & ~x4_i & ~x3_i & x2_i & ~x1_i & ~x0_i) | (~rc & x2_i & x1_i & x0_i) | (~rc & ~x4_i & x3_i & ~x2_i & ~x1_i) | (~rc & ~x4_i & x3_i & x2_i & x1_i) | (~rc & x4_i & ~x3_i & ~x2_i & ~x1_i) | (~rc & x4_i & ~x3_i & x2_i & x1_i) | (~rc & x4_i & x3_i & ~x2_i & x1_i & ~x0_i) | (~rc & x4_i & x3_i & x2_i & ~x1_i & ~x0_i) | (rc & ~x4_i & ~x3_i & ~x2_i & ~x1_i & ~x0_i) | (rc & ~x2_i & x1_i & x0_i) | (rc & x2_i & ~x1_i & x0_i) | (rc & ~x4_i & ~x3_i & x2_i & x1_i & ~x0_i) | (rc & ~x4_i & x3_i & ~x2_i & x1_i) | (rc & ~x4_i & x3_i & x2_i & ~x1_i) | (rc & x4_i & ~x3_i & ~x2_i & x1_i) | (rc & x4_i & ~x3_i & x2_i & ~x1_i) | (rc & x4_i & x3_i & ~x2_i & ~x1_i & ~x0_i) | (rc & x4_i & x3_i & x2_i & x1_i & ~x0_i);
+	// assign x4_s = (~x3_i & x1_i & ~x0_i) | (~x4_i & x3_i & ~x1_i) | (x4_i & ~x3_i & ~x1_i) | (x3_i & x1_i & x0_i);
+//==============================================
 
 	assign x0_sr19 = {x0_s[18:0],x0_s[63:19]};
 	assign x0_sr28 = {x0_s[27:0],x0_s[63:28]};
@@ -63,6 +99,12 @@ module ascon_permutation_1p(
 	assign x2_o = x2_s ^ x2_sr1 ^ x2_sr6;
 	assign x3_o = x3_s ^ x3_sr10 ^ x3_sr17;
 	assign x4_o = x4_s ^ x4_sr7 ^ x4_sr41;
+
+	// assign x0_o = (x0_s & ~x0_sr19 & ~x0_sr28)|(~x0_s & x0_sr19 & ~x0_sr28)|(~x0_s & ~x0_sr19 & x0_sr28)|(x0_s & x0_sr19 & x0_sr28);
+	// assign x1_o = (x1_s & ~x1_sr61 & ~x1_sr39)|(~x1_s & x1_sr61 & ~x1_sr39)|(~x1_s & ~x1_sr61 & x1_sr39)|(x1_s & x1_sr61 & x1_sr39);
+	// assign x2_o = (x2_s & ~x2_sr1  & ~x2_sr6 )|(~x2_s & x2_sr1  & ~x2_sr6 )|(~x2_s & ~x2_sr1  & x2_sr6 )|(x2_s & x2_sr1  & x2_sr6 );
+	// assign x3_o = (x3_s & ~x3_sr10 & ~x3_sr17)|(~x3_s & x3_sr10 & ~x3_sr17)|(~x3_s & ~x3_sr10 & x3_sr17)|(x3_s & x3_sr10 & x3_sr17);
+	// assign x4_o = (x4_s & ~x4_sr7  & ~x4_sr41)|(~x4_s & x4_sr7  & ~x4_sr41)|(~x4_s & ~x4_sr7  & x4_sr41)|(x4_s & x4_sr7  & x4_sr41);
 
 endmodule
 

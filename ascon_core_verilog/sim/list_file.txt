@@ -5,4 +5,5 @@
 ../rtl/ascon_hash.v
 ../rtl/ascon_finalization.v
 ../rtl/ascon_core.v
+../rtl/ascon.v
 ../tb/test_ascon_core.sv
