@@ -21,11 +21,16 @@ module ascon_core (
 	input wire process_en_hash,
 	input wire process_en_final,
 
-	output wire [127:0] tag,
-	output wire done,
+	output reg [127:0] tag,
+	output reg done,
 
 	output wire err
 );
+
+parameter AEAD128 = 2'b00;
+parameter Hash256 = 2'b01;
+parameter XOF128  = 2'b10;
+parameter CXOF128 = 2'b11;
 
 reg [63:0] x0, x1, x2, x3, x4;
 reg count;
@@ -65,6 +70,11 @@ wire [63:0] x0_i_final_p12, x1_i_final_p12, x2_i_final_p12, x3_i_final_p12, x4_i
 wire [63:0] x3_o_final_p12, x4_o_final_p12;
 
 wire [127:0] data_out_temp;
+wire [127:0] tag_temp;
+
+wire [63:0] x0_i_p, x1_i_p, x2_i_p, x3_i_p, x4_i_p;
+wire [63:0] x0_o_p, x1_o_p, x2_o_p, x3_o_p, x4_o_p;
+wire done_p, en_p8, en_p12;
 
 assign data_out_temp = 	(process_en_encrypt_decrypt) ? encrypt_decrypt_out :
 						(process_en_hash) ? {hash_out,64'b0} : data_out;
@@ -98,8 +108,6 @@ assign x4_mux_temp = (process_en_AD_AM) ? x4_o_AD_AM :
 					(process_en_hash) ? x4_o_hash : x4;
 assign x4_mux = 	((process_en_AD_AM | process_en_encrypt_decrypt | process_en_hash) & count) ? x4_mux_temp : x4;
 
-assign done = count;
-
 always @(posedge clk or negedge rst_n) begin
 	if(~rst_n) begin
 		x0 <= 64'b0;
@@ -107,27 +115,44 @@ always @(posedge clk or negedge rst_n) begin
 		x2 <= 64'b0;
 		x3 <= 64'b0;
 		x4 <= 64'b0;
-		count <= 1'b0;
+		count <= 0;
 		data_out <= 128'b0;
+		done <=  0;
+		tag <= 128'h0;
 	end else begin
-		data_out <= data_out_temp;
-		if (process_en_init) begin
-			x0 <= x0_init;
-			x1 <= x1_init;
-			x2 <= x2_init;
-			x3 <= x3_init;
-			x4 <= x4_init;
+		if (err) begin
+			x0 <= 64'b0;
+			x1 <= 64'b0;
+			x2 <= 64'b0;
+			x3 <= 64'b0;
+			x4 <= 64'b0;
+			count <= 0;
+			data_out <= 128'b0;
+			done <=  0;
+			tag <= 128'h0;
 		end else begin
-			if (count == 1'b0) begin
-				if (process_en_AD_AM | process_en_encrypt_decrypt | process_en_hash) count <= 1'b1;
-				else count <= 1'b0;
+			data_out <= data_out_temp;
+			if (process_en_init & done_p) begin
+				x0 <= x0_init;
+				x1 <= x1_init;
+				x2 <= x2_init;
+				x3 <= x3_init;
+				x4 <= x4_init;
+				done <= 1'b1;
 			end else begin
-				x0 <= x0_mux;
-				x1 <= x1_mux;
-				x2 <= x2_mux;
-				x3 <= x3_mux;
-				x4 <= x4_mux;
-				count <= 1'b0;
+				done <=  count;
+				if (count == 1'b0) begin
+					if ((process_en_AD_AM | process_en_encrypt_decrypt | process_en_hash | process_en_final) & done_p) count <= 1'b1; 
+					else count <= 1'b0;
+				end else begin
+					x0 <= x0_mux;
+					x1 <= x1_mux;
+					x2 <= x2_mux;
+					x3 <= x3_mux;
+					x4 <= x4_mux;
+					tag <= tag_temp;
+					count <= 1'b0;
+				end
 			end
 		end
 	end
@@ -339,7 +364,7 @@ ascon_finalization ascon_finalization_module(
 	.x3_i(x3_i_final),
 	.x4_i(x4_i_final),
 
-	.tag(tag),
+	.tag(tag_temp),
 
 	.x0_i_final_p12(x0_i_final_p12),
 	.x1_i_final_p12(x1_i_final_p12),
@@ -390,32 +415,75 @@ ascon_hash ascon_hash_module(
 	.x4_o_hash_p12(x4_o_hash_p12)
 );
 
-ascon_permutation_p12 ascon_p12(
-	.x0_i(x0_i_p12),
-	.x1_i(x1_i_p12),
-	.x2_i(x2_i_p12),
-	.x3_i(x3_i_p12),
-	.x4_i(x4_i_p12),
+assign en_p8 = (((process_en_AD_AM & (sel_type == AEAD128)) | process_en_encrypt_decrypt) & ~done) ? 1'b1 : 1'b0;
+assign en_p12 = ((process_en_init | process_en_hash | process_en_final | (process_en_AD_AM & (sel_type != AEAD128))) & ~done) ? 1'b1 : 1'b0;
 
-	.x0_o(x0_o_p12),
-	.x1_o(x1_o_p12),
-	.x2_o(x2_o_p12),
-	.x3_o(x3_o_p12),
-	.x4_o(x4_o_p12)
+assign x0_i_p = (en_p8) ? x0_i_p8 :	(en_p12) ? x0_i_p12 : 64'b0;
+assign x1_i_p = (en_p8) ? x1_i_p8 :	(en_p12) ? x1_i_p12 : 64'b0;
+assign x2_i_p = (en_p8) ? x2_i_p8 :	(en_p12) ? x2_i_p12 : 64'b0;
+assign x3_i_p = (en_p8) ? x3_i_p8 :	(en_p12) ? x3_i_p12 : 64'b0;
+assign x4_i_p = (en_p8) ? x4_i_p8 :	(en_p12) ? x4_i_p12 : 64'b0;
+
+assign x0_o_p8 = (en_p8) ? x0_o_p : 64'b0;
+assign x1_o_p8 = (en_p8) ? x1_o_p : 64'b0;
+assign x2_o_p8 = (en_p8) ? x2_o_p : 64'b0;
+assign x3_o_p8 = (en_p8) ? x3_o_p : 64'b0;
+assign x4_o_p8 = (en_p8) ? x4_o_p : 64'b0;
+
+assign x0_o_p12 = (en_p12) ? x0_o_p : 64'b0;
+assign x1_o_p12 = (en_p12) ? x1_o_p : 64'b0;
+assign x2_o_p12 = (en_p12) ? x2_o_p : 64'b0;
+assign x3_o_p12 = (en_p12) ? x3_o_p : 64'b0;
+assign x4_o_p12 = (en_p12) ? x4_o_p : 64'b0;
+
+ascon_permutation_multicycle_p4 ascon_permutation_multicycle_p4_module(
+	.clk(clk),    // Clock
+	.rst_n(rst_n),  // Asynchronous reset active low
+
+	.en_p8(en_p8),
+	.en_p12(en_p12),
+	
+	.x0_i(x0_i_p),
+	.x1_i(x1_i_p),
+	.x2_i(x2_i_p),
+	.x3_i(x3_i_p),
+	.x4_i(x4_i_p),
+
+	.x0_o(x0_o_p),
+	.x1_o(x1_o_p),
+	.x2_o(x2_o_p),
+	.x3_o(x3_o_p),
+	.x4_o(x4_o_p),
+
+	.done(done_p)
 );
 
-ascon_permutation_p8 ascon_p8(
-	.x0_i(x0_i_p8),
-	.x1_i(x1_i_p8),
-	.x2_i(x2_i_p8),
-	.x3_i(x3_i_p8),
-	.x4_i(x4_i_p8),
+// ascon_permutation_p12 ascon_p12(
+// 	.x0_i(x0_i_p12),
+// 	.x1_i(x1_i_p12),
+// 	.x2_i(x2_i_p12),
+// 	.x3_i(x3_i_p12),
+// 	.x4_i(x4_i_p12),
 
-	.x0_o(x0_o_p8),
-	.x1_o(x1_o_p8),
-	.x2_o(x2_o_p8),
-	.x3_o(x3_o_p8),
-	.x4_o(x4_o_p8)
-);
+// 	.x0_o(x0_o_p12),
+// 	.x1_o(x1_o_p12),
+// 	.x2_o(x2_o_p12),
+// 	.x3_o(x3_o_p12),
+// 	.x4_o(x4_o_p12)
+// );
+
+// ascon_permutation_p8 ascon_p8(
+// 	.x0_i(x0_i_p8),
+// 	.x1_i(x1_i_p8),
+// 	.x2_i(x2_i_p8),
+// 	.x3_i(x3_i_p8),
+// 	.x4_i(x4_i_p8),
+
+// 	.x0_o(x0_o_p8),
+// 	.x1_o(x1_o_p8),
+// 	.x2_o(x2_o_p8),
+// 	.x3_o(x3_o_p8),
+// 	.x4_o(x4_o_p8)
+// );
 
 endmodule

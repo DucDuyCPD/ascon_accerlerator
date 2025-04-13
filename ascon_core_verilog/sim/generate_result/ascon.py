@@ -7,7 +7,7 @@ https://ascon.iaik.tugraz.at/
 """
 from hwcounter import Timer, count, count_end
 
-debug = True
+debug = False
 debugpermutation = False
 
 # === Ascon hash/xof ===
@@ -41,28 +41,18 @@ def ascon_hash(message, variant="Ascon-Hash256", hashlength=32):
     m_padding = to_bytes([0x01]) + zero_bytes(rate - (len(message) % rate) - 1)
     m_padded = message + m_padding
 
-    # printstate(m_padded, "m_padded")
-    # print(bytes_to_hex(m_padded))
-
     # message blocks 0,...,n
     for block in range(0, len(m_padded), rate):
-        # print(block)
         S[0] ^= bytes_to_int(m_padded[block:block+rate])
-
-        # printstate(S, "S before permutation = ")
         ascon_permutation(S, 12)
-        # printstate(S, "S after permutation = ")
     if debug: printstate(S, "process message:")
 
     # Finalization (Squeezing)
     H = b""
     while len(H) < hashlength:
-
-        # print(len(H))
         H += int_to_bytes(S[0], rate)
-        # printstate(S, "S before permutation = ")
         ascon_permutation(S, 12)
-        # printstate(S, "S after permutation = ")
+
     if debug: printstate(S, "finalization:")
     return H[:hashlength]
 
@@ -223,8 +213,6 @@ def ascon_initialize(S, k, rate, a, b, version, key, nonce):
 
     zero_key = bytes_to_state(zero_bytes(40-len(key)) + key)
 
-    # printstate(zero_key, "zero_key = ")
-
     S[0] ^= zero_key[0]
     S[1] ^= zero_key[1]
     S[2] ^= zero_key[2]
@@ -246,25 +234,12 @@ def ascon_process_associated_data(S, b, rate, associateddata):
         a_padding = to_bytes([0x01]) + zero_bytes(rate - (len(associateddata) % rate) - 1)
         a_padded = associateddata + a_padding
 
-        # printstate(a_padded, "a_padded = ")
-        # print("a_padded = ")
-        # printstate(S, "S = ")
-
-
         for block in range(0, len(a_padded), rate):
-
-            # print(block)
             
             S[0] ^= bytes_to_int(a_padded[block:block+8])
             if rate == 16:
                 S[1] ^= bytes_to_int(a_padded[block+8:block+16])
-
-            # printstate(S, "S before permutation = ")
-
             ascon_permutation(S, b)
-
-            # printstate(S, "S after permutation = ")
-
     S[4] ^= 1<<63
     if debug: printstate(S, "process associated data:")
 
@@ -288,24 +263,13 @@ def ascon_process_plaintext(S, b, rate, plaintext):
     # first t-1 blocks
     ciphertext = to_bytes([])
     for block in range(0, len(p_padded) - rate, rate):
-
-        # print(block)
-
         S[0] ^= bytes_to_int(p_padded[block:block+8])
         S[1] ^= bytes_to_int(p_padded[block+8:block+16])
         ciphertext += (int_to_bytes(S[0], 8) + int_to_bytes(S[1], 8))
-        
-        # print("ciphertext = ")
-        # print(bytes_to_hex(ciphertext))
-
-        # printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
-        # printstate(S, "S after permutation = ")
 
     # last block t
     block = len(p_padded) - rate
-
-    # print("last block:", block, ", len p_padded:", len(p_padded))
 
     S[0] ^= bytes_to_int(p_padded[block:block+8])
     S[1] ^= bytes_to_int(p_padded[block+8:block+16])
@@ -327,27 +291,16 @@ def ascon_process_ciphertext(S, b, rate, ciphertext):
     c_lastlen = len(ciphertext) % rate
     c_padded = ciphertext + zero_bytes(rate - c_lastlen)
 
-    # printstate (c_padded,"c_padded = ")
-    # print(bytes_to_hex(c_padded))
-
     # first t-1 blocks
     plaintext = to_bytes([])
     for block in range(0, len(c_padded) - rate, rate):
-
-        # print(block)
 
         Ci = (bytes_to_int(c_padded[block:block+8]), bytes_to_int(c_padded[block+8:block+16]))
         plaintext += (int_to_bytes(S[0] ^ Ci[0], 8) + int_to_bytes(S[1] ^ Ci[1], 8))
         S[0] = Ci[0]
         S[1] = Ci[1]
 
-
-        # print("plaintext = ")
-        # print(bytes_to_hex(plaintext))  
-
-        # printstate(S, "S before permutation = ")
         ascon_permutation(S, b)
-        # printstate(S, "S after permutation = ")
 
     # last block t
     block = len(c_padded) - rate
@@ -376,15 +329,12 @@ def ascon_finalize(S, rate, a, key):
     S[rate//8+0] ^= bytes_to_int(key[0:8])
     S[rate//8+1] ^= bytes_to_int(key[8:16])
 
-    # printstate(S, "S before permutation = ")
     ascon_permutation(S, a)
-    # printstate(S, "S after permutation = ")
 
     S[3] ^= bytes_to_int(key[-16:-8])
     S[4] ^= bytes_to_int(key[-8:])
     tag = int_to_bytes(S[3], 8) + int_to_bytes(S[4], 8)
 
-    # printstate (S, "S = ")
     if debug: printstate(S, "finalization:")
     return tag
 
@@ -483,14 +433,14 @@ def demo_aead(variant="Ascon-AEAD128"):
     print("=== demo encryption using {variant} ===".format(variant=variant))
 
     # choose a cryptographically strong random key and a nonce that never repeats for the same key:
-    key   = get_random_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
-    nonce = get_random_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
+    key   = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
+    nonce = zero_bytes(16) #int_to_bytes(0x78fd74d65422c04aadc05342320247b1, 16)  #get_random_bytes(16)  # zero_bytes(16)
 
     # print("key = ",key)
     # printstate(key, "key = ")
     
-    associateddata = get_random_bytes(64)
-    plaintext      = get_random_bytes(64)
+    associateddata = b"This is my test for processing associated data step and absorb"
+    plaintext      = b"This is my test for processing associated data step and absorb"
 
     start = count() #start measure cycle used 
     ciphertext        = ascon_encrypt(key, nonce, associateddata, plaintext,  variant)
@@ -526,7 +476,7 @@ def demo_hash(variant="Ascon-Hash256", hashlength=32):
     assert variant in ["Ascon-Hash256", "Ascon-XOF128", "Ascon-CXOF128"]
     print("=== demo hash using {variant} ===".format(variant=variant))
 
-    message = get_random_bytes(62)
+    message = get_random_bytes(64)
 
     start = count() #start measure cycle used
     hash_out = ascon_hash(message, variant, hashlength) # TODO CXOF interface

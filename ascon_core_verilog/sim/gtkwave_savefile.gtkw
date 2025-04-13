@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
-[*] Sun Mar 30 16:14:30 2025
+[*] Wed Apr  2 16:00:28 2025
 [*]
 [dumpfile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/wave.vcd"
-[dumpfile_mtime] "Sun Mar 30 16:05:42 2025"
-[dumpfile_size] 1594072
+[dumpfile_mtime] "Wed Apr  2 15:09:50 2025"
+[dumpfile_size] 1384949
 [savefile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/gtkwave_savefile.gtkw"
 [timestart] 0
-[size] 1714 790
+[size] 1752 794
 [pos] -51 -51
-*-17.835737 4900000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-17.835737 120000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] test_ascon_core.
 [treeopen] test_ascon_core.ascon_core_dut.
 [sst_width] 233
@@ -34,57 +34,27 @@ test_ascon_core.ascon_core_dut.key[127:0]
 test_ascon_core.ascon_core_dut.nonce[127:0]
 @28
 test_ascon_core.ascon_core_dut.err
-@29
 test_ascon_core.ascon_core_dut.done
+test_ascon_core.ascon_core_dut.done_p
+test_ascon_core.ascon_core_dut.en_p8
+test_ascon_core.ascon_core_dut.en_p12
 @22
 test_ascon_core.ascon_core_dut.x0[63:0]
 test_ascon_core.ascon_core_dut.x1[63:0]
 test_ascon_core.ascon_core_dut.x2[63:0]
 test_ascon_core.ascon_core_dut.x3[63:0]
 test_ascon_core.ascon_core_dut.x4[63:0]
+@28
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.state[1:0]
+@22
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.x0_i[63:0]
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.x1_i[63:0]
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.x2_i[63:0]
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.x3_i[63:0]
+test_ascon_core.ascon_core_dut.ascon_permutation_multicycle_p4_module.x4_i[63:0]
 test_ascon_core.ascon_core_dut.data_in[127:0]
-test_ascon_core.ascon_core_dut.x0_i_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x1_i_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x2_i_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x3_i_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x4_i_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x0_o_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x1_o_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x2_o_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x3_o_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x4_o_AD_AM[63:0]
-test_ascon_core.ascon_core_dut.x0_i_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x1_i_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x2_i_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x3_i_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x4_i_encrypt_decrypt[63:0]
 test_ascon_core.ascon_core_dut.data_out[127:0]
-test_ascon_core.ascon_core_dut.x0_o_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x1_o_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x2_o_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x3_o_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x4_o_encrypt_decrypt[63:0]
-test_ascon_core.ascon_core_dut.x0_i_hash[63:0]
-test_ascon_core.ascon_core_dut.x1_i_hash[63:0]
-test_ascon_core.ascon_core_dut.x2_i_hash[63:0]
-test_ascon_core.ascon_core_dut.x3_i_hash[63:0]
-test_ascon_core.ascon_core_dut.x4_i_hash[63:0]
 test_ascon_core.ascon_core_dut.hash_out[63:0]
-test_ascon_core.ascon_core_dut.x0_o_hash[63:0]
-test_ascon_core.ascon_core_dut.x1_o_hash[63:0]
-test_ascon_core.ascon_core_dut.x2_o_hash[63:0]
-test_ascon_core.ascon_core_dut.x3_o_hash[63:0]
-test_ascon_core.ascon_core_dut.x4_o_hash[63:0]
-test_ascon_core.ascon_core_dut.x0_init[63:0]
-test_ascon_core.ascon_core_dut.x1_init[63:0]
-test_ascon_core.ascon_core_dut.x2_init[63:0]
-test_ascon_core.ascon_core_dut.x3_init[63:0]
-test_ascon_core.ascon_core_dut.x4_init[63:0]
 test_ascon_core.ascon_core_dut.tag[127:0]
-test_ascon_core.ascon_core_dut.x0_i_final[63:0]
-test_ascon_core.ascon_core_dut.x1_i_final[63:0]
-test_ascon_core.ascon_core_dut.x2_i_final[63:0]
-test_ascon_core.ascon_core_dut.x3_i_final[63:0]
-test_ascon_core.ascon_core_dut.x4_i_final[63:0]
 [pattern_trace] 1
 [pattern_trace] 0

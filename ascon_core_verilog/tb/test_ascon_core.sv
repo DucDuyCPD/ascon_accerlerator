@@ -71,7 +71,7 @@ initial begin
 	TAG = {data_read_file_tag[1], data_read_file_tag[0]};
 	// $display("KEY: %h", KEY);
 	// $display("NONCE: %h", NONCE);
-	// $display("TAG: %h", TAG);
+	$display("TAG: %h", TAG);
 
 	PLAINTEXT_LENGTH = data_read_file_plaintext[0][31:0];
 	// $display("PLAINTEXT_LENGTH: %3d",PLAINTEXT_LENGTH);
@@ -128,8 +128,12 @@ task INITIALIZATION;
 		process_en_hash = 0;
 		process_en_final = 0;
 
-		#(CLOCK_PERIOD);		process_en_init = 1; sel_type = select_type;
-		#(CLOCK_PERIOD);		process_en_init = 0;
+		#(CLOCK_PERIOD);
+		process_en_init = 1; sel_type = select_type;
+
+		wait (done == 1);
+		#(CLOCK_PERIOD);		
+		process_en_init = 0;
 
 	end
 endtask
@@ -139,18 +143,26 @@ task ASSOCIATED_DATA;
 	input reg [31:0] position;
 	reg [127:0] out;
 	begin
-		#(CLOCK_PERIOD);		data_length = ASS_DATA_LENGTH;
-		#(CLOCK_PERIOD);		data_position = position;
+		#(CLOCK_PERIOD);		
+		data_length = ASS_DATA_LENGTH;
+		#(CLOCK_PERIOD);		
+		data_position = position;
 
-		#(CLOCK_PERIOD);		data_in [95:64] = in[95:64];
-		#(CLOCK_PERIOD);		data_in [127:96] = in[127:96];
-		#(CLOCK_PERIOD);		data_in [31:0] = in[31:0];
-		#(CLOCK_PERIOD);		data_in [63:32] = in[63:32];
+		#(CLOCK_PERIOD);		
+		data_in [95:64] = in[95:64];
+		#(CLOCK_PERIOD);		
+		data_in [127:96] = in[127:96];
+		#(CLOCK_PERIOD);		
+		data_in [31:0] = in[31:0];
+		#(CLOCK_PERIOD);		
+		data_in [63:32] = in[63:32];
 
-		#(CLOCK_PERIOD);		process_en_AD_AM = 1;
+		#(CLOCK_PERIOD);		
+		process_en_AD_AM = 1;
 
 		wait (done == 1);
-		#(CLOCK_PERIOD*2);		process_en_AD_AM = 0;
+		#(CLOCK_PERIOD);		
+		process_en_AD_AM = 0;
 	end
 endtask
 
@@ -159,23 +171,35 @@ task ENCRYPT;
 	input reg [31:0] position;
 	reg [127:0] out;
 	begin
-		#(CLOCK_PERIOD);		data_length = PLAINTEXT_LENGTH;
-		#(CLOCK_PERIOD);		data_position = position;
+		#(CLOCK_PERIOD);		
+		data_length = PLAINTEXT_LENGTH;
+		#(CLOCK_PERIOD);		
+		data_position = position;
 
-		#(CLOCK_PERIOD);		data_in [95:64] = in[95:64];
-		#(CLOCK_PERIOD);		data_in [127:96] = in[127:96];
-		#(CLOCK_PERIOD);		data_in [31:0] = in[31:0];
-		#(CLOCK_PERIOD);		data_in [63:32] = in[63:32];
+		#(CLOCK_PERIOD);		
+		data_in [95:64] = in[95:64];
+		#(CLOCK_PERIOD);		
+		data_in [127:96] = in[127:96];
+		#(CLOCK_PERIOD);		
+		data_in [31:0] = in[31:0];
+		#(CLOCK_PERIOD);		
+		data_in [63:32] = in[63:32];
 
-		#(CLOCK_PERIOD);		process_en_encrypt_decrypt = 1; mode_sel_encrypt_decrypt = 0;
+		#(CLOCK_PERIOD);		
+		process_en_encrypt_decrypt = 1; mode_sel_encrypt_decrypt = 0;
 
 		wait (done == 1);
-		#(CLOCK_PERIOD*2);		process_en_encrypt_decrypt = 0;
+		#(CLOCK_PERIOD);		
+		process_en_encrypt_decrypt = 0;
 
-		#(CLOCK_PERIOD);		out [95:64] = data_out[95:64];
-		#(CLOCK_PERIOD);		out [127:96] = data_out[127:96];
-		#(CLOCK_PERIOD);		out [31:0] = data_out[31:0];
-		#(CLOCK_PERIOD);		out [63:32] = data_out[63:32];
+		#(CLOCK_PERIOD);		
+		out [95:64] = data_out[95:64];
+		#(CLOCK_PERIOD);		
+		out [127:96] = data_out[127:96];
+		#(CLOCK_PERIOD);		
+		out [31:0] = data_out[31:0];
+		#(CLOCK_PERIOD);		
+		out [63:32] = data_out[63:32];
 
 	end
 endtask
@@ -185,23 +209,35 @@ task DECRYPT;
 	input reg [31:0] position;
 	reg [127:0] out;
 	begin
-		#(CLOCK_PERIOD);		data_length = PLAINTEXT_LENGTH;
-		#(CLOCK_PERIOD);		data_position = position;
+		#(CLOCK_PERIOD);		
+		data_length = PLAINTEXT_LENGTH;
+		#(CLOCK_PERIOD);		
+		data_position = position;
 
-		#(CLOCK_PERIOD);		data_in [95:64] = in[95:64];
-		#(CLOCK_PERIOD);		data_in [127:96] = in[127:96];
-		#(CLOCK_PERIOD);		data_in [31:0] = in[31:0];
-		#(CLOCK_PERIOD);		data_in [63:32] = in[63:32];
+		#(CLOCK_PERIOD);		
+		data_in [95:64] = in[95:64];
+		#(CLOCK_PERIOD);		
+		data_in [127:96] = in[127:96];
+		#(CLOCK_PERIOD);		
+		data_in [31:0] = in[31:0];
+		#(CLOCK_PERIOD);		
+		data_in [63:32] = in[63:32];
 
-		#(CLOCK_PERIOD);		process_en_encrypt_decrypt = 1; mode_sel_encrypt_decrypt = 1;
+		#(CLOCK_PERIOD);		
+		process_en_encrypt_decrypt = 1; mode_sel_encrypt_decrypt = 1;
 
 		wait (done == 1);
-		#(CLOCK_PERIOD*2);		process_en_encrypt_decrypt = 0;
+		#(CLOCK_PERIOD);		
+		process_en_encrypt_decrypt = 0;
 
-		#(CLOCK_PERIOD);		out [95:64] = data_out[95:64];
-		#(CLOCK_PERIOD);		out [127:96] = data_out[127:96];
-		#(CLOCK_PERIOD);		out [31:0] = data_out[31:0];
-		#(CLOCK_PERIOD);		out [63:32] = data_out[63:32];
+		#(CLOCK_PERIOD);		
+		out [95:64] = data_out[95:64];
+		#(CLOCK_PERIOD);		
+		out [127:96] = data_out[127:96];
+		#(CLOCK_PERIOD);		
+		out [31:0] = data_out[31:0];
+		#(CLOCK_PERIOD);		
+		out [63:32] = data_out[63:32];
 
 	end
 endtask
@@ -210,13 +246,20 @@ task FINALIZATION;
 	reg [127:0] tag_out;
 	begin
 		
-		#(CLOCK_PERIOD);		process_en_final = 1;
-		#(CLOCK_PERIOD*2);		process_en_final = 0;
+		#(CLOCK_PERIOD);		
+		process_en_final = 1;
+		wait (done == 1);
+		#(CLOCK_PERIOD);		
+		// process_en_final = 0;
 
-		#(CLOCK_PERIOD);		tag_out[31:0] = tag[31:0];
-		#(CLOCK_PERIOD);		tag_out[63:32] = tag[63:32];
-		#(CLOCK_PERIOD);		tag_out[95:64] = tag[95:64];
-		#(CLOCK_PERIOD);		tag_out[127:96] = tag[127:96];
+		#(CLOCK_PERIOD);		
+		tag_out[31:0] = tag[31:0];
+		#(CLOCK_PERIOD);		
+		tag_out[63:32] = tag[63:32];
+		#(CLOCK_PERIOD);		
+		tag_out[95:64] = tag[95:64];
+		#(CLOCK_PERIOD);		
+		tag_out[127:96] = tag[127:96];
 
 		if (tag_out == TAG) begin
 			$display("tag = %16h\tMATCH",tag_out);
@@ -230,15 +273,22 @@ task ABSORB_MESSAGE;
 	input reg [127:0] in;
 	input reg [31:0] position;
 	begin
-		#(CLOCK_PERIOD);		data_length = MESSAGE_LENGTH;
-		#(CLOCK_PERIOD);		data_position = position;
+		#(CLOCK_PERIOD);		
+		data_length = MESSAGE_LENGTH;
+		#(CLOCK_PERIOD);		
+		data_position = position;
 
-		#(CLOCK_PERIOD);		data_in [95:64] = in[95:64];
-		#(CLOCK_PERIOD);		data_in [127:96] = in[127:96];
+		#(CLOCK_PERIOD);		
+		data_in [95:64] = in[95:64];
+		#(CLOCK_PERIOD);		
+		data_in [127:96] = in[127:96];
 
-		#(CLOCK_PERIOD);		process_en_AD_AM = 1;
+		#(CLOCK_PERIOD);		
+		process_en_AD_AM = 1;
 
-		#(CLOCK_PERIOD*2);		process_en_AD_AM = 0;
+		wait  (done == 1);
+		#(CLOCK_PERIOD);		
+		process_en_AD_AM = 0;
 	end
 endtask
 
@@ -251,8 +301,13 @@ task HASH256;
 		process_en_hash = 1;
 		process_en_final = 0;
 
-		#(CLOCK_PERIOD);		process_en_hash = 1;
-		#(CLOCK_PERIOD*2); 		process_en_hash = 0;
+		#(CLOCK_PERIOD);		
+		process_en_hash = 1;
+
+		wait  (done == 1);
+		#(CLOCK_PERIOD); 		
+		process_en_hash = 0;
+
 		#(CLOCK_PERIOD*4);
 		if (data_out == HASH_OUT[0]) begin
 			$display("data_out = %16h\tMATCH",data_out);
@@ -260,8 +315,13 @@ task HASH256;
 			$display("data_out = %16h\tFAIL",data_out);
 		end
 
-		#(CLOCK_PERIOD);		process_en_hash = 1;
-		#(CLOCK_PERIOD*2); 		process_en_hash = 0;
+		#(CLOCK_PERIOD);		
+		process_en_hash = 1;
+
+		wait  (done == 1);
+		#(CLOCK_PERIOD); 		
+		process_en_hash = 0;
+		
 		#(CLOCK_PERIOD*4);
 		if (data_out == HASH_OUT[1]) begin
 			$display("data_out = %16h\tMATCH",data_out);
@@ -269,8 +329,13 @@ task HASH256;
 			$display("data_out = %16h\tFAIL",data_out);
 		end
 
-		#(CLOCK_PERIOD);		process_en_hash = 1;
-		#(CLOCK_PERIOD*2); 		process_en_hash = 0;
+		#(CLOCK_PERIOD);		
+		process_en_hash = 1;
+
+		wait  (done == 1);
+		#(CLOCK_PERIOD); 		
+		process_en_hash = 0;
+		
 		#(CLOCK_PERIOD*4);
 		if (data_out == HASH_OUT[2]) begin
 			$display("data_out = %16h\tMATCH",data_out);
@@ -278,14 +343,19 @@ task HASH256;
 			$display("data_out = %16h\tFAIL",data_out);
 		end
 
-		#(CLOCK_PERIOD);		process_en_hash = 1;
-		#(CLOCK_PERIOD*2); 		process_en_hash = 0;
+		#(CLOCK_PERIOD);		
+		process_en_hash = 1;
+
+		wait  (done == 1);
+		#(CLOCK_PERIOD); 		
+		process_en_hash = 0;
+		
 		#(CLOCK_PERIOD*4);
 		if (data_out == HASH_OUT[3]) begin
 			$display("data_out = %16h\tMATCH",data_out);
 		end else begin
 			$display("data_out = %16h\tFAIL",data_out);
-		end	
+		end
 	end
 endtask
 
@@ -434,9 +504,9 @@ initial begin
 
 	#1000;
 
-	$display("data length: %8d, associated data: %8d, encrypt speed: %.4f cycles/byte",PLAINTEXT_LENGTH, ASS_DATA_LENGTH, encrypt_cycle_use / (PLAINTEXT_LENGTH + ASS_DATA_LENGTH));
-	$display("data length: %8d, associated data: %8d, decrypt speed: %.4f cycles/byte",CIPHERTEXT_LENGTH, ASS_DATA_LENGTH, decrypt_cycle_use / (CIPHERTEXT_LENGTH + ASS_DATA_LENGTH));
-	$display("message length: %8d, hash speed: %.4f cycles/byte", MESSAGE_LENGTH, hash_cycle_use / (MESSAGE_LENGTH));
+	$display("data length: %8d, associated data: %8d, encrypt cycle use: %.1f, speed: %.4f cycles/byte",PLAINTEXT_LENGTH, ASS_DATA_LENGTH, encrypt_cycle_use, encrypt_cycle_use / (PLAINTEXT_LENGTH + ASS_DATA_LENGTH));
+	$display("data length: %8d, associated data: %8d, decrypt cycle use: %.1f, speed: %.4f cycles/byte",CIPHERTEXT_LENGTH, ASS_DATA_LENGTH, decrypt_cycle_use, decrypt_cycle_use / (CIPHERTEXT_LENGTH + ASS_DATA_LENGTH));
+	$display("message length: %8d, hash cycle use: %.1f, speed: %.4f cycles/byte", MESSAGE_LENGTH, hash_cycle_use, hash_cycle_use / (MESSAGE_LENGTH));
 
 	$finish;
 end

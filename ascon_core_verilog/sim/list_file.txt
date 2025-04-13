@@ -7,3 +7,4 @@
 ../rtl/ascon_core.v
 ../rtl/ascon.v
 ../tb/test_ascon_core.sv
+../tb/test_ascon_permutation_newver.sv

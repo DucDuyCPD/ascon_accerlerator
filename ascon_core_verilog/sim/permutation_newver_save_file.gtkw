@@ -1,0 +1,55 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Wed Apr  2 08:10:55 2025
+[*]
+[dumpfile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/wave.vcd"
+[dumpfile_mtime] "Wed Apr  2 07:48:54 2025"
+[dumpfile_size] 70060
+[savefile] "/home/leducduy/Desktop/ascon_accerlerator/ascon_core_verilog/sim/permutation_newver_save_file.gtkw"
+[timestart] 0
+[size] 1706 750
+[pos] -51 -51
+*-15.933721 35600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] test_ascon_permutation_newver.
+[sst_width] 233
+[signals_width] 311
+[sst_expanded] 1
+[sst_vpaned_height] 196
+@28
+test_ascon_permutation_newver.dut.clk
+test_ascon_permutation_newver.dut.done
+test_ascon_permutation_newver.dut.en_p8
+test_ascon_permutation_newver.dut.state[1:0]
+@22
+test_ascon_permutation_newver.dut.rc_r0[63:0]
+test_ascon_permutation_newver.dut.rc_r1[63:0]
+test_ascon_permutation_newver.dut.rc_r2[63:0]
+test_ascon_permutation_newver.dut.rc_r3[63:0]
+test_ascon_permutation_newver.dut.x0_reg_save[63:0]
+test_ascon_permutation_newver.dut.x1_reg_save[63:0]
+test_ascon_permutation_newver.dut.x2_reg_save[63:0]
+test_ascon_permutation_newver.dut.x3_reg_save[63:0]
+test_ascon_permutation_newver.dut.x4_reg_save[63:0]
+test_ascon_permutation_newver.dut.x0_i[63:0]
+test_ascon_permutation_newver.dut.x1_i[63:0]
+test_ascon_permutation_newver.dut.x2_i[63:0]
+test_ascon_permutation_newver.dut.x3_i[63:0]
+test_ascon_permutation_newver.dut.x4_i[63:0]
+test_ascon_permutation_newver.dut.x0_i_from_reg[63:0]
+test_ascon_permutation_newver.dut.x1_i_from_reg[63:0]
+test_ascon_permutation_newver.dut.x2_i_from_reg[63:0]
+test_ascon_permutation_newver.dut.x3_i_from_reg[63:0]
+test_ascon_permutation_newver.dut.x4_i_from_reg[63:0]
+test_ascon_permutation_newver.dut.x0_o[63:0]
+test_ascon_permutation_newver.dut.x1_o[63:0]
+test_ascon_permutation_newver.dut.x2_o[63:0]
+test_ascon_permutation_newver.dut.x3_o[63:0]
+test_ascon_permutation_newver.dut.x4_o[63:0]
+test_ascon_permutation_newver.dut.x0_o_from_module[63:0]
+test_ascon_permutation_newver.dut.x1_o_from_module[63:0]
+test_ascon_permutation_newver.dut.x2_o_from_module[63:0]
+test_ascon_permutation_newver.dut.x3_o_from_module[63:0]
+@23
+test_ascon_permutation_newver.dut.x4_o_from_module[63:0]
+[pattern_trace] 1
+[pattern_trace] 0
